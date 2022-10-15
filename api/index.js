@@ -14,7 +14,7 @@ const connect = async () => {
         await mongoose.connect(process.env.MONGO);
         console.log("Connect to mongoDB")
     } catch(error) {
-        throw error
+        throw error;
     }
 };
 
@@ -29,6 +29,17 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 
+//err handleing middleware
+app.use((err, req, res, next) => {
+    const errorStatus = err.status || 500
+    const errorMessage = err.message || "Something went wrong!"
+    return res.status(errorStatus).json({
+        success: false,
+        status: errorStatus,
+        message: errorMessage,
+        stack: err.stack
+    });
+});
 
 //8080연결완료
 app.listen(8080, ()=>{
