@@ -1,8 +1,10 @@
 //main (아래 둘중 하나로 설정하면됨)
-import express from "express"
+import express from "express";
 // const express = require("express")
-import dotenv from "dotenv"
-import mongoose from "mongoose"
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import authRoute from "./routes/auth.js";
+import userRoute from "./routes/auth.js";
 const app = express()
 dotenv.config()
 
@@ -20,9 +22,10 @@ mongoose.connection.on("disconnected", ()=> {
     console.log("mongoDB disconnected")
 })
 
-mongoose.connection.on("connected", ()=> {
-    console.log("mongoDB connected")
-})
+//middlewares
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+
 
 //8080연결완료
 app.listen(8080, ()=>{
