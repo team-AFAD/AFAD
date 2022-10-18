@@ -1,5 +1,5 @@
 import express from "express";
-import{updateUser, deleteUser, getUser, getUsers} from "../controllers/user.js"
+import{updateUser, deleteUser, getUser} from "../controllers/user.js"
 import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 
 
@@ -27,6 +27,6 @@ router.delete("/:id", verifyUser, deleteUser);
 //GET(find)
 router.get("/find/:id", verifyUser, getUser);
 //GET ALL(admin)
-router.get("/", verifyUser, getUsers);
+// router.get("/", verifyUser, getUsers);
 
 export default router
