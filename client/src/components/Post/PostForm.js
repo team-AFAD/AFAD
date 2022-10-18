@@ -55,7 +55,7 @@ function PostForm () {
                 <InputPost title={"관련 링크"} name={"url"} type={"url"}
                 onChangeForm={onChangeForm}
                 />
-                <InputPostFile title={"이미지 첨부 파일"} name={"post_img"} type={"file"}
+                <InputPostFile title={"이미지 첨부 파일"} name={"post_img"} type={"hidden"}
                 onChangeForm={onChangeForm}
                 />
             </form>
