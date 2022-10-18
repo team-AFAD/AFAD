@@ -7,6 +7,7 @@ import authRoute from "./routes/auth.js";
 import userRoute from "./routes/users.js";
 import postRoute from "./routes/posts.js";
 import cookieParser from "cookie-parser";
+import multer from "multer";
 const app = express()
 dotenv.config()
 
@@ -22,6 +23,21 @@ const connect = async () => {
 
 mongoose.connection.on("disconnected", ()=> {
     console.log("mongoDB disconnected")
+})
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "images");
+    },
+    filename: (req, file, cb) =>{
+        // cb(null, req.body.name);
+        cb(null, "hello files");
+    }
+});
+
+const upload = multer({storage:storage})
+app.post("/api/upload", upload.single("file"), (req,res) =>{
+    res.status(200).json("File has been uploaded");
 })
 
 //middlewares
