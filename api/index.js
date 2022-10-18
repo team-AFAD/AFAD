@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
 import userRoute from "./routes/users.js";
+import postRoute from "./routes/posts.js";
 import cookieParser from "cookie-parser";
 const app = express()
 dotenv.config()
@@ -29,6 +30,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
+app.use("/api/posts", postRoute);
 
 //err handleing middleware
 app.use((err, req, res, next) => {
