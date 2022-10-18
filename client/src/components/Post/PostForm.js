@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './postForm.scss';
 import InputPost from '../Input/InputPost';
 import Textarea from '../Input/Textarea';
+import InputPostFile from '../Input/InputPostFile';
 
 function PostForm () {
     const [formValue, setFormValue] = useState({
@@ -31,13 +32,13 @@ function PostForm () {
                 onChangeForm={onChangeForm}
                 />
                 <InputPost title={"상품명"} name={"merchandiseName"} type={"text"} required
-                onChangeForm={onChangeForm}
+                onChangeForm={onChangeForm} inputSize="short"
                 />
                 <InputPost title={"금액"} name={"amount"} type={"text"} required
-                onChangeForm={onChangeForm}
+                onChangeForm={onChangeForm} inputSize="short"
                 />
                 <InputPost title={"모집 인원"} name={"num_people"} type={"number"} required
-                onChangeForm={onChangeForm}
+                onChangeForm={onChangeForm} inputSize="short"
                 />
                 
                 <div className='payment'><p>1인 결제금액 : {perPayment} 원</p></div>
@@ -54,7 +55,7 @@ function PostForm () {
                 <InputPost title={"관련 링크"} name={"url"} type={"url"}
                 onChangeForm={onChangeForm}
                 />
-                <InputPost title={"이미지 첨부 파일"} name={"post_img"} type={"file"}
+                <InputPostFile title={"이미지 첨부 파일"} name={"post_img"} type={"file"}
                 onChangeForm={onChangeForm}
                 />
             </form>

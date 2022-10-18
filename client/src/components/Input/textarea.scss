@@ -1,6 +1,13 @@
 .Textarea {
+    .title {
+        display: inline-block;
+        margin:10px 0 5px 0;
+    }
     textarea {
-        width: 50%;
-        height: 50%;
+        border-radius: 8px;
+        border: 1px solid gray;
+        background-color: beige;
+        width: 50vw;
+        height: 30vh;
     }
 }

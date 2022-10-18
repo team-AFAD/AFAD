@@ -1,7 +1,20 @@
 .InputPost {
-    .title{
+    
+    margin : 10px 5px;
+    .title {
         display: inline-block;
-        margin-right: 75px;
-        width: 100px;
+        margin:10px 0 5px 0;
     }
+    input {
+        border-radius: 8px;
+        border: 1px solid gray;
+        background-color: beige;
+        width: 50vw;
+        height: 30px;
+
+        &.short {
+            width: 20vw;
+        }
+    }
+    
 }
