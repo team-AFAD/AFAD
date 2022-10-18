@@ -24,17 +24,18 @@ export const deleteUser = async (req, res, next) =>{
     }
 }
 
-//GET
+//GET(find)
 export const getUser = async (req, res, next) =>{
     try{
         const user = await User.findById(req.params.id);
-        res.status(200).json(user)
+        const { password, isAdmin, ...otherDetails } = user._doc;
+        res.status(200).json(otherDetails)
     }catch(err){
         next(err);
     }
 }
 
-//GET ALL
+//GET ALL USERS
 export const getUsers = async (req, res, next) =>{
     try{
         const users = await User.find();

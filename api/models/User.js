@@ -22,6 +22,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         max: 50,
     },
+    town: {
+        type: String,
+        max: 50,
+    },
     isAdmin:{
         type: Boolean,
         default: false
