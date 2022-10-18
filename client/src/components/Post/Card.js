@@ -1,6 +1,11 @@
 function Card () {
     return(
-        <div className="Card"></div>
+        <div className="Card">
+            <PostImg />
+            <PostTitle />
+             {/* .. 추가내용 등등 */}
+        </div>
+        
     )
 }
 
