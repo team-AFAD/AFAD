@@ -1,14 +1,14 @@
 import React from 'react';
-import './input_title.scss';
+import './inputPost.scss';
 
-const Input_Title = ({title, name,type, onChangeForm}) => {
+const InputPost = ({title, name, type, onChangeForm}) => {
     return (
-        <div className="Input_TitleWrap">
+        <div className="InputPost">
             <div className="title">{title}</div>
             <input type={type} name={name} onChange={onChangeForm}></input>
         </div>
     )
 }
 
-export default Input_Title;
+export default InputPost;
 
