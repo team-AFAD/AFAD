@@ -5,6 +5,14 @@ import Textarea from '../Input/Textarea';
 import InputPostFile from '../Input/InputPostFile';
 
 function PostForm () {
+
+    // const onSumit = () => {
+    //     const formData = formData();
+    //     formData['title'] = formValue.title
+    //     let file 
+    //     append filename
+    // }
+
     const [formValue, setFormValue] = useState({
         title : "",
         merchandiseName : "",
