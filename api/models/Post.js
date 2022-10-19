@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema({
-    title: {
+      userId:{
+        type: String,
+        required: true
+      },
+      title: {
         type: String,
         required: true
       },

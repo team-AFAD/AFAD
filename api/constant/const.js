@@ -1,0 +1,4 @@
+export default {
+    ERRORCODE_BAD_REQUEST: 400,
+    ERRORCODE_NOT_FOUND: 404
+};
