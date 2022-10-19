@@ -6,13 +6,6 @@ import InputPostFile from '../Input/InputPostFile';
 
 function PostForm () {
 
-    // const onSumit = () => {
-    //     const formData = formData();
-    //     formData['title'] = formValue.title
-    //     let file 
-    //     append filename
-    // }
-
     const [formValue, setFormValue] = useState({
         title : "",
         merchandiseName : "",
@@ -22,7 +15,6 @@ function PostForm () {
         area : "",
         content : "",
         url : "",
-        post_img : ""
     });
 
     const onChangeForm = (e) => {
@@ -31,6 +23,27 @@ function PostForm () {
         [e.target.name]: e.target.value,
         });
     };
+
+    let formData = new FormData();
+
+    const onChangeFile = () => {
+        let fileUpload = document.querySelector(".InputPostFile input");
+        console.log(fileUpload);
+        formData.append("userfile", fileUpload.files[0]);
+    }
+    
+    const onSubmit = () => {
+        formData.append("title", formValue.title);
+        formData.append("merchandiseName", formValue.merchandiseName);
+
+        // for (let key of formData.keys()) {
+        //     console.log(key, ":", formData.get(key));
+        // }
+
+        // let result = await axios.post("", {data: formData})
+    }
+
+
     let perPayment = Math.ceil((formValue.amount)/(formValue.num_people));
 
     return (
@@ -63,9 +76,10 @@ function PostForm () {
                 <InputPost title={"관련 링크"} name={"url"} type={"url"}
                 onChangeForm={onChangeForm}
                 />
-                <InputPostFile title={"이미지 첨부 파일"} name={"post_img"} type={"hidden"}
-                onChangeForm={onChangeForm}
+                <InputPostFile title={"이미지 첨부 파일"} name={"post_img"} type={"file"}
+                functionName={onChangeFile}
                 />
+                <button type="button" onClick={onSubmit}>등록</button>
             </form>
         </div>
     )
