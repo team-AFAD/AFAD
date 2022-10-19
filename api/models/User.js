@@ -6,6 +6,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    nickname:{
+        type: String,
+        required: true
+    },
     email:{
         type: String,
         required: true
@@ -21,10 +25,7 @@ const UserSchema = new mongoose.Schema({
     city: {
         type: String,
         max: 50,
-    },
-    town: {
-        type: String,
-        max: 50,
+        default:""
     },
     isAdmin:{
         type: Boolean,
