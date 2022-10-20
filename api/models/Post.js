@@ -31,7 +31,7 @@ const PostSchema = new mongoose.Schema({
       },
       sell_amount:{
         type:Number,
-        default:""
+        default:"1"
       },
       price:{
         type:Number,
@@ -49,9 +49,9 @@ const PostSchema = new mongoose.Schema({
         type:String,
         default:""
       },      
-      categories:{
+      likes:{
         type: Array,
-        required: false,
+        default:[]
       },
     },
     { timestamps: true }

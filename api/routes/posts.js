@@ -1,5 +1,5 @@
 import express from "express";
-import{createPost,updatePost, deletePost, getPost, getPosts} from "../controllers/post.js"
+import{createPost,updatePost, deletePost, likePost, getPost, getPosts} from "../controllers/post.js"
 import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 
 
@@ -15,6 +15,8 @@ router.post("/", verifyUser, createPost);
 router.put("/:id", verifyUser, updatePost);
 //DELETE
 router.delete("/:id", verifyUser, deletePost);
+//like a post
+router.put("/:id/like", verifyUser, likePost);
 //GET
 router.get("/:id", verifyUser, getPost);
 // GET ALL(post)

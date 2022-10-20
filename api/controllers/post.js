@@ -1,4 +1,5 @@
 import Post from "../models/Post.js";
+import router from "../routes/posts.js";
 
 //CREATE
 export const createPost = async (req, res, next) => {
@@ -16,7 +17,7 @@ export const createPost = async (req, res, next) => {
 export const updatePost = async (req, res, next) =>{
     try {
         const post = await Post.findById(req.params.id);
-        if (post.username === req.body.username) {
+        if (post.userId === req.body.userId) {
           try {
             const updatedPost = await Post.findByIdAndUpdate(
               req.params.id,
@@ -36,6 +37,29 @@ export const updatePost = async (req, res, next) =>{
         res.status(500).json(err);
       }
     };
+
+
+
+//like & dislike a post
+export const likePost = async(req, res, next) => {
+  try{
+    const post = await Post.findById(req.params.id);
+    if(!post.likes.includes(req.body.userId)){
+      await post.updateOne({
+        $push:{likes : req.body.userId}
+      });
+      res.status(200).json("I like it!");
+    } else {
+      await post.updateOne({
+        $pull:{likes : req.body.userId}
+      });
+      res.status(200).json("I don't like it! :( ");
+    }
+  } catch(err){
+    res.status(500).json(err);
+  }
+};
+
 
 //DELETE
 export const deletePost = async (req, res, next) =>{
