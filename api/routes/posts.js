@@ -1,5 +1,6 @@
 import express from "express";
 import{createPost,updatePost, deletePost, likePost, getPost, getPosts} from "../controllers/post.js"
+import{likePost} from "../controllers/like.js"
 import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 
 
