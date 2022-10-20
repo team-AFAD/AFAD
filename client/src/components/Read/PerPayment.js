@@ -1,8 +1,8 @@
 const PerPayment = ({}) => {
     return (
         <div className='PerPayment'>
-            <p>1인 결제금액</p>
-            <p>{}00원</p>
+            1인 결제금액 <br/>
+            <span>{}00원</span>
         </div>
     )
 }
