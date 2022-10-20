@@ -1,0 +1,26 @@
+@import '../../styles/properties';
+
+
+.recruitingBtnWrap{
+    width: 70px;
+    height: 25px;
+    border-radius: 8px;
+    text-align: center;
+    //모집중일때
+    &.Ing {
+        background-color: $btn-color-green;
+        // border-radius: 8px;
+        text-align: center;
+    }
+    //모집중단일때
+    &.Stop {
+        background-color: $btn-color-red;
+        // border-radius: 8px;
+        text-align: center;
+    }
+    p {
+        line-height: 25px;
+        color: white;
+        margin: auto;
+    }
+}
