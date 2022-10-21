@@ -1,7 +1,7 @@
 import React from 'react';
-import './recruitingBtn.scss';
+import './recruitingBtn.scss'
 
-export const RecruitingBtn = ({color, text}) => {
+export const RecruitingBtn = () => {
     return (
         <div className='RecruitingBtn'>
             <div className='recruitingBtnWrap'>

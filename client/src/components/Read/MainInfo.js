@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import './mainInfo.scss';
 import Title from "./Title";
 import RecruitingBtn from './RecruitingBtn';
@@ -5,8 +6,11 @@ import Amount from './Amount';
 import NumPeople from './NumPeople';
 import PerPayment from './PerPayment';
 import AreaDate from './AreaDate';
+import LikeBtn from './LikeBtn';
 
 function MainInfo () {
+    
+
     return (
         <div className="MainInfo">
             <Title /> <br />
@@ -19,6 +23,10 @@ function MainInfo () {
                 <PerPayment />
             </div>
             <AreaDate />
+
+            <div className='CompoWrap_flex'>
+                <LikeBtn />
+            </div>
         </div>
     )
 }
