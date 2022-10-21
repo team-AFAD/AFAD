@@ -1,13 +1,27 @@
-import React from "react";
-import './inputRegister.scss';
+import React, { useState } from 'react';
+import './inputRegister.css';
 
-const InputRegister = ({title, type, id, name, onChangeForm}) => {
-    return(
+const InputRegister = (props) => {
+    const [focused, setFocused] = useState(false);
+    const {label, errorMessage, onChange, id, ...inputProps} = props;
+
+    const handleFocus = (e) => {
+        setFocused(true);
+    };
+
+    return (
         <div className="InputRegister">
-            <div className="title">{title}</div>
-            <input type={type} id={id} name={name} onChange={onChangeForm}></input>
+            <label>{label}</label>
+            <input 
+                {...inputProps}
+                onChange={onChange}
+                onBlur={handleFocus}
+                onFocus={() => 
+                    inputProps.name==="confirmPassword" && setFocused(true)
+                }
+                focused={focused.toString()} />
+            <span>{errorMessage}</span>
         </div>
-
     );
 }
 
