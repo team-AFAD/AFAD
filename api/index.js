@@ -3,10 +3,17 @@ import express from "express";
 // const express = require("express")
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import multer from "multer";
+import bodyParser from "body-parser";
+
+// Route 경로
 import authRoute from "./routes/auth.js";
 import userRoute from "./routes/users.js";
 import postRoute from "./routes/posts.js";
 import commentRoute from "./routes/comments.js";
+import paymentRoute from "./routes/payments.js"
+
 // import likeRoute from "./routes/likes.js";
 
 import conversationRoute from "./routes/conversations.js";
@@ -15,6 +22,9 @@ import cookieParser from "cookie-parser";
 import multer from "multer";
 const app = express()
 dotenv.config()
+
+// payments test를 위한 코드
+app.set('view engine', 'ejs');
 
 //env.MONGO와 연결
 const connect = async () => {
@@ -48,11 +58,13 @@ app.post("/api/upload", upload.single("file"), (req,res) =>{
 //middlewares
 app.use(cookieParser());
 app.use(express.json());
+app.use(bodyParser.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/comments", commentRoute);
+app.use("/api/payments", paymentRoute);
 // app.use("/api/likes", likeRoute);
 app.use("/api/conversations", conversationRoute);
 // app.use("/api/messages", messageRoute);
