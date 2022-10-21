@@ -28,7 +28,7 @@ const InputPostFile = ({title, name, type, functionName, fileDefault }) => {
             <label>
                 <input type={type} name={name} onChange={() => {imgPreview(); functionName()}}  ref={file}></input>
                 {/* 사진 미리보기 창 */}
-                <img className='showImg' src="./heart_red.png"></img>
+                <img className='showImg' src={fileDefault}></img>
             </label>
         </div>
     )

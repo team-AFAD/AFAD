@@ -11,8 +11,9 @@ const InputRegister = (props) => {
 
     return (
         <div className="InputRegister">
-            <label>{label}</label>
+            <label className='labels'>{label}</label>
             <input 
+                className='inputs'
                 {...inputProps}
                 onChange={onChange}
                 onBlur={handleFocus}
