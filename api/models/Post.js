@@ -21,7 +21,7 @@ const PostSchema = new mongoose.Schema({
       },
       nickname: {
         type: String,
-        required: true,
+        default:""
       },
       city: {
         type: String,

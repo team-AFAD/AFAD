@@ -14,8 +14,12 @@ import postRoute from "./routes/posts.js";
 import commentRoute from "./routes/comments.js";
 import paymentRoute from "./routes/payments.js"
 
+// import likeRoute from "./routes/likes.js";
 
-
+import conversationRoute from "./routes/conversations.js";
+// import messageRoute from "./routes/messages.js";
+import cookieParser from "cookie-parser";
+import multer from "multer";
 const app = express()
 dotenv.config()
 
@@ -61,6 +65,9 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/comments", commentRoute);
 app.use("/api/payments", paymentRoute);
+// app.use("/api/likes", likeRoute);
+app.use("/api/conversations", conversationRoute);
+// app.use("/api/messages", messageRoute);
 
 //err handleing middleware
 app.use((err, req, res, next) => {
