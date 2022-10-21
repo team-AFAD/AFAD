@@ -7,10 +7,9 @@
     rgba(255, 255, 255, 0.5),
     rgba(255, 255, 255, 0.3)
     ),
-    url("./fruits.jpg");
+    url("../../images/registerBackground.jpg");
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
 
     form{
         background-color: rgba(255, 255, 255, 0.85);
@@ -35,12 +34,22 @@
         margin-top: 15px;
         margin-bottom: 30px;
       }
+      .InputPostFile{
+        display: flex;
+        flex-direction: column;
 
-      .showImg{
-        width: 100px;
-        height: 100px;
-        border-radius: 100px;
+        .showImg{
+          width: 100px;
+          height: 100px;
+          border-radius: 100px;
+        }
+  
+        .title{
+          font-size: 0.8rem;
+        }
+
       }
+      
 
     }
 }

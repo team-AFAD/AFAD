@@ -64,7 +64,7 @@ function RegisterForm () {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const data = new FormData(e.target);
+        const data = new FormData(e.target);
         console.log(Object.fromEntries(formData(e.target).entries()));
         console.log(values);
       }
@@ -79,6 +79,7 @@ function RegisterForm () {
         let fileUpload = document.querySelector(".InputPostFile input");
         console.log(fileUpload);
         formData.append("userfile", fileUpload.files[0]);
+
     }
 
     console.log(values);
@@ -97,9 +98,9 @@ function RegisterForm () {
                 />
                 ) )}
                 <InputPostFile title={"프로필 사진"} name={"profilePicture"} type={"file"}
-                functionName={onChangeFile}
+                functionName={onChangeFile} fileDefault={'profilePic.png'}
                 />
-            <button >Submit</button>
+            <button>가입하기</button>
             </form>
         </div>
         
