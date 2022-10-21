@@ -18,8 +18,6 @@ import paymentRoute from "./routes/payments.js"
 
 import conversationRoute from "./routes/conversations.js";
 // import messageRoute from "./routes/messages.js";
-import cookieParser from "cookie-parser";
-import multer from "multer";
 const app = express()
 dotenv.config()
 
