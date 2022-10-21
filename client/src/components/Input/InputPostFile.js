@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import './inputPostFile.scss';
 
-const InputPostFile = ({title, name, type, functionName}) => {
+const InputPostFile = ({title, name, type, functionName, fileDefault }) => {
 
     const file = useRef();
 
@@ -18,7 +18,7 @@ const InputPostFile = ({title, name, type, functionName}) => {
 
             reader.readAsDataURL(file_tag.files[0]);
         } else {
-            file_img.src = "";
+            file_img.src = `./${fileDefault}`;
         }
     }
 
@@ -26,9 +26,9 @@ const InputPostFile = ({title, name, type, functionName}) => {
         <div className="InputPostFile">
             <div className="title">{title}</div>
             <label>
-                <input type={type} name={name} onChange={() => {imgPreview(); functionName()}} hidden ref={file}></input>
+                <input type={type} name={name} onChange={() => {imgPreview(); functionName()}}  ref={file}></input>
                 {/* 사진 미리보기 창 */}
-                <img className='showImg'></img>
+                <img className='showImg' src="./heart_red.png"></img>
             </label>
         </div>
     )
