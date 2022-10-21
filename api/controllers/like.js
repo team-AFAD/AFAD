@@ -1,5 +1,6 @@
 import Post from "../models/Post.js";
-import router from "../routes/posts.js";
+import Like from "../models/Like.js";
+// import router from "../routes/posts.js";
 
 //like & dislike a post
 export const likePost = async(req, res, next) => {
