@@ -3,7 +3,7 @@ import './postForm.scss';
 import InputPost from '../Input/InputPost';
 import Textarea from '../Input/Textarea';
 import InputPostFile from '../Input/InputPostFile';
-
+// import Heart from '/heart_red.png';
 function PostForm () {
 
     const [formValue, setFormValue] = useState({
@@ -77,7 +77,7 @@ function PostForm () {
                 onChangeForm={onChangeForm}
                 />
                 <InputPostFile title={"이미지 첨부 파일"} name={"post_img"} type={"file"}
-                functionName={onChangeFile}
+                functionName={onChangeFile} fileDefault={'heart.png'}
                 />
                 <button type="button" onClick={onSubmit}>등록</button>
             </form>
