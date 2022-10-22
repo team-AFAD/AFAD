@@ -1,0 +1,10 @@
+@import '../../styles/properties';
+
+.PostView {
+
+    .postViewWrap {
+        width: 1000px;
+        height: auto;
+        border: 1px solid $main-color-2;
+    }
+}
