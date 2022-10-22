@@ -1,4 +1,3 @@
-import express from "express";
 import Conversation from "../models/Conversation.js"
 // import {createError} from "../utils/error.js";
 
