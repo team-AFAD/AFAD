@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './mainInfo.scss';
-import Title from "./Title";
-import RecruitingBtn from './RecruitingBtn';
-import Amount from './Amount';
-import NumPeople from './NumPeople';
-import PerPayment from './PerPayment';
-import AreaDate from './AreaDate';
-import LikeBtn from './LikeBtn';
-import JoinBtn from './JoinBtn';
+import Title from "./_propeties/Title";
+import RecruitingBtn from './_propeties/RecruitingBtn';
+import Amount from './_propeties/Amount';
+import NumPeople from './_propeties/NumPeople';
+import PerPayment from './_propeties/PerPayment';
+import AreaDate from './_propeties/AreaDate';
+import LikeBtn from './_propeties/LikeBtn';
+import JoinBtn from './_propeties/JoinBtn';
 
 function MainInfo () {
     
@@ -28,7 +28,7 @@ function MainInfo () {
             <div className='bottomInfo'>
                 <AreaDate />
             </div>
-            
+
             <div className='CompoWrap_flex ReadBtn'>
                 <LikeBtn />
                 <div className='TowBtnFlex'>
