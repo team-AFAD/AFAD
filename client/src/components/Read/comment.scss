@@ -1,0 +1,57 @@
+@import '../../styles/properties';
+
+.Comment {
+    margin-top: 30px;
+    border: 1px solid black;
+
+    width: 1000px;
+    height: auto;
+    padding: 20px;
+    align-items: center;
+
+    //작성된 댓글
+    .commentWrap {
+        height: auto;
+
+        tr {    
+            td {
+                button {
+                    position: relative;
+                    border: none;
+                    border-radius: 2px;
+                    width: 30px;
+                    height: 20px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    //댓글 쓰기
+    .commnetFormWrap {
+        display: flex;
+        // padding: 5px 20px;
+        // align-items: center;
+        textarea {
+            width: 700px;
+        }
+        button {
+            position: relative;
+            border: none;
+            margin: 10px;
+            border-radius: 5px;
+            width: 70px;
+            height: 30px;
+            background: $main-color-2;
+            color: darkslategray;
+            cursor: pointer;
+            transition: 0.5s;
+
+            &:hover {
+                letter-spacing: 1px;
+                transform: scale(1.2);
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+
+.LikeBtn {
+
+    .likeBtnWrap {
+        // border: 1px solid red;
+        width: 50px;
+        height: 50px;
+        align-items: center;
+        img {
+            width: 40px;
+            cursor: pointer;
+
+            &:hover {
+                // letter-spacing: 2px;
+                transform: scale(1.2);
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+//https://cotak.tistory.com/113?category=475906
