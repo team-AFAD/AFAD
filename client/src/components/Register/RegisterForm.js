@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import InputRegister from "../Input/InputRegister";
 import './registerForm.scss';
 import InputPostFile from '../Input/InputPostFile';
+import InputSelect from '../Input/InputSelect';
+import axios from 'axios';
 
 function RegisterForm () {
     const [values, setValues] = useState({
@@ -59,34 +61,68 @@ function RegisterForm () {
         label:"닉네임",
         required: true,
     },
+    ];
 
-    ]
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const data = new FormData(e.target);
-        console.log(Object.fromEntries(formData(e.target).entries()));
-        console.log(values);
-      }
+    const OPTIONS = [
+        { value: "seoul", name: "서울시" },
+        { value: "gangnam", name: "강남구" },
+        { value: "gangdong", name: "강동구" },
+        { value: "gangbuk", name: "강북구" },
+        { value: "gangseo", name: "강서구" },
+        { value: "gwanak", name: "관악구" },
+        { value: "gwangjin", name: "광진구" },
+        { value: "guro", name: "구로구" },
+        { value: "geumcheon", name: "금천구" },
+        { value: "nowon", name: "노원구" },
+        { value: "dobong", name: "도봉구" },
+        { value: "dongdaemun", name: "동대문구" },
+        { value: "dongjak", name: "동작구" },
+        { value: "mapo", name: "마포구" },
+        { value: "seodaemun", name: "서대문구" },
+        { value: "seocho", name: "서초구" },
+        { value: "seongdong", name: "성동구" },
+        { value: "seongbuk", name: "성북구" },
+        { value: "songpa", name: "송파구" },
+        { value: "yangcheon", name: "양천구" },
+        { value: "yeongdeungop", name: "영등포구" },
+        { value: "yongsan", name: "용산구" },
+        { value: "eunpyeong", name: "은평구" },
+        { value: "jongno", name: "종로구" },
+        { value: "junggu", name: "중구" },
+        { value: "jungnang", name: "중랑구" },
+    ];
 
     const onChange = (e) =>{
-        setValues({...values, [e.target.name]: e.target.value })
+        setValues({...values, [e.target.name]: e.target.value });
     }
 
-    let formData = new FormData();
-
+    // let formData = new FormData();
     const onChangeFile = () => {
         let fileUpload = document.querySelector(".InputPostFile input");
         console.log(fileUpload);
-        formData.append("userfile", fileUpload.files[0]);
-
+        // formData.append("profilePicture", fileUpload.files[0]);
     }
 
-    console.log(values);
+    const registerSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        // console.log(Object.fromEntries(data.entries()));
+        for(var pair of formData.entries()) {
+            console.log(pair[0]+ ', '+ pair[1]); 
+        };
+        axios.post('http://localhost:8080/register', formData)
+        .then((rep) => {return rep.data;})
+        .then((data) => {
+            console.log(data);
+            alert("회원가입 성공!");
+        })
+    }
+
+    // console.log(values);
     return(
         <div className="RegisterForm">
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={registerSubmit} encType="multipart/form-data">
                 <h2>회원가입</h2>
 
                 {inputs.map((input) =>(
@@ -97,6 +133,7 @@ function RegisterForm () {
                     onChange={onChange}  
                 />
                 ) )}
+                <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} defaultValue="seoul" />
                 <InputPostFile title={"프로필 사진"} name={"profilePicture"} type={"file"}
                 functionName={onChangeFile} fileDefault={'profilePic.png'}
                 />
