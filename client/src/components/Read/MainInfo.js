@@ -15,17 +15,20 @@ function MainInfo () {
     return (
         <div className="MainInfo">
             <Title /> <br />
-            <div className='CompoWrap_flex'>
+            <div className='CompoWrap_flex topInfo'>
                 <RecruitingBtn />
                 <Amount />
             </div>
 
-            <div className='CompoWrap_flex'>
+            <div className='CompoWrap_flex middleInfo'>
                 <NumPeople />
                 <PerPayment />
             </div>
-            <AreaDate />
 
+            <div className='bottomInfo'>
+                <AreaDate />
+            </div>
+            
             <div className='CompoWrap_flex ReadBtn'>
                 <LikeBtn />
                 <div className='TowBtnFlex'>
