@@ -1,9 +1,13 @@
-
+$main-color-1: rgba(254, 235, 151, 1);
+$main-color-2: rgba(254, 216, 141, 1);
+$main-color-3: rgba(254, 182, 141, 1);
 
 $btn-color-green: #339737;
 $btn-color-red: #FC2E01;
+
 
 // 컴포넌트끼리 가로정렬할때 div로 감싼뒤 className설정
 .CompoWrap_flex {
     display: flex;
 }
+

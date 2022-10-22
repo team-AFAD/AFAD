@@ -7,6 +7,7 @@ import NumPeople from './NumPeople';
 import PerPayment from './PerPayment';
 import AreaDate from './AreaDate';
 import LikeBtn from './LikeBtn';
+import JoinBtn from './JoinBtn';
 
 function MainInfo () {
     
@@ -18,15 +19,21 @@ function MainInfo () {
                 <RecruitingBtn />
                 <Amount />
             </div>
+
             <div className='CompoWrap_flex'>
                 <NumPeople />
                 <PerPayment />
             </div>
             <AreaDate />
 
-            <div className='CompoWrap_flex'>
+            <div className='CompoWrap_flex ReadBtn'>
                 <LikeBtn />
+                <div className='TowBtnFlex'>
+                    <JoinBtn title="채팅하기"/>
+                    <JoinBtn title="공동구매 참여"/>
+                </div>
             </div>
+
         </div>
     )
 }

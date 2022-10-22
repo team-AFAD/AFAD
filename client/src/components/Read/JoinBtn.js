@@ -1,20 +1,19 @@
 // import React, { useState, useEffect }from 'react;'
-import './likeBtn.scss';
-// import HeartImg from '../../images/heart_red.png';
-import EmptyHeartImg from '../../images/heart.png';
+import './joinBtn.scss';
 
-const LikeBtn = () => {
+
+const JoinBtn = ({title}) => {
 
     return (
-        <div className='LikeBtn'>
-            <div className='likeBtnWrap'>
-                <img src={EmptyHeartImg} alt="unlike"/>
-            {/* <img src={like?HeartImg:EmptyHeartImg} onClick={onClick} alt="likebtn"/> */}
+        <div className='JoinBtn'>
+            <div className='joinBtnWrap'>
+                <button className='ReadBtn' type='button'>{title}</button>
+           
             </div>
         </div>
     )
 }
 
-export default LikeBtn;
+export default JoinBtn;
 
 

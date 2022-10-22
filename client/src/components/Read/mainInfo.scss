@@ -2,7 +2,7 @@
 .MainInfo {
     width: 500px;
     height: 400px;
-    border: 2px solid gray;
+    border: 5px solid $main-color-3;
     text-align: center;
     .Title {
         font-size: 30px;
@@ -31,6 +31,13 @@
                 margin: 5px 0;
             }
             
+        }
+        &.ReadBtn {
+            position: relative;
+            top: 70px;
+        }
+        .TowBtnFlex {
+            display: flex;
         }
     }
 }
