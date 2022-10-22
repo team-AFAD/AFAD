@@ -7,7 +7,7 @@ const InputPost = ({title, name, type, onChangeForm, inputSize}) => {
             <div className="title">{title}</div> <br/>
             <input className={`input ${inputSize}`} type={type} name={name} onChange={onChangeForm}></input>
         </div>
-    )
+    );
 }
 
 export default InputPost;

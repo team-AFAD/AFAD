@@ -1,6 +1,7 @@
 {
     "comments": [
         {
+            "id":1,
             "postId":1, 
             "frofile":"사진1", 
             "userId":"가나다", 
@@ -8,6 +9,7 @@
             "date":"2022-10-22"
         },
         {
+            "id":2,
             "postId":1, 
             "frofile":"사진2", 
             "userId":"ABC", 
@@ -15,10 +17,19 @@
             "date":"2022-10-22"
         },
         {
+            "id":3,
             "postId":1, 
             "frofile":"사진1", 
             "userId":"가나다", 
             "comment":"데이터 연결하는거 연습중",
+            "date":"2022-10-22"
+        },
+        {
+            "id":4,
+            "postId":2, 
+            "frofile":"사진1", 
+            "userId":"가나다", 
+            "comment":"이건 postId 2의 댓글",
             "date":"2022-10-22"
         }
     ]

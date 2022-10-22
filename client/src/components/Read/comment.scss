@@ -34,6 +34,10 @@
         // align-items: center;
         textarea {
             width: 700px;
+            &:focus{
+                background-color: $main-color-1;
+                border: 1px solid $main-color-2;
+            }
         }
         button {
             position: relative;
@@ -49,7 +53,7 @@
 
             &:hover {
                 letter-spacing: 1px;
-                transform: scale(1.2);
+                // transform: scale(1.2);
                 cursor: pointer;
             }
         }

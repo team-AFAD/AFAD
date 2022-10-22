@@ -1,12 +1,18 @@
 import dummy from '../../../data/data.json';
 
 function CommentTable (){
-    console.log(dummy);
+    //postId가 1인 댓글만 보여지게
+    const postId = 1;
+    const commentList = dummy.comments.filter(comment =>(
+        comment.postId === postId
+    ))
+    console.log(commentList);
     return(
         <>
         <table>
-            {dummy.comments.map( comment => (
-                <tr key={comment.postId}>
+            <tbody>
+            {commentList.map( comment => (
+                <tr key={comment.id}>
                     
                     <td>{comment.frofile}</td>
                     <td>{comment.userId}</td>
@@ -17,7 +23,7 @@ function CommentTable (){
                     </td>
                     </tr>
             ))}
-                    
+            </tbody>       
         </table>
         </>
     );
