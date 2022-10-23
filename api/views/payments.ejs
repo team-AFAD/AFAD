@@ -5,15 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>IamPort결제데모</title>
 
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- iamport.payment.js -->
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 
 <body>
+    <h2>아임포트 결제 데모</h2>
+    <li>
+        <button id="IMPpayment" type="button">결제테스트</button>
+    </li>
     <script>
         console.log( window );
         const {IMP} = window;
@@ -21,16 +25,14 @@
         IMP.init('imp42661587');
     
         IMP.request_pay({ 
-            pg: "kakao",
+            pg: "kakaopay.TC0ONETIME",
             pay_method: "card",
             merchant_uid: 'merchant_' + new Date().getTime(),
-            name: "맥북 프로 16인치",
-            amount: 2500000,
+            name: "귤2kg",
+            amount: 2000,
             buyer_email: "test@gmail.com",
             buyer_name: "tester",
             buyer_tel: "010-4242-4242",
-            buyer_addr: "서울특별시 강남구 신사동",
-            buyer_postcode: "01181",
             m_redirect_url : 'https://example.com/mobile/complete',
             digital: true,
             app_scheme : ''
