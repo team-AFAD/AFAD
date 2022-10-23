@@ -1,6 +1,7 @@
 import "./messenger.scss"
 import Conversation from "../../components/Conversations/Conversation"
 import Message from "../../components/message/Message"
+import ChatOnline from "../../components/chatOnline/ChatOnline"
 
 export default function Messenger() {
     return (
@@ -16,7 +17,7 @@ export default function Messenger() {
                 </div>
             </div>
             <div className="chatBox">
-                <div className="chatBoxWrapper">box
+                <div className="chatBoxWrapper">
                     <div className="chatBoxTop">
                         <Message />
                         <Message own={true}/>
@@ -39,7 +40,8 @@ export default function Messenger() {
                 </div>
             </div>
             <div className="chatOnline">
-                <div className="chatOnlineWrapper">online
+                <div className="chatOnlineWrapper">
+                    <ChatOnline />
                 </div>
             </div>
         </div>
