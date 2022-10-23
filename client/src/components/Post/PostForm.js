@@ -11,6 +11,7 @@ function PostForm () {
         merchandiseName : "",
         amount : 0,
         num_people : 1,
+        perPayment: "",
         time_limit : "",
         area : "",
         content : "",
@@ -22,6 +23,7 @@ function PostForm () {
         ...formValue,
         [e.target.name]: e.target.value,
         });
+        // console.log({perPayment});
     };
 
     let formData = new FormData();
@@ -35,7 +37,12 @@ function PostForm () {
     const onSubmit = () => {
         formData.append("title", formValue.title);
         formData.append("merchandiseName", formValue.merchandiseName);
+        formData.appent("amount", formValue.amount);
+        formData.appent("num_people", formValue.num_people);
 
+        formData.appent("time_limit", formValue.time_limit);
+
+        
         // for (let key of formData.keys()) {
         //     console.log(key, ":", formData.get(key));
         // }
