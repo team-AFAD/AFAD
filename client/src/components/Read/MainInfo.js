@@ -5,7 +5,8 @@ import RecruitingBtn from './_propeties/RecruitingBtn';
 import Amount from './_propeties/Amount';
 import NumPeople from './_propeties/NumPeople';
 import PerPayment from './_propeties/PerPayment';
-import AreaDate from './_propeties/AreaDate';
+import Area from './_propeties/Area';
+import Date from './_propeties/Date';
 import LikeBtn from './_propeties/LikeBtn';
 import JoinBtn from './_propeties/JoinBtn';
 
@@ -26,7 +27,8 @@ function MainInfo () {
             </div>
 
             <div className='bottomInfo'>
-                <AreaDate />
+                <Area title="모집 장소 :"/>
+                <Date title="모집 기한 :"/>
             </div>
 
             <div className='CompoWrap_flex ReadBtn'>

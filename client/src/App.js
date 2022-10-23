@@ -1,5 +1,8 @@
 // import PostWrite from "./components/Post/PostWrite";
-import PostView from "./components/Read/PostView";
+
+// import PostView from "./components/Read/PostView";
+import PostList from "./components/Read/PostList";
+
 // import RegisterForm from "./components/Register/RegisterForm";
 
 import './app.scss';
@@ -9,7 +12,10 @@ function App() {
     <div className="App">
 
       {/* <PostWrite /> */}
-      <PostView />
+
+      {/* <PostView /> */}
+      <PostList />
+
       {/* <RegisterForm /> */}
     </div>
   );
