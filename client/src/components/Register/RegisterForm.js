@@ -106,11 +106,15 @@ function RegisterForm () {
     const registerSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        // console.log(Object.fromEntries(data.entries()));
+        // console.log(Object.fromEntries(formData.entries()));
         for(var pair of formData.entries()) {
-            console.log(pair[0]+ ', '+ pair[1]); 
+            console.log(pair[0]+ ': '+ pair[1]); 
         };
-        axios.post('http://localhost:8080/register', formData)
+        axios.post('http://localhost:8080/api/register', formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+              },
+        })
         .then((rep) => {return rep.data;})
         .then((data) => {
             console.log(data);
@@ -122,8 +126,8 @@ function RegisterForm () {
     return(
         <div className="RegisterForm">
 
-            <form onSubmit={registerSubmit} encType="multipart/form-data">
-                <h2>회원가입</h2>
+            <form onSubmit={registerSubmit}>
+                <div className='registerTitle'>회원가입</div>
 
                 {inputs.map((input) =>(
                 <InputRegister 

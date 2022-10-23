@@ -16,7 +16,9 @@ const InputRegister = (props) => {
                 className='inputs'
                 {...inputProps}
                 onChange={onChange}
+                // 포커스 해지할 때
                 onBlur={handleFocus}
+                // 포커스 할 때
                 onFocus={() => 
                     inputProps.name==="confirmPassword" && setFocused(true)
                 }

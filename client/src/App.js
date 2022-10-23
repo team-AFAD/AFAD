@@ -2,7 +2,6 @@
 import PostView from "./components/Read/PostView";
 // import RegisterForm from "./components/Register/RegisterForm";
 import Messenger from "./pages/messenger/messenger";
-
 import './app.scss';
 
 function App() {
@@ -13,6 +12,7 @@ function App() {
       <PostView />
       <Messenger />
       {/* <RegisterForm /> */}
+      {/* <LoginForm /> */}
     </div>
   );
 }
