@@ -14,9 +14,9 @@ function CommentTable (){
             {commentList.map( comment => (
                 <tr key={comment.id}>
                     
-                    <td>{comment.frofile}</td>
+                    {/* <td>{comment.frofile}</td> */}
                     <td>{comment.userId}</td>
-                    <td>{comment.comment}</td>
+                    <td style={{"width":"450px"}}>{comment.comment}</td>
                     <td>{comment.date}</td>
                     <td>
                         <button type='button'>삭제</button>

@@ -2,19 +2,25 @@
 
 .Comment {
     margin-top: 30px;
-    border: 1px solid black;
+    border-top: 1px solid $main-color-3;
 
     width: 1000px;
     height: auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 
+    
     //작성된 댓글
     .commentWrap {
         height: auto;
 
-        tr {    
+        tr {   
+            width: 700px;
+            
             td {
+                padding: 10px;
                 button {
                     position: relative;
                     border: none;
@@ -29,11 +35,15 @@
 
     //댓글 쓰기
     .commnetFormWrap {
-        display: flex;
+        margin-top: 20px;
+        // border: 1px solid gray;
+        // display: flex;
         // padding: 5px 20px;
         // align-items: center;
         textarea {
             width: 700px;
+            height: 60px;
+            resize: none;
             &:focus{
                 background-color: $main-color-1;
                 border: 1px solid $main-color-2;
@@ -41,8 +51,9 @@
         }
         button {
             position: relative;
+            left: 600px;
             border: none;
-            margin: 10px;
+            // margin: 10px;
             border-radius: 5px;
             width: 70px;
             height: 30px;

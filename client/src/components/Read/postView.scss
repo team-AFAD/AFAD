@@ -5,6 +5,9 @@
     .postViewWrap {
         width: 1000px;
         height: auto;
-        border: 1px solid $main-color-2;
+        // border: 1px solid $main-color-2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
