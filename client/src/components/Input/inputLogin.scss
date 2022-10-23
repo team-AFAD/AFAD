@@ -1,0 +1,24 @@
+.InputLogin{
+    display: flex;
+    flex-direction: column;
+    .labels{
+        border-bottom: 1px solid #d9d9d9;
+        margin: 0 0 8px;
+
+        .inputs{
+            width: 100%;
+            height: 50px;
+            line-height: 45px;
+            padding: 2px 2px 2px 7px;
+            border: 0 none;
+            font-size: 16px;
+            letter-spacing: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+    
+}

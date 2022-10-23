@@ -1,11 +1,12 @@
+import './app.scss';
 // import PostWrite from "./components/Post/PostWrite";
 
 // import PostView from "./components/Read/PostView";
-import PostList from "./components/Read/PostList";
+//import PostList from "./components/Read/PostList";
 
 // import RegisterForm from "./components/Register/RegisterForm";
-
-import './app.scss';
+import Messenger from "./pages/messenger/messenger";
+// import LoginForm from './components/Login/LoginForm';
 
 function App() {
   return (
@@ -14,9 +15,11 @@ function App() {
       {/* <PostWrite /> */}
 
       {/* <PostView /> */}
-      <PostList />
+      {/* <PostList /> */}
 
+      <Messenger />
       {/* <RegisterForm /> */}
+      {/* <LoginForm /> */}
     </div>
   );
 }

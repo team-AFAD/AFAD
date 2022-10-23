@@ -1,5 +1,4 @@
 // "/payments/complete"에 대한 POST 요청을 처리
-
 export const paymentView = (req,res) => {
     res.render("payments");
 }
