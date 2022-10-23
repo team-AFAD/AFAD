@@ -1,10 +1,20 @@
 @import '../../styles/properties';
 
 .PostView {
-
+    .PostImg {
+        width: 500px;
+        height: 400px;
+        img {
+            max-width: 500px;
+            max-height: 400px;
+        }
+    }
     .postViewWrap {
         width: 1000px;
         height: auto;
-        border: 1px solid $main-color-2;
+        // border: 1px solid $main-color-2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }

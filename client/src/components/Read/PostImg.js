@@ -1,10 +1,12 @@
 import './postImg.scss';
+//연습이미지
+import postImg from '../../images/heart_red.png';
 
 function PostImg(){
     return(
         <div className="PostImg">
-            <div>
-                이미지 들어갈 자리
+            <div className='postImgWrap'>
+                <img src={postImg}/>
             </div>
         </div>
     )

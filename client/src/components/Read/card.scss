@@ -1,0 +1,37 @@
+@import '../../styles/properties';
+
+.Card {
+    border: 2px solid green;
+    padding: 0 30px;
+    width: 350px;
+    height: 450px;
+    text-align: center;
+    cursor: pointer;
+
+    .PostImg {
+        
+            border: 1px solid gray;
+            max-width: 300px;
+            max-height: 250px;
+
+            img {
+                max-width: 300px;
+                max-height: 250px;
+            }
+        
+    }
+    .LikeBtn {
+        position: relative;
+        top: -70px;
+        left: 250px;
+        z-index: 999;
+        img {
+            width: 10px;
+        }
+    }
+    .Date {
+        position: relative;
+        top: 20px;
+        border-top: 1px solid gray;
+    }
+}

@@ -1,4 +1,4 @@
-import '/postList.scss';
+// import '/postList.scss';
 import Card from './Card';
 
 function PostList() {
