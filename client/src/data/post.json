@@ -1,0 +1,52 @@
+{
+    "Post" : [
+        {
+            "id":1,
+            "title":"1번 게시글의 제목입니다",
+            "merchandiseName": "사과 5kg",
+            "amount": 10000,
+            "num_people": 5,
+            "perPayment": 2000,
+            "time_limit": "2022-10-24",
+            "area": "관악구 신림동",
+            "content": "사과사과 맛있는 사과 같이 사용~",
+            "userfile":"/heart.png"
+        },
+        {
+            "id":2,
+            "title":"2번 게시글의 제목입니다",
+            "merchandiseName": "자몽 5kg",
+            "amount": 10000,
+            "num_people": 2,
+            "perPayment": 5000,
+            "time_limit": "2022-10-24",
+            "area": "영등포구 문래동",
+            "content": "자몽자몽 맛있는 자몽 같이 사용~",
+            "userfile":"/profilePic.png"
+        },
+        {
+            "id":3,
+            "title":"3번 게시글의 제목입니다",
+            "merchandiseName": "사과 5kg",
+            "amount": 10000,
+            "num_people": 5,
+            "perPayment": 2000,
+            "time_limit": "2022-10-24",
+            "area": "강남구 역삼동",
+            "content": "사과사과 맛있는 사과 같이 사용~ 오오오",
+            "userfile":"/heart_red.png"
+        },
+        {
+            "id":4,
+            "title":"4번 게시글의 제목입니다",
+            "merchandiseName": "사과 5kg",
+            "amount": 10000,
+            "num_people": 5,
+            "perPayment": 2000,
+            "time_limit": "2022-10-24",
+            "area": "동작구 사당동",
+            "content": "사과사과 맛있는 사과 같이 사용~ 아아아",
+            "userfile":"/profilePic.png"
+        }
+    ]
+}

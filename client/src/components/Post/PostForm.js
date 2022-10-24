@@ -18,6 +18,7 @@ function PostForm () {
         area : "",
         content : "",
         url : "",
+        userfile : "/defaultImage.jpg"
     });
     //Form에 내용이 채워질때
     const onChangeForm = (e) => {
@@ -91,7 +92,7 @@ function PostForm () {
                 onChangeForm={onChangeForm}
                 />
                 <InputPostFile title={"이미지 첨부 파일"} name={"post_img"} type={"file"}
-                functionName={onChangeFile} fileDefault={'heart.png'}
+                functionName={onChangeFile} fileDefault={'/defaultImage.jpg'}
                 />
                 <button type="button" onClick={onSubmit}>등록</button>
             </form>

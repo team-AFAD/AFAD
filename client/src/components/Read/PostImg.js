@@ -1,12 +1,12 @@
 import './postImg.scss';
-//연습이미지
-import postImg from '../../images/heart_red.png';
 
-function PostImg(){
+
+function PostImg( props ){
+    // console.log (props.userfile);
     return(
         <div className="PostImg">
             <div className='postImgWrap'>
-                <img src={postImg}/>
+                <img src={props.userfile}/>
             </div>
         </div>
     )

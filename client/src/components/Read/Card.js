@@ -7,27 +7,31 @@ import Area from './_propeties/Area';
 import NumPeople from './_propeties/NumPeople';
 import PerPayment from './_propeties/PerPayment';
 import Date from './_propeties/Date';
+// import Dummy from '../../../data/post.json';
 
 
-function Card () {
+function Card (props) {
+    // console.log(props);
+    // console.log(props.test);
+    // console.log(props.test.title);
     return(
         <div className="Card">
 
             <div>
-            <PostImg />
+            <PostImg userfile={props.test.userfile}/>
             <LikeBtn />
             </div>
 
             <div className='CompoWrap_flex topInfo'>
                 <RecruitingBtn />
-                <Area />
+                <Area area={props.test.area}/>
             </div>
 
-            <Title />
+            <Title title={props.test.title}/>
 
             <div className='CompoWrap_flex'>
-                <NumPeople />
-                <PerPayment />
+                <NumPeople num_people={props.test.num_people}/>
+                <PerPayment perPayment={props.test.perPayment}/>
             </div>
 
             <Date />

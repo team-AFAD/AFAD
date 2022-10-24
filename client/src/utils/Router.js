@@ -20,8 +20,8 @@ const Router = () => {
                     <Route path="/post" element={<PostList />} />
                     <Route path="/post/write" element={<PostWrite />} />
                     <Route path="/post/:id" element={<PostView />} />
-                    <Route path="/messenger" element={<Messenger />} />
 
+                    <Route path="/messenger" element={<Messenger />} />
 
                 </Routes>
 

@@ -1,7 +1,7 @@
-const Area = ({title}) => {
+const Area = (props) => {
     return (
         <div className='Area'>
-            <p>{title} 영등포구 문래동{}</p>
+            <p>{props.area}</p>
         </div>
     );
 }
