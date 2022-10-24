@@ -4,6 +4,7 @@ import {createError} from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
+    console.log( req.body );
     try{
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);
@@ -14,6 +15,7 @@ export const register = async (req, res, next) => {
             email: req.body.email,
             password: hash
         });
+        console.log("newUSer : ", newUser);
 
         await newUser.save()
         res.status(200).send("User has been created.")

@@ -1,10 +1,22 @@
 import express from "express";
 // import User from "./models/User.js";
 import { register, login } from "../controllers/auth.js";
+import multer from "multer";
 
 const router = express.Router();
 
-router.post("/register", register);
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "images/");
+    },
+    filename: (req, file, cb) =>{
+        cb(null, `${Date.now()}_${file.originalname}`);
+    }
+});
+
+const upload = multer({storage:storage})
+
+router.post("/register", upload.single('profilePicture'), register);
 router.post("/login", login);
 
 export default router
