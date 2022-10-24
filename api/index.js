@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import multer from "multer";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 // Route 경로
 import authRoute from "./routes/auth.js";
@@ -19,8 +20,10 @@ import messageRoute from "./routes/messages.js";
 
 
 
-const app = express()
-dotenv.config()
+const app = express();
+dotenv.config();
+// 어떤 경로에서도 통신 가능하게
+app.use(cors());
 
 // payments test를 위한 코드
 app.set('view engine', 'ejs');
