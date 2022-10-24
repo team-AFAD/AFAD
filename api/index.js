@@ -22,6 +22,7 @@ import messageRoute from "./routes/messages.js";
 
 const app = express();
 dotenv.config();
+=======
 // 어떤 경로에서도 통신 가능하게
 app.use(cors());
 
@@ -44,11 +45,11 @@ mongoose.connection.on("disconnected", ()=> {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "images");
+        cb(null, "images/");
     },
     filename: (req, file, cb) =>{
         // cb(null, req.body.name);
-        cb(null, "hello files");
+        cb(null, `${Date.now()}_${file.originalname}`);
     }
 });
 
