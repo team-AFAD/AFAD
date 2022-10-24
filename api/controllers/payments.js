@@ -1,3 +1,4 @@
+import Payments from "../models/Payments.js"
 // "/payments/complete"에 대한 POST 요청을 처리
 export const paymentView = (req,res) => {
     res.render("payments");
@@ -63,3 +64,21 @@ export const payments =  async (req, res) => {
     res.status(400).send(e);
   }
 };
+
+// paymentsComp
+export const paymentComp = (req,res) => {
+  console.log( req.body );
+  let data = {
+    merchant_uid: req.body.merchant_uid,
+    nickname: req.body.buyer_name,
+    productName: req.body.name,
+    productPrice: req.body.paid_amount
+  }
+  try{
+    const newPayment = new Payments(data);
+    const savedPayment = newPayment.save();  
+    res.render("paymentsComp", data);
+  } catch ( e ) {
+    console.log( "err : ", e );
+  }
+}

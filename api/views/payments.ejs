@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IamPort결제데모</title>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- iamport.payment.js -->
@@ -37,30 +38,35 @@
             digital: true,
             app_scheme : ''
             }, function (rsp) { 
+                console.log( rsp );
                 if (rsp.success) {  
-                    jQuery.ajax({
-                        url: "https:/localhost:8080/api/payments/complete",
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        data: {
-                        imp_uid: rsp.imp_uid,
-                        merchant_uid: rsp.merchant_uid
-                    }
-                }).done(function(data) { 
-                switch(data.status) {
-                case "vbankIssued":
-                    break;  
-                case "success":
-                    break;
+                    // let { merchant_uid, name, paid_amount, buyer_name } = rsp;
+                    // axios({
+                    //     method: 'post',
+                    //     url: 'http://localhost:8080/api/payments/complete',
+                    //     data: {
+                    //         merchant_uid, name, paid_amount, buyer_name 
+                    //     }
+                    // }).then((result) => {
+                    //     console.log( "result : ", result );
+                    // });
+                    var form = document.getElementById("form_result");
+                        form.merchant_uid.value = rsp.merchant_uid;
+                        form.buyer_name.value = rsp.buyer_name;
+                        form.name.value = rsp.name;
+                        form.paid_amount.value = rsp.paid_amount;
+                        form.submit();
                 }
-            });
-            } else {
-                alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
-                }   
             });
 
     </script>
 
+    <form id="form_result" method="POST" action="/api/payments/complete">
+        <input type="hidden" name="merchant_uid">
+        <input type="hidden" name="buyer_name">
+        <input type="hidden" name="name">
+        <input type="hidden" name="paid_amount">
+    </form>
 
 </body>
 </html>
