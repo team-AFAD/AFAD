@@ -18,7 +18,7 @@ const InputPostFile = ({title, name, type, functionName, fileDefault }) => {
 
             reader.readAsDataURL(file_tag.files[0]);
         } else {
-            file_img.src = `./${fileDefault}`;
+            file_img.src = `/${fileDefault}`;
         }
     }
 

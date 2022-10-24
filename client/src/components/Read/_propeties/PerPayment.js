@@ -1,8 +1,8 @@
-const PerPayment = ({}) => {
+const PerPayment = (props) => {
     return (
         <div className='PerPayment'>
             1인 결제금액 <br/>
-            <span>{}00원</span>
+            <p>{props.perPayment}원</p>
         </div>
     )
 }
