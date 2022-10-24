@@ -1,5 +1,5 @@
-import PostForm from "./PostForm";
-import './postWrite.scss';
+import PostForm from "../components/Post/PostForm";
+import '../components/Post/postWrite.scss';
 
 function PostWrite () {
     return (

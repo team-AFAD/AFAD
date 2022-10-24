@@ -1,5 +1,5 @@
-// import '/postList.scss';
-import Card from './Card';
+import '../components/Read/postList.scss';
+import Card from '../components/Read/Card';
 
 function PostList() {
     return (

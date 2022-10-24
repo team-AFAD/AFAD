@@ -11,13 +11,23 @@ import {
 
 =======
 import './app.scss';
+import Router from './utils/Router';
+
 // import PostWrite from "./components/Post/PostWrite";
-import PostView from "./components/Read/PostView";
+// import PostView from "./components/Read/PostView";
 // import PostList from "./components/Read/PostList";
 
 
 function App() {
   return (
+
+    <div className="App">
+      {/* <Router /> */}
+
+      {/* <PostWrite /> */}
+      {/* <PostView /> */}
+      {/* <PostList /> */}
+
     <BrowserRouter>
       <Routes>
 
@@ -26,6 +36,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/conversations" element={<Messenger />} />
+
 
 
       </Routes>
