@@ -22,7 +22,6 @@ import messageRoute from "./routes/messages.js";
 
 const app = express();
 dotenv.config();
-=======
 // 어떤 경로에서도 통신 가능하게
 app.use(cors());
 
