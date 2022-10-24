@@ -1,4 +1,4 @@
-import dummy from '../../../data/data.json';
+import dummy from '../../../data/comment.json';
 
 function CommentTable (){
     //postId가 1인 댓글만 보여지게
