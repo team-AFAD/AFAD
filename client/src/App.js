@@ -1,3 +1,4 @@
+
 import Messenger from "./pages/messenger/messenger";
 import Login from './components/Login/LoginForm';
 import Register from './components/Register/RegisterForm';
@@ -8,11 +9,18 @@ import {
   Link
 } from "react-router-dom";
 
+=======
+import './app.scss';
+// import PostWrite from "./components/Post/PostWrite";
+import PostView from "./components/Read/PostView";
+// import PostList from "./components/Read/PostList";
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+
 
       {/* <Route path="/" element={<Home />} /> */}
       <Route path="/register" element={<Register />} />
@@ -22,6 +30,7 @@ function App() {
 
       </Routes>
     </BrowserRouter>
+
   );
 }
 

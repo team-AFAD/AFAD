@@ -110,6 +110,7 @@ function RegisterForm () {
         for(var pair of formData.entries()) {
             console.log(pair[0]+ ': '+ pair[1]); 
         };
+
         axios.post('http://localhost:8080/api/auth/register',formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
@@ -120,7 +121,9 @@ function RegisterForm () {
         .then((data) => {
             console.log(data);
             alert("회원가입 성공!");
+
         })
+        .then((res) => {console.log(res)})
     }
 
     // console.log(values);
