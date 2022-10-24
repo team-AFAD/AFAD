@@ -3,7 +3,10 @@ import './postForm.scss';
 import InputPost from '../Input/InputPost';
 import Textarea from '../Input/Textarea';
 import InputPostFile from '../Input/InputPostFile';
+import axios from 'axios';
+
 // import Heart from '/heart_red.png';
+
 function PostForm () {
 
     const [formValue, setFormValue] = useState({
@@ -11,43 +14,47 @@ function PostForm () {
         merchandiseName : "",
         amount : 0,
         num_people : 1,
-        perPayment: "",
         time_limit : "",
         area : "",
         content : "",
         url : "",
     });
-
+    //Form에 내용이 채워질때
     const onChangeForm = (e) => {
         setFormValue({
         ...formValue,
         [e.target.name]: e.target.value,
         });
-        // console.log({perPayment});
+        // console.log(perPayment);
     };
 
     let formData = new FormData();
-
+    
+    //이미지 미리보기
     const onChangeFile = () => {
         let fileUpload = document.querySelector(".InputPostFile input");
         console.log(fileUpload);
         formData.append("userfile", fileUpload.files[0]);
     }
     
-    const onSubmit = () => {
+    const onSubmit = async () => {
         formData.append("title", formValue.title);
         formData.append("merchandiseName", formValue.merchandiseName);
-        formData.appent("amount", formValue.amount);
-        formData.appent("num_people", formValue.num_people);
-
-        formData.appent("time_limit", formValue.time_limit);
-
+        formData.append("amount", formValue.amount);
+        formData.append("num_people", formValue.num_people);
+        formData.append("perPayment", perPayment);
+        formData.append("time_limit", formValue.time_limit);
+        formData.append("area", formValue.area);
+        formData.append("content", formValue.content);
         
-        // for (let key of formData.keys()) {
-        //     console.log(key, ":", formData.get(key));
-        // }
+        for (let key of formData.keys()) {
+            console.log(key, ":", formData.get(key));
+        }
 
-        // let result = await axios.post("", {data: formData})
+        let result = await axios.post("http://localhost:8080/api/posts/", {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }}, formData);
     }
 
 

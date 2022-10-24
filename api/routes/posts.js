@@ -1,5 +1,5 @@
 import express from "express";
-import{createPost,updatePost, deletePost, getPost, getPosts} from "../controllers/post.js"
+import{createPost,updatePost, deletePost, getPost, getPosts} from "../controllers/post.js";
 
 import{ likePost } from "../controllers/like.js"
 
@@ -25,4 +25,4 @@ router.get("/:id", verifyUser, getPost);
 // GET ALL(post)
 router.get("/", verifyUser, getPosts);
 
-export default router
+export default router;
