@@ -1,8 +1,9 @@
-import PostImg from './PostImg';
-import MainInfo from './MainInfo';
-import Description from './Description';
-import Comment from './Comment';
-import './postView.scss';
+import PostImg from '../components/Read/PostImg';
+import MainInfo from '../components/Read/MainInfo';
+import Description from '../components/Read/Description';
+import Comment from '../components/Read/Comment';
+import '../components/Read/postView.scss'
+// import '../postView.scss';
 
 function PostView (){
     return(

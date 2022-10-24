@@ -1,6 +1,8 @@
 import './app.scss';
+import Router from './utils/Router';
+
 // import PostWrite from "./components/Post/PostWrite";
-import PostView from "./components/Read/PostView";
+// import PostView from "./components/Read/PostView";
 // import PostList from "./components/Read/PostList";
 
 // import Messenger from "./pages/messenger/messenger";
@@ -10,9 +12,10 @@ import PostView from "./components/Read/PostView";
 function App() {
   return (
     <div className="App">
+      {/* <Router /> */}
 
       {/* <PostWrite /> */}
-      <PostView />
+      {/* <PostView /> */}
       {/* <PostList /> */}
 
       {/* <Messenger /> */}
