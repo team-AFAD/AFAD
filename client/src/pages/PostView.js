@@ -6,6 +6,11 @@ import '../components/Read/postView.scss'
 // import '../postView.scss';
 
 function PostView (){
+
+    const checkCookie = () => {
+
+    }
+    
     return(
         <div className='PostView'>
             <div className='CompoWrap_flex'>

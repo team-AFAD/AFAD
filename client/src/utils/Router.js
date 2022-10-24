@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 // import Header from '../components/Header/Header';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
@@ -28,5 +28,20 @@ const Router = () => {
         </div>
     )
 }
+
+// function Users() {
+    //   return (
+    //     <div>
+    //       <nav>
+    //         <Link to="me">My Profile</Link>
+    //       </nav>
+    
+    //       <Routes>
+    //         <Route path=":id" element={<UserProfile />} />
+    //         <Route path="me" element={<OwnUserProfile />} />
+    //       </Routes>
+    //     </div>
+    //   );
+    // }
 
 export default Router;
