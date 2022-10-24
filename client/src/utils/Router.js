@@ -5,6 +5,7 @@ import Login from '../pages/Login';
 import PostList from '../pages/PostList';
 import PostWrite from '../pages/PostWrite';
 import PostView from '../pages/PostView';
+import Messenger from "../pages/messenger/messenger";
 
 
 const Router = () => {
@@ -19,8 +20,8 @@ const Router = () => {
                     <Route path="/post" element={<PostList />} />
                     <Route path="/post/write" element={<PostWrite />} />
                     <Route path="/post/:id" element={<PostView />} />
-                    {/* <Route path="/messenger"> */}
-                    {/* </Route> */}
+                    <Route path="/messenger" element={<Messenger />} />
+
 
                 </Routes>
 
