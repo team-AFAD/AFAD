@@ -7,6 +7,10 @@ import cookieParser from "cookie-parser";
 import multer from "multer";
 import bodyParser from "body-parser";
 import cors from "cors";
+import { Server } from "socket.io";
+import {createServer} from "http";
+const httpServer = createServer();
+const io = new Server(httpServer, { cors : { origin : "*" }});
 
 // Route 경로
 import authRoute from "./routes/auth.js";
@@ -22,7 +26,6 @@ import messageRoute from "./routes/messages.js";
 
 const app = express();
 dotenv.config();
-=======
 // 어떤 경로에서도 통신 가능하게
 app.use(cors());
 
@@ -84,8 +87,31 @@ app.use((err, req, res, next) => {
     });
 });
 
+io.on("connection", (socket) => {
+
+    socket.on("enterRoom", (room, done) => {
+        socket.join(room.room);
+        done();
+        // 자신 제외
+        socket.to(room.room).emit("welcome");
+        // 자기한테도
+        // socket.emit("welcome");
+    })
+
+    socket.on("newMsg", (data, done) => {
+        socket.to(data.room).emit("newMsg", data.msg);
+        done();
+    })
+
+    socket.on("disconnecting", () => {
+        socket.rooms.forEach((room) => {
+            socket.to(room).emit("bye");
+        })
+    })
+})
+
 //8080연결완료
 app.listen(8080, ()=>{
-    connect()
-    console.log("Connected to backend!")
+    connect();
+    console.log("Connected to backend!");
 })
