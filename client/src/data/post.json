@@ -10,7 +10,7 @@
             "time_limit": "2022-10-24",
             "area": "관악구 신림동",
             "content": "사과사과 맛있는 사과 같이 사용~",
-            "userfile":"/heart.png"
+            "photo":"/heart.png"
         },
         {
             "id":2,
@@ -22,7 +22,7 @@
             "time_limit": "2022-10-24",
             "area": "영등포구 문래동",
             "content": "자몽자몽 맛있는 자몽 같이 사용~",
-            "userfile":"/profilePic.png"
+            "photo":"/profilePic.png"
         },
         {
             "id":3,
@@ -34,7 +34,7 @@
             "time_limit": "2022-10-24",
             "area": "강남구 역삼동",
             "content": "사과사과 맛있는 사과 같이 사용~ 오오오",
-            "userfile":"/heart_red.png"
+            "photo":"/heart_red.png"
         },
         {
             "id":4,
@@ -46,7 +46,7 @@
             "time_limit": "2022-10-24",
             "area": "동작구 사당동",
             "content": "사과사과 맛있는 사과 같이 사용~ 아아아",
-            "userfile":"/profilePic.png"
+            "photo":"/profilePic.png"
         }
     ]
 }

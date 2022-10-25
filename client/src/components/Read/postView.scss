@@ -1,8 +1,11 @@
 @import '../../styles/properties';
 
 .PostView {
+    .MainInfo {
+        min-width: 500px;
+    }
     .PostImg {
-        width: 500px;
+        min-width: 500px;
         height: 400px;
         img {
             max-width: 500px;
