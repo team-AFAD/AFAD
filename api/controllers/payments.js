@@ -66,19 +66,25 @@ export const payments =  async (req, res) => {
 };
 
 // paymentsComp
-export const paymentComp = (req,res) => {
+export const paymentComp = async (req,res) => {
   console.log( req.body );
   let data = {
     merchant_uid: req.body.merchant_uid,
     nickname: req.body.buyer_name,
     productName: req.body.name,
-    productPrice: req.body.paid_amount
+    productPrice: req.body.amount
   }
   try{
     const newPayment = new Payments(data);
-    const savedPayment = newPayment.save();  
+    // const savedPayment = newPayment.save();  
+    await newPayment.save();
+    res.status(200).send("newPayment has been saved.")  
     res.render("paymentsComp", data);
   } catch ( e ) {
     console.log( "err : ", e );
   }
+}
+
+export const paymentCompView = (req,res) => {
+  res.render("paymentComp");
 }
