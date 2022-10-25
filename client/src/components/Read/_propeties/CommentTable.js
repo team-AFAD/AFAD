@@ -6,7 +6,7 @@ function CommentTable (){
     const commentList = dummy.comments.filter(comment =>(
         comment.postId === postId
     ))
-    console.log(commentList);
+    // console.log(commentList);
     return(
         <>
         <table>
