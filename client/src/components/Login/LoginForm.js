@@ -11,18 +11,22 @@ function LoginForm() {
     const onChange = (e) =>{
         setValues({...values, [e.target.name]: e.target.value });
     }
-    console.log(values);
+    // console.log(values);
 
     const loginSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        for(var pair of formData.entries()) {
-            console.log(pair[0]+ ': '+ pair[1]); 
-        };
-        console.log([...formData]);
+        console.log(values);
         // axios 수정할 예정
-        axios.post('url', formData)
-        .then((res) => console.log(res))
+        
+        axios.post('http://localhost:8080/api/auth/login', values)
+        .then((rep) => {
+            console.log(rep.data);
+        })
+        .catch(function (error) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        });
         
     }
 
