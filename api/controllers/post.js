@@ -5,14 +5,13 @@ import router from "../routes/posts.js";
 export const createPost = async (req, res, next) => {
   console.log(req.body);
   console.log(req.file);
-  //테스트 해보려고 잠시 주석처리했습니다! 사용하실때 주석 풀고 써주세용 ㅠㅠ
-  // const newPost = new Post(req.body);
-  // try{
-  //   const savedPost = await newPost.save();
-  //   res.status(200).json(savedPost);
-  // }catch(err){
-  //   res.status(500).json(err)
-  // }
+  const newPost = new Post(req.body);
+  try{
+    const savedPost = await newPost.save();
+    res.status(200).json(savedPost);
+  }catch(err){
+    res.status(500).json(err)
+  }
 };
 
 

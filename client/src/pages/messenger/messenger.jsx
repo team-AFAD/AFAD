@@ -2,8 +2,15 @@ import "./messenger.scss"
 import Conversation from "../../components/Conversations/Conversation"
 import Message from "../../components/message/Message"
 import ChatOnline from "../../components/chatOnline/ChatOnline"
+import { useContext } from "react"
+import { AuthContext } from "../../context/AuthContext"
 
 export default function Messenger() {
+
+    const {user} = useContext(AuthContext);
+
+    console.log(user);
+
     return (
         <div className="messenger">
             <div className="chatMenu">
