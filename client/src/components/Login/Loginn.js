@@ -1,6 +1,5 @@
-import React, { useState, useRef, useContext } from 'react';
-import './login.scss';
-import axios from 'axios';
+import React, { useRef, useContext } from 'react';
+import './login.css';
 import {loginCall} from "../../apiCalls"
 import { AuthContext } from "../../context/AuthContext";
 // import { CircularProgress } from "@material-ui/core";
@@ -16,6 +15,7 @@ export default function Login() {
       { email: email.current.value, password: password.current.value },
       dispatch
     );
+    console.log(loginCall)
   };
 
   return (
@@ -46,7 +46,7 @@ export default function Login() {
             />
             <button className="loginButton" type="submit" disabled={isFetching}>
               {isFetching ? (
-                <CircularProgress color="white" size="20px" />
+                "가"
               ) : (
                 "Log In"
               )}
@@ -54,7 +54,7 @@ export default function Login() {
             <span className="loginForgot">Forgot Password?</span>
             <button className="loginRegisterButton">
               {isFetching ? (
-                <CircularProgress color="white" size="20px" />
+                "나"
               ) : (
                 "Create a New Account"
               )}
