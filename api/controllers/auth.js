@@ -26,9 +26,11 @@ export const register = async (req, res, next) => {
     }
 };
 
+//username에서 email로 바꿈 나중에 확인부탁
 export const login = async (req, res, next) => {
     try{
-        const user = await User.findOne({ username:req.body.username });
+        const user = await User.findOne({ email:req.body.email });
+        console.log(user)
         if(!user) 
             return next(createError(404, "User not found!"));
 
