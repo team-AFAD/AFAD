@@ -27,10 +27,6 @@ const PostSchema = new mongoose.Schema({
         type: String,
         default:""
       },
-      town: {
-        type: String,
-        default:""
-      },
       sell_amount:{
         type:Number,
         default:"1"
