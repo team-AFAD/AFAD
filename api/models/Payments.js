@@ -16,7 +16,7 @@ const PaymentsSchema = new mongoose.Schema({
         required: true
     },
     productPrice:{
-        type: String,
+        type: Number,
         required: true
     }
 },{timestamps : true});
