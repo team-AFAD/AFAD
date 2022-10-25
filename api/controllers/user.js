@@ -36,7 +36,7 @@ export const deleteUser = async (req, res, next) =>{
 // }
 
 
-// user정보 가져오기
+// user정보 가져오기(conversation.jsx 14번째줄 에서 쓰임)
 export const getUser = async (req, res, next) =>{
     // date fetch시에 사용되는 코드
     const userId = req.query.userId;
