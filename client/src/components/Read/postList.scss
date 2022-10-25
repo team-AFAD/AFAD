@@ -1,9 +1,8 @@
 @import '../../styles/properties';
 
 .PostList {
-
     .Card {
-        width: 350px;
+        min-width: 350px;
         height: 450px;
     }
 }

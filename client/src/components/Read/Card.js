@@ -18,7 +18,7 @@ function Card (props) {
         <div className="Card">
 
             <div>
-            <PostImg userfile={props.test.userfile}/>
+            <PostImg photo={props.test.photo}/>
             <LikeBtn />
             </div>
 
