@@ -2,21 +2,20 @@ import "./messenger.scss";
 import Conversation from "../../components/Conversations/Conversation";
 import Message from "../../components/message/Message";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useState } from "react";
-import { useEffect } from "react";
 import axios from "axios";
 import {io} from "socket.io-client"; 
 
 export default function Messenger() {
     const [conversations, setConversations] = useState([]);
-    const [socket, setSocket] = useState(null);
     const {user} = useContext(AuthContext);
     console.log(user);
     
+    let socket = io("http://localhost:8000", {transports: ["websocket"]});
+
     useEffect(()=> {
-        setSocket(io("ws://loacalhost:8080"))
+        socket.connect();
     },[]);
 
     useEffect(() => {
