@@ -1,5 +1,5 @@
 import express from "express";
-import { savedConversation, getConversation } from "../controllers/conversation.js";
+import { savedConversation, getConversation, twoConversation } from "../controllers/conversation.js";
 
 const router = express.Router();
 
@@ -7,7 +7,8 @@ const router = express.Router();
 router.post("/", savedConversation);
 //get conv of a user
 router.get("/:userId", getConversation);
-
+// get conv includes two userId
+router.get("/find/:firstUserId/:secondUserId", twoConversation);
 
 
 export default router;
