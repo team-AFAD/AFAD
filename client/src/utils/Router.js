@@ -6,6 +6,8 @@ import PostList from '../pages/PostList';
 import PostWrite from '../pages/PostWrite';
 import PostView from '../pages/PostView';
 import Messenger from "../pages/messenger/messenger";
+import MyPage from '../pages/MyPage';
+import UserModify from '../pages/UserModify';
 
 
 const Router = () => {
@@ -22,7 +24,8 @@ const Router = () => {
                     <Route path="/post/:id" element={<PostView />} />
 
                     <Route path="/messenger" element={<Messenger />} />
-
+                    <Route path="/mypage" element={<MyPage />} />
+                    <Route path="/modify" element={<UserModify />} />
                 </Routes>
 
             </BrowserRouter>
