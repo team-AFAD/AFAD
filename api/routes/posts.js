@@ -28,7 +28,8 @@ router.get("/checkadmin/:id", verifyAdmin, (req,res,next)=>{
 //CREATE
 router.post("/write", upload.single('photo'), createPost);
 //UPDATE
-router.put("/:id", verifyUser, updatePost);
+// router.put("/:id", verifyUser, updatePost);
+router.put("/:id", updatePost);
 //DELETE
 router.delete("/:id", verifyUser, deletePost);
 //like a post
@@ -36,9 +37,7 @@ router.put("/:id/like", verifyUser, likePost);
 //GET
 router.get("/:id", getPost);
 // GET ALL(post)
-
-
-// router.get("/", verifyUser, getPosts);
+router.get("/", getPosts);
 
 
 export default router;

@@ -15,7 +15,7 @@ function Card (props) {
         <div className="Card">
 
             <div>
-            {/* <PostImg photo={props.data.photo}/> */}
+            <PostImg photo={props.data.photo}/>
             <LikeBtn />
             </div>
 
