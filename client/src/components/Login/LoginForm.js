@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './loginForm.scss';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 function LoginForm() {
     const [values, setValues] = useState({
@@ -21,8 +22,10 @@ function LoginForm() {
         axios.post('http://localhost:8080/api/auth/login', values)
         .then((rep) => {
             console.log(rep.data);
+            // navigate("/")
         })
         .catch(function (error) {
+            alert("실패");
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
