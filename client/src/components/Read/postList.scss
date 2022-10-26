@@ -1,8 +1,16 @@
 @import '../../styles/properties';
 
 .PostList {
+
+    border: 1px solid red;
+    .CompoWrap_flex{
+
+        display: flex;
+        flex-wrap: wrap;
+    }
     .Card {
         min-width: 350px;
         height: 450px;
+        flex: 1 1 25%
     }
 }

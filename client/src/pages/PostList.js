@@ -25,13 +25,16 @@ const PostList = ()=> {
     }
     return (
         <div className="PostList">
+            <div onClick={() => {link('write')}}>
+                <JoinBtn title="게시글 작성"/>
+            </div>
             <div className='CompoWrap_flex'>
                 {data.map( data =>{
                     console.log(data.id);
                     return (
                         <div>
-                            {/* <Card key={data.id} data={data} component={Link} to={'/post/:id'}/> */}
-                            <div onClick={() => {link(data._id)}}>
+                            {/* <Card key={data.id} data={data} component={Link} to={'/post/:id'}/>  */}
+                            <div onClick={() => {link(data._id)}}> 
                                 <Card key={data._id} data={data} />
                             </div>
                         </div>
@@ -39,9 +42,7 @@ const PostList = ()=> {
                 })}
                 
             </div>
-            <div onClick={() => {link('write')}}>
-                <JoinBtn title="게시글 작성"/>
-            </div>
+            
         </div>
     )
 }
