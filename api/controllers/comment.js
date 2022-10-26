@@ -1,16 +1,24 @@
 import {createError} from "../utils/error.js";
 import Comment from "../models/Comment.js";
 import Post from "../models/Post.js";
+import util from "../utils/util.js"
 
 export const addComment = async (req, res, next) => {
-  const newComment = new Comment({ ...req.body, userId: req.user.id });
-  try {
-    const savedComment = await newComment.save();
-    res.status(200).send(savedComment);
-  } catch (err) {
-    next(err);
-  }
+  // const newComment = new Comment({ ...req.body, userId: req.user.id });
+  // try {
+  //   const savedComment = await newComment.save();
+  //   res.status(200).send(savedComment);
+  // } catch (err) {
+  //   next(err);
+  // }
+
+    // DB에서 찾은 post를 보관해서 다음 callback함수에서 계속해서 사용
+    var post = res.locals.post; // 보내줄 때 post로 보내줘야 함
+    req.body.userId = req.user._id;
+    req.body.post = post._id;
 };
+
+
 
 export const deleteComment = async (req, res, next) => {
   try {
