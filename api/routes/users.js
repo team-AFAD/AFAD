@@ -29,7 +29,7 @@ router.delete("modify/:id", verifyUser, deleteUser);
 //GET ALL(admin)
 // router.get("/", verifyUser, getUsers);
 //get a user
-router.get("/", getUser);
+router.get("/", verifyUser, getUser);
 
 
 export default router
