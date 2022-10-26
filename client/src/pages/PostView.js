@@ -2,6 +2,7 @@ import PostImg from '../components/Read/PostImg';
 import MainInfo from '../components/Read/MainInfo';
 import Description from '../components/Read/Description';
 import Comment from '../components/Read/Comment';
+import Writer from '../components/Read/_propeties/Writer';
 import '../components/Read/postView.scss'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -35,7 +36,8 @@ function PostView ( ){
                     </div>
                     
                     <div className='postViewWrap'>
-                        <Description description={data.desc}/>
+                        <Writer writer={data.username} />
+                        <Description description={data.desc} />
                         <Comment />
                     </div>
                 </div>

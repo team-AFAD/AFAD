@@ -1,12 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import '../components/Read/postList.scss';
 import Card from '../components/Read/Card';
+import JoinBtn from '../components/Read/_propeties/JoinBtn';
 import axios from 'axios';
 
 const PostList = ()=> {
 
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
 
     const getData = async () => {
         const response = await axios.get(`http://localhost:8080/api/posts`);
@@ -18,22 +19,28 @@ const PostList = ()=> {
     }, []);
 
     const navigate = useNavigate();
-    const link = (id) => {
-        navigate("/post/" + id);
+    const link = (url) => {
+        console.log("work");
+        navigate("/post/" + url);
     }
     return (
         <div className="PostList">
             <div className='CompoWrap_flex'>
                 {data.map( data =>{
-                    // console.log(data.id);
+                    console.log(data.id);
                     return (
-                            // <Card key={data.id} data={data} component={Link} to={'/post/:id'}/>
-                            <div onClick={() => {link(data.id)}}>
-                                <Card key={data.id} data={data} />
+                        <div>
+                            {/* <Card key={data.id} data={data} component={Link} to={'/post/:id'}/> */}
+                            <div onClick={() => {link(data._id)}}>
+                                <Card key={data._id} data={data} />
                             </div>
-                        )
-                    })}
-                {/* <게시글작성버튼> */}
+                        </div>
+                    );
+                })}
+                
+            </div>
+            <div onClick={() => {link('write')}}>
+                <JoinBtn title="게시글 작성"/>
             </div>
         </div>
     )

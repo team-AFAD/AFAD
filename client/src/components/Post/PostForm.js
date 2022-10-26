@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import './postForm.scss';
 import InputPost from '../Input/InputPost';
 import Textarea from '../Input/Textarea';
 import InputPostFile from '../Input/InputPostFile';
 import axios from 'axios';
 
+
 // import Heart from '/heart_red.png';
 
 function PostForm () {
+    const {user} = useContext(AuthContext);
+    console.log(user);
+    console.log(user.nickname);
 
     const [formValue, setFormValue] = useState({
         title : "",
@@ -39,27 +44,31 @@ function PostForm () {
     }
     
     const onSubmit = async () => {
+        formData.append("nickname", user.nickname);
+        
         formData.append("title", formValue.title);
         formData.append("merchandise", formValue.merchandise);
         formData.append("price", formValue.price);
         formData.append("num_people", formValue.num_people);
         formData.append("perPayment", perPayment);
         formData.append("end_date", formValue.end_date);
-        formData.append("city", formValue.city);
+        formData.append("area", formValue.area);
         formData.append("desc", formValue.desc);
         
         for (let key of formData.keys()) {
             console.log(key, ":", formData.get(key));
         }
 
-        let result = await axios.post("http://localhost:8080/api/posts/", {
+        let result = await axios.post("http://localhost:8080/api/posts/write", 
+            formData,
+            {
             headers: {
                 "Content-Type": "multipart/form-data",
-            }}, formData);
+            }});
     }
 
 
-    let perPayment = Math.ceil((formValue.amount)/(formValue.num_people));
+    let perPayment = Math.ceil((formValue.price)/(formValue.num_people));
 
     return (
         <div className="PostForm">
