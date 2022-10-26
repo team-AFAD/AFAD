@@ -14,10 +14,10 @@ function Card (props) {
     return(
         <div className="Card">
 
-            <div>
+            
             <PostImg photo={props.data.photo}/>
             <LikeBtn />
-            </div>
+            
 
             <div className='CompoWrap_flex topInfo'>
                 <RecruitingBtn />
@@ -31,7 +31,7 @@ function Card (props) {
                 <PerPayment perPayment={props.data.perPayment}/>
             </div>
 
-            <Date />
+            <Date createdAt={props.data.createdAt}/>
         </div>
         
     )
