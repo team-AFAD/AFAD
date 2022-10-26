@@ -21,8 +21,8 @@ router.delete("/:id", verifyUser, deletePost);
 //like a post
 router.put("/:id/like", verifyUser, likePost);
 //GET
-router.get("/:id", verifyUser, getPost);
+router.get("/:id", getPost);
 // GET ALL(post)
-router.get("/", verifyUser, getPosts);
+router.get("/", getPosts);
 
 export default router;

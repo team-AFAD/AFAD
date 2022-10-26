@@ -114,7 +114,7 @@ function RegisterForm () {
         axios.post('http://localhost:8080/api/auth/register',formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
-              },
+            },
         })
         .then((rep) => {
             return rep.data;})
