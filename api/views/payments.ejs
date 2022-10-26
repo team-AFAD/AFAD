@@ -58,10 +58,10 @@
                     form.merchant_uid.value = rsp.merchant_uid;
                     form.buyer_name.value = rsp.buyer_name;
                     form.name.value = rsp.name;
-                    form.amount.value = rsp.amount;
+                    form.amount.value = rsp.paid_amount;
+
+                    console.log( form );
                     form.submit();
-                    window.location.href = "http://localhost:8080/api/payments/complete";
-                    // 이렇게 치면 근데 get경로인지 post 경로인지 어떻게 알지?
                 }
                 else {
                     var msg = '결제 실패';
@@ -73,7 +73,7 @@
     </script>
 
     <!-- 규리쌤 코드 -->
-    <form id="form_result" method="POST" action="/api/payments/complete">
+    <form id="form_result" action="/api/payments/complete">
         <input type="hidden" name="merchant_uid">
         <input type="hidden" name="buyer_name">
         <input type="hidden" name="name">
