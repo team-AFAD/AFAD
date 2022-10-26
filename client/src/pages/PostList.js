@@ -1,9 +1,21 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import '../components/Read/postList.scss';
 import Card from '../components/Read/Card';
-import Dummy from '../data/post.json';
+import axios from 'axios';
 
-const PostList = ({})=> {
+const PostList = ()=> {
+
+    const [data, setData] = useState();
+
+    const getData = async () => {
+        const response = await axios.get(`http://localhost:8080/api/posts`);
+        console.log( response.data );
+        setData(response.data);
+    }
+    useEffect(() => {
+        getData();
+    }, []);
 
     const navigate = useNavigate();
     const link = (id) => {
@@ -12,12 +24,12 @@ const PostList = ({})=> {
     return (
         <div className="PostList">
             <div className='CompoWrap_flex'>
-                {Dummy.Post.map( post =>{
-                    // console.log(post.id);
+                {data.map( data =>{
+                    // console.log(data.id);
                     return (
-                            // <Card key={post.id} test={post} component={Link} to={'/post/:id'}/>
-                            <div onClick={() => {link(post.id)}}>
-                                <Card key={post.id} test={post} />
+                            // <Card key={data.id} data={data} component={Link} to={'/post/:id'}/>
+                            <div onClick={() => {link(data.id)}}>
+                                <Card key={data.id} data={data} />
                             </div>
                         )
                     })}

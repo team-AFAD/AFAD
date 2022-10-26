@@ -36,6 +36,9 @@ router.put("/:id/like", verifyUser, likePost);
 //GET
 router.get("/:id", getPost);
 // GET ALL(post)
+
+
 // router.get("/", verifyUser, getPosts);
+
 
 export default router;

@@ -11,7 +11,7 @@ function PostForm () {
 
     const [formValue, setFormValue] = useState({
         title : "",
-        merchandiseName : "",
+        merchandise : "",
         amount : 0,
         num_people : 1,
         time_limit : "",
@@ -40,7 +40,7 @@ function PostForm () {
     
     const onSubmit = async () => {
         formData.append("title", formValue.title);
-        formData.append("merchandiseName", formValue.merchandiseName);
+        formData.append("merchandise", formValue.merchandise);
         formData.append("price", formValue.price);
         formData.append("num_people", formValue.num_people);
         formData.append("perPayment", perPayment);
@@ -67,7 +67,7 @@ function PostForm () {
                 <InputPost title={"제목"} name={"title"} type={"text"} required
                 onChangeForm={onChangeForm}
                 />
-                <InputPost title={"상품명"} name={"merchandiseName"} type={"text"} required
+                <InputPost title={"상품명"} name={"merchandise"} type={"text"} required
                 onChangeForm={onChangeForm} inputSize="short"
                 />
                 <InputPost title={"총 금액"} name={"price"} type={"text"} required

@@ -10,19 +10,19 @@ import Date from './_propeties/Date';
 import LikeBtn from './_propeties/LikeBtn';
 import JoinBtn from './_propeties/JoinBtn';
 
-function MainInfo () {
-    
+function MainInfo (props) {
 
+    console.log( props );
     return (
         <div className="MainInfo">
-            <Title /> <br />
+            <Title title={props.data.title}/> <br />
             <div className='CompoWrap_flex topInfo'>
                 <RecruitingBtn />
                 <Amount />
             </div>
 
             <div className='CompoWrap_flex middleInfo'>
-                <NumPeople />
+                { props.data.num_people != "" &&  <NumPeople num_people={props.data.num_people} /> }
                 <PerPayment />
             </div>
 

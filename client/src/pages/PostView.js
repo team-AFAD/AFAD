@@ -9,37 +9,41 @@ import { useParams } from 'react-router-dom';
 // import '../postView.scss';
 
 function PostView ( ){
-    const [data, setData] = useState([]);
-    const {id} = useParams();
+    const [data, setData] = useState(null);
+    const { id } = useParams();
 
     const getData = async () => {
-        const response = await axios.get(`http://localhost:8080/post:${id}`, {
-            params: { 
-                post : data.id ,
-            }
-        });
+        const response = await axios.get(`http://localhost:8080/api/posts/${id}`);
+        console.log( response.data );
         setData(response.data);
     }
     useEffect(() => {
         getData();
-    }, [])
+    }, []);
 
     // const checkCookie = () => {
 
     // }
     
     return(
-        <div className='PostView'>
-            <div className='CompoWrap_flex'>
-                <PostImg data={data.poto}/>
-                <MainInfo data={data.title}/>
+        <div>
+            { data != null ? (
+                <div className='PostView'>
+                    <div className='CompoWrap_flex'>
+                        <PostImg />
+                        <MainInfo data={data}/>
+                    </div>
+                    
+                    <div className='postViewWrap'>
+                        <Description description={data.desc}/>
+                        <Comment />
+                    </div>
+                </div>
+            ) : (
+                "잘못되었다."
+            ) }
             </div>
             
-            <div className='postViewWrap'>
-                <Description />
-                <Comment />
-            </div>
-        </div>
     )
 }
 
