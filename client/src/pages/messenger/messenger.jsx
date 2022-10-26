@@ -21,14 +21,14 @@ export default function Messenger() {
     useEffect(() => {
         const getConversations = async () => {
           try {
-            const res = await axios.get("/conversations/" + "63550840e2e33531df22fc98");
+            const res = await axios.get("/conversations/" + user._id);
             setConversations(res.data);
           } catch (err) {
             console.log(err);
           }
         };
         getConversations();
-      }, ["63550840e2e33531df22fc98"]);
+      }, [user._id]);
 
     return (
         <div className="messenger">
