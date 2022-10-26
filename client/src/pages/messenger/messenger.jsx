@@ -22,7 +22,8 @@ export default function Messenger() {
         const getConversations = async () => {
           try {
             const res = await axios.get("/conversations/" + user._id);
-            setConversations(res.data);
+            setConversations(res.data)
+            console.log(res);
           } catch (err) {
             console.log(err);
           }
