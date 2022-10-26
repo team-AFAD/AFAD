@@ -11,12 +11,15 @@ import {io} from "socket.io-client";
 
 export default function Messenger() {
     const [conversations, setConversations] = useState([]);
-    const [socket, setSocket] = useState(null);
+    // const [socket, setSocket] = useState(null);
     const {user} = useContext(AuthContext);
     console.log(user);
     
+    let socket = io("http://localhost:8080", {transports: ["websocket"]});
+
     useEffect(()=> {
-        setSocket(io("ws://loacalhost:8080"))
+        // setSocket(io("ws://loacalhost:8080"))
+        socket.connect();
     },[]);
 
     useEffect(() => {
