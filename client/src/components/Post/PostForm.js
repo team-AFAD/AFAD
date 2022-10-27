@@ -20,7 +20,7 @@ function PostForm () {
         amount : 0,
         num_people : 1,
         time_limit : "",
-        area : "",
+        place : "",
         content : "",
         url : "",
         userfile : "/defaultImage.jpg"
@@ -52,7 +52,7 @@ function PostForm () {
         formData.append("num_people", formValue.num_people);
         formData.append("perPayment", perPayment);
         formData.append("end_date", formValue.end_date);
-        formData.append("area", formValue.area);
+        formData.append("place", formValue.place);
         formData.append("desc", formValue.desc);
         
         for (let key of formData.keys()) {
@@ -91,8 +91,8 @@ function PostForm () {
                 <InputPost title={"모집 기한"} name={"end_date"} type={"date"}
                 onChangeForm={onChangeForm}
                 />
-                <InputPost title={"모집 장소"} name={"city"} type={"select"}
-                onChangeForm={onChangeForm}
+                <InputPost title={"모집 장소"} name={"place"} type={"select"}
+                onChangeForm={onChangeForm} 
                 />
                 <Textarea title={"내용"} name={"desc"}
                 onChangeForm={onChangeForm}

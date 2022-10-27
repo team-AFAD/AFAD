@@ -3,14 +3,14 @@ import PostImg from './PostImg';
 import LikeBtn from "./_propeties/LikeBtn";
 import Title from "./_propeties/Title";
 import RecruitingBtn from './_propeties/RecruitingBtn';
-import Area from './_propeties/Area';
+import place from './_propeties/Place';
 import NumPeople from './_propeties/NumPeople';
 import PerPayment from './_propeties/PerPayment';
 import Date from './_propeties/Date';
 
 
 function Card (props) {
-    
+    console.log(props.data.createdAt);
     return(
         <div className="Card">
 
@@ -21,7 +21,7 @@ function Card (props) {
 
             <div className='CompoWrap_flex topInfo'>
                 <RecruitingBtn />
-                <Area area={props.data.area}/>
+                <place place={props.data.place}/>
             </div>
 
             <Title title={props.data.title}/>

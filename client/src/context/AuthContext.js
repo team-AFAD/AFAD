@@ -5,11 +5,11 @@ const INITIAL_STATE = {
     user:JSON.parse(localStorage.getItem("user")) || null,
     isFetching: false,
     error: false,
-  };
+};
 
-  export const AuthContext = createContext(INITIAL_STATE);
+    export const AuthContext = createContext(INITIAL_STATE);
 
-  export const AuthContextProvider = ({ children }) => {
+    export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
 
     useEffect(() => {
@@ -28,4 +28,4 @@ const INITIAL_STATE = {
             {children}
             </AuthContext.Provider>
     );
-  };
+};
