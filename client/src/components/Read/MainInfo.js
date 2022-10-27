@@ -28,7 +28,7 @@ function MainInfo (props) {
 
             <div className='bottomInfo'>
                 <Place title="모집 장소 :"/>
-                <Date title="모집 기한 :"/>
+                <Date title="모집 기한 :" createdAt={props.data.createdAt} end_date={props.data.end_date}/>
             </div>
 
             <div className='CompoWrap_flex ReadBtn'>

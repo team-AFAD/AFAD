@@ -15,8 +15,10 @@ function PostView ( ){
 
     const getData = async () => {
         const response = await axios.get(`http://localhost:8080/api/posts/${id}`);
-        console.log( response.data );
+        // console.log( response.data );
+        // console.log(response.data._id);
         setData(response.data);
+        console.log(data._id +" data에 담김");
     }
     useEffect(() => {
         getData();
@@ -38,11 +40,12 @@ function PostView ( ){
                     <div className='postViewWrap'>
                         <Writer writer={data.username} />
                         <Description description={data.desc} />
-                        <Comment />
+                        <Comment postIdNum={data._id}/>
+                        
                     </div>
                 </div>
             ) : (
-                "잘못되었다."
+                "유효하지 않거나 삭제된 게시글 입니다."
             ) }
             </div>
             

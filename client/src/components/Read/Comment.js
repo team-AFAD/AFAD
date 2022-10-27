@@ -1,12 +1,13 @@
 import './comment.scss';
 import CommentTable from './_propeties/CommentTable';
 
-function Comment(){
+function Comment({postIdNum}){
+    console.log(postIdNum);
     return(
         <div className='Comment'>
             
             <div className='commentWrap'>
-                <CommentTable />
+                <CommentTable postIdNum={postIdNum}/>
             </div>
             <div className='commnetFormWrap'>
                 <form>
