@@ -8,7 +8,7 @@ import { Navigate } from 'react-router-dom';
 // axios.defaults.withCredentials = true;
 function LoginForm() {
     const [values, setValues] = useState({
-        email:"",
+        id:"",
         password:"",
     });
     const { isFetching, dispatch } = useContext(AuthContext);
@@ -23,16 +23,13 @@ function LoginForm() {
         console.log(values);
         // axios 수정할 예정
         
-        const rep = await axios.post('http://localhost:8080/api/auth/login', values)
-        .catch(function (error) {
-            alert("실패");
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-        });
-        localStorage.setItem("access_token", rep.data.access_token);
+        const response = await axios.post('http://localhost:8080/api/auth/login', values)
+
+        // isLogin
+        
+        localStorage.setItem("access_token", response.data.access_token);
         console.log( "storage : ", localStorage.getItem("access_token"));
-        await loginCall( {userId: rep.data._id, username: rep.data.username}, dispatch );
+        await loginCall( {userId: response.data._id, username: response.data.username}, dispatch );
         
     }
 
@@ -42,7 +39,7 @@ function LoginForm() {
                 <div className='loginTitle'>로그인</div>
 
                 <label className='labels'>
-                    <input className='inputs' id='email' name='email' type="email" placeholder="이메일" onChange={onChange} required />
+                    <input className='inputs' id='id' name='id' type="text" placeholder="아이디" onChange={onChange} required />
                 </label>
                 <label className='labels'>
                     <input className='inputs' id='password' name='password' type="password" placeholder="비밀번호" onChange={onChange} required />

@@ -3,11 +3,13 @@ import InputRegister from "../Input/InputRegister";
 import './registerForm.scss';
 import InputPostFile from '../Input/InputPostFile';
 import InputSelect from '../Input/InputSelect';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function RegisterForm () {
     const [text, setText] = useState();
     const [ warning, setWarning ] = useState();
+    const navigate = useNavigate();
 
     const [values, setValues] = useState({
         id: "",
@@ -23,7 +25,10 @@ function RegisterForm () {
         id: 1,
         name: "id",
         type: "text",
-        placeholder: "아이디를 입력해 주세요.",
+        placeholder: "4~20자의 영문, 숫자 조합 ",
+        errorMessage:
+          "4~20자로  영문, 숫자 조합으로 작성해 주세요.",
+        pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{4,20}$`,
         label:"아이디",
         required: true,
     },
@@ -150,12 +155,12 @@ function RegisterForm () {
                 "Content-Type": "multipart/form-data",
             },
         })
-        .then((data) => {
-            console.log(data);
+        .then((response) => {
+            console.log(response);
             alert("회원가입 성공!");
+            navigator("/login");
 
         })
-        .then((res) => {console.log(res)})
     }
 
     // console.log(values);
@@ -167,18 +172,19 @@ function RegisterForm () {
                 <span>{text}</span>
 
                 {inputs.map((input) =>(
-                    input.id === 1 ?  <InputRegister 
-                    key={input.id} 
-                    {...input} 
-                    values={values[input.name]}
-                    onChange={idCheck}  
-                /> :
-                <InputRegister 
-                    key={input.id} 
-                    {...input} 
-                    values={values[input.name]}
-                    onChange={onChange}  
-                />
+                    input.id === 1 ?  
+                    <InputRegister 
+                        key={input.id} 
+                        {...input} 
+                        values={values[input.name]}
+                        onChange={idCheck}  
+                    /> :
+                    <InputRegister 
+                        key={input.id} 
+                        {...input} 
+                        values={values[input.name]}
+                        onChange={onChange}  
+                    />
                 ) )}
                 <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} defaultValue="seoul" />
                 <InputPostFile title={"프로필 사진"} name={"profilePicture"} type={"file"}
