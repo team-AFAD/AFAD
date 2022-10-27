@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 // import Header from '../components/Header/Header';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
+import FindId from '../pages/FindId';
+import ResetPw from '../pages/ResetPw';
 import PostList from '../pages/PostList';
 import PostWrite from '../pages/PostWrite';
 import PostView from '../pages/PostView';
@@ -21,11 +23,13 @@ const Router = () => {
                     {/* <Route path="/" element={<Main />} /> */}
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/findid" element={<FindId />} />
+                    <Route path='/resetpw' element={<ResetPw />} />
                     
                     <Route path="/post" element={<PostList />} />
                     <Route path="/post/write" element={<PostWrite />} />
                     <Route path="/post/:id" element={<PostView />} />
-
+                    
                     <Route path="/messenger" element={<Messenger />} />
                     <Route path="/mypage" element={<MyPage />} />
                     <Route path="/modify" element={<UserModify />} />

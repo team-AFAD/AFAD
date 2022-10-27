@@ -3,7 +3,7 @@ import './loginForm.scss';
 import axios from 'axios';
 import { loginCall } from '../../apiCalls';
 import { AuthContext } from '../../context/AuthContext';
-import { Navigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // axios.defaults.withCredentials = true;
 function LoginForm() {
@@ -44,12 +44,12 @@ function LoginForm() {
                 <label className='labels'>
                     <input className='inputs' id='password' name='password' type="password" placeholder="비밀번호" onChange={onChange} required />
                 </label>
-                <button>로그인</button>
+                <button className='btn'>로그인</button>
 
                 <ul className='find_wrap'>
-                    <li>비밀번호 찾기</li>
-                    <li>아이디 찾기</li>
-                    <li>회원가입</li>
+                   <li><Link to="/findid" className='links'>아이디 찾기</Link></li>  
+                   <li><Link to="/resetpw" className='links'>비밀번호 찾기</Link></li>
+                   <li><Link to="/register" className='links'>회원가입</Link></li>
                 </ul>
             </form>
             
