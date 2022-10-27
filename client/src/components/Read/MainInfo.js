@@ -5,7 +5,7 @@ import RecruitingBtn from './_propeties/RecruitingBtn';
 import Amount from './_propeties/Amount';
 import NumPeople from './_propeties/NumPeople';
 import PerPayment from './_propeties/PerPayment';
-import Area from './_propeties/Area';
+import Place from './_propeties/Place';
 import Date from './_propeties/Date';
 import LikeBtn from './_propeties/LikeBtn';
 import JoinBtn from './_propeties/JoinBtn';
@@ -27,7 +27,7 @@ function MainInfo (props) {
             </div>
 
             <div className='bottomInfo'>
-                <Area title="모집 장소 :"/>
+                <Place title="모집 장소 :"/>
                 <Date title="모집 기한 :"/>
             </div>
 
