@@ -9,6 +9,8 @@ import {io} from "socket.io-client";
 
 export default function Messenger() {
     const [conversations, setConversations] = useState([]);
+    const [currentChat, setcurrentChat] = useState(null);
+    const [messages, setMessages] = useState([]);
     const {user} = useContext(AuthContext);
     console.log(user);
     
