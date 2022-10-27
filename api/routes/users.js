@@ -1,5 +1,5 @@
 import express from "express";
-import{updateUser, deleteUser, getUser} from "../controllers/user.js"
+import{updateUser, deleteUser, getUser, idCheck, findId, resetPW} from "../controllers/user.js"
 import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 
 
@@ -24,13 +24,15 @@ router.get("/checkadmin/:id", verifyAdmin, (req,res,next)=>{
 router.put("modify/:id", verifyUser, updateUser);
 //DELETE
 router.delete("modify/:id", verifyUser, deleteUser);
-//GET(find)
-// router.get("/find/:id", verifyUser, getUser);
-//GET ALL(admin)
-// router.get("/", verifyUser, getUsers);
 //get a user
 router.get("/", verifyUser, getUser);
 
+// 아이디 중복확인
+router.post("/idCheck", idCheck);
+// 아이디 찾기
+router.post("/findId", findId);
+// 비밀번호 재설정
+router.post("/resetPW", resetPW);
 
 
 
