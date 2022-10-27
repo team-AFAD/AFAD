@@ -20,7 +20,7 @@ router.get("/checkadmin/:id", verifyAdmin, (req,res,next)=>{
 })
 
 
-//UPDATE
+//아이디 수정
 router.put("modify/:id", verifyUser, updateUser);
 //DELETE
 router.delete("modify/:id", verifyUser, deleteUser);
@@ -30,6 +30,10 @@ router.delete("modify/:id", verifyUser, deleteUser);
 // router.get("/", verifyUser, getUsers);
 //get a user
 router.get("/", verifyUser, getUser);
+
+
+
+
 
 
 export default router
