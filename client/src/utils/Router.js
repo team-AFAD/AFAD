@@ -8,6 +8,7 @@ import PostView from '../pages/PostView';
 import Messenger from "../pages/messenger/messenger";
 import MyPage from '../pages/MyPage';
 import UserModify from '../pages/UserModify';
+import LoginEmail from '../components/Login/LoginEmail';
 
 
 const Router = () => {
@@ -16,9 +17,11 @@ const Router = () => {
             <BrowserRouter>
             {/* <Header /> */}
                 <Routes>
+                    <Route path="/" element={<LoginEmail/>} />
                     {/* <Route path="/" element={<Main />} /> */}
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
+                    
                     <Route path="/post" element={<PostList />} />
                     <Route path="/post/write" element={<PostWrite />} />
                     <Route path="/post/:id" element={<PostView />} />
