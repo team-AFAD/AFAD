@@ -40,6 +40,7 @@ const PostSchema = new mongoose.Schema({
       },
       photo: {
         type: String,
+        default: "defaultImage.jpg",
         required: false,
       },
       desc: {

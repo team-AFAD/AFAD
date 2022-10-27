@@ -3,7 +3,7 @@ import PostImg from './PostImg';
 import LikeBtn from "./_propeties/LikeBtn";
 import Title from "./_propeties/Title";
 import RecruitingBtn from './_propeties/RecruitingBtn';
-import place from './_propeties/Place';
+import Place from './_propeties/Place';
 import NumPeople from './_propeties/NumPeople';
 import PerPayment from './_propeties/PerPayment';
 import Date from './_propeties/Date';
@@ -21,7 +21,7 @@ function Card (props) {
 
             <div className='CompoWrap_flex topInfo'>
                 <RecruitingBtn />
-                <place place={props.data.place}/>
+                <Place place={props.data.place}/>
             </div>
 
             <Title title={props.data.title}/>
@@ -31,7 +31,7 @@ function Card (props) {
                 <PerPayment perPayment={props.data.perPayment}/>
             </div>
 
-            <Date createdAt={props.data.createdAt}/>
+            <Date createdAt={props.data.createdAt} end_date={props.data.end_date}/>
         </div>
         
     )

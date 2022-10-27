@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useState } from "react";
+// import { AuthContext } from "../../context/AuthContext";
 import './postForm.scss';
 import InputPost from '../Input/InputPost';
 import Textarea from '../Input/Textarea';
@@ -10,9 +10,9 @@ import axios from 'axios';
 // import Heart from '/heart_red.png';
 
 function PostForm () {
-    const {user} = useContext(AuthContext);
-    console.log(user);
-    console.log(user.nickname);
+    // const {user} = useContext(AuthContext);
+    // console.log(user);
+    // console.log(user.nickname);
 
     const [formValue, setFormValue] = useState({
         title : "",
@@ -44,7 +44,7 @@ function PostForm () {
     }
     
     const onSubmit = async () => {
-        formData.append("nickname", user.nickname);
+        // formData.append("nickname", user.nickname);
         
         formData.append("title", formValue.title);
         formData.append("merchandise", formValue.merchandise);
