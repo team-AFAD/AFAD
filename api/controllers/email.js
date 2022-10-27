@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 
 export const sendEmail = async(req, res, next) => {
+    console.log(req.body.email);
     const number = Math.floor((Math.random() * (99999 - 11111)) + 11111);
 
     let transporter = nodemailer.createTransport({
