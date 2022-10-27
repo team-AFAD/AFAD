@@ -110,30 +110,31 @@ function RegisterForm () {
     ];
 
    // 아이디 중복 확인
-   const idCheck = async (e) => {
+//    const idCheck = async (e) => {
 
-    const response = await axios.post('http://localhost:8080/api/auth/idCheck', {id : e.target.value});
-    const validId = response.data.valid;
+//     const response = await axios.post('http://localhost:8080/api/auth/idCheck', {id : e.target.value});
+//     const validId = response.data.valid;
 
-    if (e.target.value != "") {
-        if (validId == true) {
-            console.log("유효한 아이디");
-            setWarning('sign_checking');
-            setText('사용가능한 아이디입니다.');
+//     if (e.target.value != "") {
+//         if (validId == true) {
+//             console.log("유효한 아이디");
+//             setWarning('sign_checking');
+//             setText('사용가능한 아이디입니다.');
             
-        } else {
-            console.log("중복 아이디");
-            setWarning('sign_warning');
-            setText('중복된 아이디입니다.');
+//         } else {
+//             console.log("중복 아이디");
+//             setWarning('sign_warning');
+//             setText('중복된 아이디입니다.');
             
-        }
-    }
-}
+//         }
+//     }
+// }
 
 
     const onChange = (e) =>{
         setValues({...values, [e.target.name]: e.target.value });
     }
+    console.log(values);
 
     // let formData = new FormData();
     const onChangeFile = () => {
@@ -143,6 +144,8 @@ function RegisterForm () {
     }
 
     const registerSubmit = async (e) => {
+        // 이메일 중복 체크
+
         e.preventDefault();
         const formData = new FormData(e.target);
         // console.log(Object.fromEntries(formData.entries()));
@@ -156,11 +159,11 @@ function RegisterForm () {
             },
         })
         .then((response) => {
-            console.log(response);
-            alert("회원가입 성공!");
-            navigator("/login");
-
+            console.log(response.data);
         })
+        .catch((error) => {
+            console.log(error.toJSON());
+          });
     }
 
     // console.log(values);
@@ -172,13 +175,13 @@ function RegisterForm () {
                 <span>{text}</span>
 
                 {inputs.map((input) =>(
-                    input.id === 1 ?  
-                    <InputRegister 
-                        key={input.id} 
-                        {...input} 
-                        values={values[input.name]}
-                        onChange={idCheck}  
-                    /> :
+                    // input.id === 1 ?  
+                    // <InputRegister 
+                    //     key={input.id} 
+                    //     {...input} 
+                    //     values={values[input.name]}
+                    //     onChange={idCheck}  
+                    // /> :
                     <InputRegister 
                         key={input.id} 
                         {...input} 
@@ -190,7 +193,7 @@ function RegisterForm () {
                 <InputPostFile title={"프로필 사진"} name={"profilePicture"} type={"file"}
                 functionName={onChangeFile} fileDefault={'profilePic.png'}
                 />
-            <button>가입하기</button>
+            <button className='btn'>가입하기</button>
             </form>
         </div>
         

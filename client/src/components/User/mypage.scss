@@ -1,0 +1,9 @@
+.Mypage{
+    display: flex;
+    flex-direction: column;
+    .profilePic{
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+    }
+}
