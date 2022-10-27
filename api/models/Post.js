@@ -4,32 +4,20 @@ const PostSchema = new mongoose.Schema({
       userId:{
         type: String
       },
-      title: {
-        type: String,
-        required: true
-      },
-      desc: {
-        type: String,
-        required: true,
-      },
-      photo: {
-        type: String,
-        required: false,
-      },
-      username: {
-        type: String,
-      },
       nickname: {
         type: String,
         default:""
       },
-      city: {
+      username: {
         type: String,
-        default:""
       },
-      sell_amount:{
-        type:Number,
-        default:"1"
+      title: {
+        type: String,
+        required: true
+      },
+      merchandise: {
+        type: String,
+        required: true,
       },
       price:{
         type:Number,
@@ -37,16 +25,30 @@ const PostSchema = new mongoose.Schema({
       },
       num_people:{
         type:String,
-        default:""
+        default:"1"
       },
-      start_date:{
-        type:String,
-        default:""
+      perPayment:{
+        type:Number,
+        default:"0"
       },
       end_date:{
         type:String,
         default:""
-      },      
+      },  
+      place:{
+        type:String
+      },
+      photo: {
+        type: String,
+        required: false,
+      },
+      desc: {
+        type: String,
+        required: true,
+      },
+      url:{
+        type: String,
+      },    
       likes:{
         type: Array,
         default:[]
