@@ -91,25 +91,28 @@ app.use((err, req, res, next) => {
 
 io.on("connection", (socket) => {
 
-    socket.on("enterRoom", (room, done) => {
-        socket.join(room.room);
-        done();
+    // socket.on("enterRoom", (room, done) => {
+        // socket.join(room.room);
+        // done();
         // 자신 제외
-        socket.to(room.room).emit("welcome");
+        // socket.to(room.room).emit("welcome");
         // 자기한테도
         // socket.emit("welcome");
-    })
+    // })
 
-    socket.on("newMsg", (data, done) => {
-        socket.to(data.room).emit("newMsg", data.msg);
-        done();
-    })
+    // console.log("socket.id", socket.id);
+    // socket.emit("notice", socket.id);
 
-    socket.on("disconnecting", () => {
-        socket.rooms.forEach((room) => {
-            socket.to(room).emit("bye");
-        })
-    })
+    // socket.on("newMsg", (data, done) => {
+    //     socket.to(data.room).emit("newMsg", data.msg);
+    //     done();
+    // })
+
+    // socket.on("disconnecting", () => {
+    //     socket.rooms.forEach((room) => {
+    //         socket.to(room).emit("bye");
+    //     })
+    // })
 })
 
 //8080연결완료
