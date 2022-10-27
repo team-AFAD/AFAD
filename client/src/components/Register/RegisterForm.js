@@ -6,22 +6,25 @@ import InputSelect from '../Input/InputSelect';
 import axios from 'axios';
 
 function RegisterForm () {
+    const [text, setText] = useState();
+    const [ warning, setWarning ] = useState();
+
     const [values, setValues] = useState({
-        email:"",
+        id: "",
         password:"",
         confirmPassword:"",
         username:"",
+        email:"",
         nickname:"",
       });
 
     const inputs = [
     {
         id: 1,
-        name: "email",
-        type: "email",
-        placeholder: "이메일 주소를 입력해 주세요.",
-        errorMessage: "이메일 형식이 올바르지 않습니다. 다시 입력해 주세요.",
-        label:"이메일",
+        name: "id",
+        type: "text",
+        placeholder: "아이디를 입력해 주세요.",
+        label:"아이디",
         required: true,
     },
     {
@@ -55,6 +58,15 @@ function RegisterForm () {
     },
     {
         id: 5,
+        name: "email",
+        type: "email",
+        placeholder: "이메일 주소를 입력해 주세요.",
+        errorMessage: "이메일 형식이 올바르지 않습니다. 다시 입력해 주세요.",
+        label:"이메일",
+        required: true,
+    },
+    {
+        id: 6,
         name: "nickname",
         type: "text",
         placeholder: "닉네임을 입력해 주세요.",
@@ -92,6 +104,28 @@ function RegisterForm () {
         { value: "jungnang", name: "중랑구" },
     ];
 
+   // 아이디 중복 확인
+   const idCheck = async (e) => {
+
+    const response = await axios.post('http://localhost:8080/api/auth/idCheck', {id : e.target.value});
+    const validId = response.data.valid;
+
+    if (e.target.value != "") {
+        if (validId == true) {
+            console.log("유효한 아이디");
+            setWarning('sign_checking');
+            setText('사용가능한 아이디입니다.');
+            
+        } else {
+            console.log("중복 아이디");
+            setWarning('sign_warning');
+            setText('중복된 아이디입니다.');
+            
+        }
+    }
+}
+
+
     const onChange = (e) =>{
         setValues({...values, [e.target.name]: e.target.value });
     }
@@ -116,8 +150,6 @@ function RegisterForm () {
                 "Content-Type": "multipart/form-data",
             },
         })
-        .then((rep) => {
-            return rep.data;})
         .then((data) => {
             console.log(data);
             alert("회원가입 성공!");
@@ -132,8 +164,15 @@ function RegisterForm () {
 
             <form onSubmit={registerSubmit}>
                 <div className='registerTitle'>회원가입</div>
+                <span>{text}</span>
 
                 {inputs.map((input) =>(
+                    input.id === 1 ?  <InputRegister 
+                    key={input.id} 
+                    {...input} 
+                    values={values[input.name]}
+                    onChange={idCheck}  
+                /> :
                 <InputRegister 
                     key={input.id} 
                     {...input} 

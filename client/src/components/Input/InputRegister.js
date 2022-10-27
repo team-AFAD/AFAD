@@ -23,7 +23,7 @@ const InputRegister = (props) => {
                     inputProps.name==="confirmPassword" && setFocused(true)
                 }
                 focused={focused.toString()} />
-            <span>{errorMessage}</span>
+            <span className='errmsg'>{errorMessage}</span>
         </div>
     );
 }
