@@ -14,18 +14,15 @@ export const joinPeople =  async (req, res, next) => {
 };
 
 //group
-export const groupPeople =  async (req, res, next) => {
-  try{
-    const groupJoin = await Join.aggregate([
-      {
-          $group: {
-             _id: '$postId',
-            $count: '$postId'
-         }
-     }
-   ]);
-    res.status(200).json(updatedUser)
-  } catch(err){
-      next(err);
-  }
-};
+  export const groupPeople =  async (req, res, next) => {
+    try{
+      const groupJoin = await Join.aggregate([
+        {
+            $group: {
+               _id: '$postId',
+              $count: {$sum:1}
+           }
+       }
+     ]);
+      res.status(200).json(groupJoin)
+  }catch(err){
