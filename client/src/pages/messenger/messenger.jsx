@@ -10,6 +10,8 @@ import io from 'socket.io-client';
 
 export default function Messenger() {
     const [conversations, setConversations] = useState([]);
+    // const [currentChat, setCurrentChat] = useState(null);
+    // const [messages, setMessages] = useState([]);
     const {user} = useContext(AuthContext);
     const box = useRef();
     console.log(user);
@@ -55,7 +57,7 @@ export default function Messenger() {
                     <input placeholder="Search for friends" className="chatMenuInput" />
                     {conversations.map((c) => (
 
-                <Conversation conversation={c} currentUser={user} />
+                <Conversation key={c} conversation={c} currentUser={user} />
 
             ))}
                     
