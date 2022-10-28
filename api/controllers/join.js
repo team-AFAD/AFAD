@@ -20,11 +20,11 @@ export const joinPeople =  async (req, res, next) => {
         {
             $group: {
                _id: '$postId',
-              $count: '$postId'
+              $count: {$sum:1}
            }
        }
      ]);
-      res.status(200).json(updatedUser)
+      res.status(200).json(groupJoin)
   }catch(err){
       next(err);
   }
