@@ -29,7 +29,7 @@ router.delete("modify/:id", verifyUser, deleteUser);
 router.get("/", verifyUser, getUser);
 
 // 아이디 중복확인
-router.post("/idCheck", idCheck);`
+router.post("/idCheck", idCheck);
 // 아이디 찾기
 router.post("/findId", findId);
 // 비밀번호 재설정
