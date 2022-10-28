@@ -3,8 +3,7 @@ import router from "../routes/posts.js";
 
 //CREATE
 export const createPost = async (req, res, next) => {
-  console.log("body : ", req.body);
-  console.log("file : ", req.file);
+  req.body["photo"] = req.file.filename;
   const newPost = new Post(req.body);
   try{
     const savedPost = await newPost.save();

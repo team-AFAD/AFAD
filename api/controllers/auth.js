@@ -14,12 +14,13 @@ export const register = async (req, res, next) => {
             nickname : req.body.nickname,
             email: req.body.email,
             profilePicture: req.file.filename,
+            identity: req.body.id,
             city: req.body.city,
             password: hash
         });
         console.log("newUSer : ", newUser);
 
-        await newUser.save()
+        await newUser.save().catch( err => console.log(err) );
         res.status(200).send("User has been created.")
     } catch(err){
         next(err)
