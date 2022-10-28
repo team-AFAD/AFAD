@@ -21,7 +21,8 @@ import paymentRoute from "./routes/payments.js"
 import conversationRoute from "./routes/conversations.js";
 import messageRoute from "./routes/messages.js";
 // import likeRoute from "./routes/likes.js";
-import emailRouter from "./routes/emails.js"
+import emailRouter from "./routes/emails.js";
+import joinRouter from "./routes/joins.js";
 
 
 
@@ -77,6 +78,7 @@ app.use("/api/payments", paymentRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/emails", emailRouter);
+app.use("/api/joins", joinRouter);
 
 //err handleing middleware
 app.use((err, req, res, next) => {
