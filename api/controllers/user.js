@@ -72,8 +72,9 @@ export const findId = async (req, res, next) => {
 
 // 비밀번호 재설정
 export const resetPW = async (req, res, next) => {
-
-    console.log(req.body);
+    let { id, password } = req.body;
+    console.log(id);
+    console.log(password);
 
     const doBcrypt = (password) => {
         const salt = bcrypt.genSaltSync(10);
@@ -81,18 +82,20 @@ export const resetPW = async (req, res, next) => {
         return hash
     }
 
-    const hashedPassword = doBcrypt(req.body.password);
-
+    const hashedPassword = doBcrypt(password);
+    
     let obj = {
-        id : req.body.id,
         password : hashedPassword
     };
 
-    let result = await User.Update(obj, 
-        {identity : req.body.id}
-    );
-    console.log(result);
-    res.send(result);
+    User.updateOne( {identity: `${id}`}, { $set: { password: `${hashedPassword}`}})
+    .then((result) => {
+        console.log(result);
+        res.send(result);
+    })
+    .catch((e) => {
+        console.log(e);
+    })
 }
 
 
