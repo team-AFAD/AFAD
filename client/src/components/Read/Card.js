@@ -1,6 +1,5 @@
 import './card.scss';
 import PostImg from './PostImg';
-import LikeBtn from "./_propeties/LikeBtn";
 import Title from "./_propeties/Title";
 import RecruitingBtn from './_propeties/RecruitingBtn';
 import Place from './_propeties/Place';
@@ -14,12 +13,9 @@ function Card (props) {
     console.log(props.data.photo);
     return(
         <div className="Card">
-
             
             <PostImg photo={props.data.photo}/>
-            <LikeBtn />
             
-
             <div className='CompoWrap_flex topInfo'>
                 <RecruitingBtn />
                 <Place place={props.data.place}/>
@@ -27,7 +23,7 @@ function Card (props) {
 
             <Title title={props.data.title}/>
 
-            <div className='CompoWrap_flex'>
+            <div className='CompoWrap_flex bottomInfo'>
                 <NumPeople num_people={props.data.num_people}/>
                 <PerPayment perPayment={props.data.perPayment}/>
             </div>
