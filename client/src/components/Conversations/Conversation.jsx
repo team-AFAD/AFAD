@@ -10,7 +10,13 @@ export default function Conversation({conversation, currentUser}) {
 
         const getUser = async() => {
             try{
-                const res = await axios("/users?userId=" + friendId);
+                const res = await axios("http://localhost:8080/api/users?userId=" + friendId, {
+                    
+            headers: {
+                'Authorization': localStorage.getItem('access_token'),
+            }
+                });
+                
                 console.log(res);
             }catch(err){
                 console.log(err);
