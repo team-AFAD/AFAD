@@ -2,13 +2,12 @@
 import './joinBtn.scss';
 
 
-const JoinBtn = ({title}) => {
+const JoinBtn = ({title, joinPost}) => {
 
     return (
         <div className='JoinBtn'>
             <div className='joinBtnWrap'>
-                <button className='ReadBtn' type='button'>{title}</button>
-           
+                <button className='ReadBtn' type='button' onClick={joinPost}>{title}</button>
             </div>
         </div>
     )

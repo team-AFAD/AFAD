@@ -12,6 +12,11 @@ import JoinBtn from './_propeties/JoinBtn';
 
 function MainInfo (props) {
 
+    const joinPost = () => {
+        console.log("joinPost");
+        console.log(props._id);
+    }
+
     console.log( props );
     return (
         <div className="MainInfo">
@@ -35,7 +40,7 @@ function MainInfo (props) {
                 <LikeBtn />
                 <div className='TowBtnFlex'>
                     <JoinBtn title="채팅하기"/>
-                    <JoinBtn title="공동구매 참여"/>
+                    <JoinBtn title="공동구매 참여" joinPost={joinPost}/>
                 </div>
             </div>
 

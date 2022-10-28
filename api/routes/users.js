@@ -1,7 +1,8 @@
 import express from "express";
-import{updateUser, deleteUser, getUser, idCheck, findId, resetPW} from "../controllers/user.js"
-import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
-
+import{updateUser, deleteUser, getUser, } from "../controllers/user.js"
+// idCheck, findId, resetPW
+import { verifyUser, verifyAdmin } from "../utils/verifyToken.js";
+// verifyToken,
 
 const router = express.Router();
 
@@ -27,12 +28,12 @@ router.delete("modify/:id", verifyUser, deleteUser);
 //get a user
 router.get("/", verifyUser, getUser);
 
-// 아이디 중복확인
-router.post("/idCheck", idCheck);
-// 아이디 찾기
-router.post("/findId", findId);
-// 비밀번호 재설정
-router.post("/resetPW", resetPW);
+// // 아이디 중복확인
+// router.post("/idCheck", idCheck);
+// // 아이디 찾기
+// router.post("/findId", findId);
+// // 비밀번호 재설정
+// router.post("/resetPW", resetPW);
 
 
 
