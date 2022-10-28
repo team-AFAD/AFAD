@@ -1,6 +1,6 @@
 import Join from "../models/Join.js"
 
-//add
+// add
 export const joinPeople =  async (req, res, next) => {
     console.log("req.body", req.body);
     const newJoin = new Join(req.body);
@@ -14,15 +14,29 @@ export const joinPeople =  async (req, res, next) => {
 };
 
 //group
-  export const groupPeople =  async (req, res, next) => {
-    try{
-      const groupJoin = await Join.aggregate([
-        {
-            $group: {
-               _id: '$postId',
-              $count: {$sum:1}
-           }
-       }
-     ]);
-      res.status(200).json(groupJoin)
-  }catch(err){
+export const groupPeople =  async (req, res, next) => {
+  console.log(req.query.postId);
+  try{
+    const groupJoin = await Join.aggregate([
+      {
+        $group: {
+          _id : '$postId',
+          count : {$sum: 1}
+        }
+      }
+    ]);
+
+    let count;
+    for (let i=0; i<groupJoin.length; i++) {
+      if (groupJoin[i]._id == req.query.postId) {
+        console.log(groupJoin[i].count);
+        count = groupJoin[i].count;
+      }
+    }
+    // console.log("group", groupJoin[0]._id);
+    res.status(200).json(count);
+  } catch(err){
+    console.log(err);
+    next(err);
+  }
+};
