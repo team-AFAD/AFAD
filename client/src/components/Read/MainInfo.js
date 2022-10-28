@@ -28,6 +28,8 @@ function MainInfo (props) {
         console.log("참여버튼 이거" + props.data._id);
         const result = await axios.post("http://localhost:8080/api/joins", {postId : props.data._id, userId : user._id});
         console.log(result);
+        getNumPeople();
+
     }
 
     // 좋아요 버튼
@@ -56,9 +58,10 @@ function MainInfo (props) {
     // 현재 인원 가져오기
     const getNumPeople = async () => {
         // console.log("getNumber");
-        // const result = await axios.get("http://localhost:8080/api/", {postId : props.data._id});
-        // console.log(result);
-        // setNumPeople(result + 1);
+        console.log(props.data._id);
+        const result = await axios.get("http://localhost:8080/api/joins/groupPeople", {params : {postId : props.data._id}});
+        console.log(result.data);
+        setNumPeople(result.data);
     }
 
     useEffect(()=>{
