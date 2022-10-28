@@ -30,7 +30,7 @@ export const register = async (req, res, next) => {
 //username에서 email로 바꿈 나중에 확인부탁
 export const login = async (req, res, next) => {
     try{
-        const user = await User.findOne({ email:req.body.email });
+        const user = await User.findOne({ identity: req.body.id });
         console.log(user)
         if(!user) 
             return next(createError(404, "User not found!"));
@@ -51,3 +51,32 @@ export const login = async (req, res, next) => {
         next(err);
     }
 };
+
+// 아이디 중복확인
+export const idCheck = async (req, res, next) =>{ 
+    let result = await User.findOne(
+        {identity : req.body.id}
+    );
+
+    console.log(result);
+
+    if (result == null) {
+        res.send({valid: true});
+    } else {
+        res.send({valid: false});
+    }
+}
+
+export const emailCheck = async (req, res, next) =>{ 
+    let result = await User.findOne(
+        {email: req.body.email}
+    );
+
+    console.log(result);
+
+    if (result == null) {
+        res.send({valid: true});
+    } else {
+        res.send({valid: false});
+    }
+}
