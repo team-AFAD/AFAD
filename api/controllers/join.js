@@ -12,3 +12,20 @@ export const joinPeople =  async (req, res, next) => {
       res.status(500).json(err);
     }
 };
+
+//group
+export const groupPeople =  async (req, res, next) => {
+  try{
+    const groupJoin = await Join.aggregate([
+      {
+          $group: {
+             _id: '$postId',
+            $count: '$postId'
+         }
+     }
+   ]);
+    res.status(200).json(updatedUser)
+  } catch(err){
+      next(err);
+  }
+};

@@ -10,6 +10,8 @@ import io from 'socket.io-client';
 
 export default function Messenger() {
     const [conversations, setConversations] = useState([]);
+    const [currentChat, setCurrentChat] = useState(null);
+    const [messages, setMessages] = useState([]);
     const {user} = useContext(AuthContext);
     const box = useRef();
     console.log(user);
@@ -34,6 +36,21 @@ export default function Messenger() {
         getConversations();
     }, [user._id]);
 
+    console.log(currentChat);
+    useEffect(() => {
+        const getMessages = async () => {
+            try {
+              const res = await axios.get("/messages/" + currentChat?._id);
+              setMessages(res.data);
+            } catch (err) {
+              console.log(err);
+            }
+          };
+          getMessages();
+        }, [currentChat]);
+
+        console.log(messages);
+
     console.log(socket);
     socket.on("notice", (data) => {
         console.log("work");
@@ -54,9 +71,9 @@ export default function Messenger() {
                 <div className="chatMenuWrapper">
                     <input placeholder="Search for friends" className="chatMenuInput" />
                     {conversations.map((c) => (
-
-                <Conversation conversation={c} currentUser={user} />
-
+                        <div onClick={() => setCurrentChat(c)}>
+                            <Conversation key={c} conversation={c} currentUser={user} />
+                        </div>
             ))}
                     
                     {/* <Conversation /> */}
@@ -66,6 +83,9 @@ export default function Messenger() {
             </div>
             <div className="chatBox">
                 <div className="chatBoxWrapper">
+                    {
+                        currentChat ?
+                    <>  
                     <div className="chatBoxTop" ref={box}>
                         <Message />
                         <Message own={true}/>
@@ -84,7 +104,7 @@ export default function Messenger() {
                     <div className="chatBoxBottom">
                         <textarea className="chatMessageInput" placeholder="메시지를 쳐주세요..."></textarea>
                         <button className="chatSubmitButton">SEND</button>
-                    </div>
+                    </div></> : <span className="noConversationText"> Open a conversation to start a chat.텅...</span>} 
                 </div>
             </div>
             <div className="chatOnline">

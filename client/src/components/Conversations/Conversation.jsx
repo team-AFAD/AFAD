@@ -16,7 +16,7 @@ export default function Conversation({conversation, currentUser}) {
                 'Authorization': localStorage.getItem('access_token'),
             }
                 });
-                
+                setUser(res.data);
                 console.log(res);
             }catch(err){
                 console.log(err);
@@ -28,7 +28,7 @@ export default function Conversation({conversation, currentUser}) {
     return (
         <div className="conversation">
             <img className="conversationImg" src="" alt="" />
-            <p className="conversationName">나라고오오옹</p>
+            <span className="conversationName">{user?.username}</span>
         </div>
     )
 }
