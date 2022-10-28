@@ -2,18 +2,17 @@
 
 .Card {
     position: relative;
-    border: 2px solid green;
+    border: 2px solid $main-color-3;
     padding: 0 24px;
     margin: 20px;
     width: 350px;
     height: 450px;
 
     text-align: center;
-    // cursor: pointer;
+    cursor: pointer;
 
     .PostImg {
         position: relative;
-        border: 1px solid blue;
         min-width: 300px;
         min-height: 250px;
 
@@ -23,19 +22,37 @@
         }
         
     }
-    .LikeBtn {
-        position: relative;
-        top: -60px;
-        left: 240px;
-        z-index: 999;
-        width: 40px;
-        // img {
-        //     width: 10px;
-        // }
+
+    .Title {
+        font-size: 1.5em;
+        margin: 10px 0;
+
     }
+
     .Date {
         position: relative;
         top: 20px;
+        padding-top: 5px;
         border-top: 1px solid gray;
+    }
+}
+.topInfo {
+    position: relative;
+    margin-top: 10px;
+    // justify-content: space-around;
+    .RecruitingBtn {
+        // position: absolute;
+        // left: 20px;
+        margin-right: 100px;
+        margin-left: 10px;
+        
+    }
+}
+.bottomInfo {
+    position: relative;
+    margin-top: 10px;
+    justify-content: space-around;
+    .NumPeople {
+        left: 20px;
     }
 }

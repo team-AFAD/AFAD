@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import '../components/Read/postList.scss';
 import Card from '../components/Read/Card';
 import JoinBtn from '../components/Read/_propeties/JoinBtn';
+import LikeBtn from '../components/Read/_propeties/LikeBtn';
 import axios from 'axios';
 
 const PostList = ()=> {
@@ -32,11 +33,12 @@ const PostList = ()=> {
                 {data.map( data =>{
                     console.log(data.id);
                     return (
-                        <div>
+                        <div className='cardWrap'>
                             {/* <Card key={data.id} data={data} component={Link} to={'/post/:id'}/>  */}
                             <div onClick={() => {link(data._id)}}> 
                                 <Card key={data._id} data={data} />
                             </div>
+                            <LikeBtn />
                         </div>
                     );
                 })}
