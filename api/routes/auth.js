@@ -2,6 +2,7 @@ import express from "express";
 // import User from "./models/User.js";
 import { register, login } from "../controllers/auth.js";
 import multer from "multer";
+import path from 'path';
 
 const router = express.Router();
 
@@ -10,8 +11,8 @@ const storage = multer.diskStorage({
         cb(null, "../client/public/images");
     },
     filename: (req, file, cb) =>{
-        file.originalname = Buffer.from(file.originalname, 'latin1').toString('utf8');
-        cb(null, `${Date.now()}_${file.originalname}`);
+        const ext = path.extname(file.originalname);
+        cb(null, `${Date.now()}.${ext}`);
     }
 });
 
