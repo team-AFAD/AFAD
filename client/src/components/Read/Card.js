@@ -11,6 +11,7 @@ import Date from './_propeties/Date';
 
 function Card (props) {
     console.log(props.data.createdAt);
+    console.log(props.data.photo);
     return(
         <div className="Card">
 

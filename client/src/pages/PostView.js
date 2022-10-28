@@ -15,10 +15,10 @@ function PostView ( ){
 
     const getData = async () => {
         const response = await axios.get(`http://localhost:8080/api/posts/${id}`);
-        // console.log( response.data );
+        console.log( response.data );
         // console.log(response.data._id);
         setData(response.data);
-        console.log(data._id +" data에 담김");
+        // console.log(data._id +" data에 담김");
     }
     useEffect(() => {
         getData();
@@ -33,7 +33,7 @@ function PostView ( ){
             { data != null ? (
                 <div className='PostView'>
                     <div className='CompoWrap_flex'>
-                        <PostImg />
+                        <PostImg photo={data.photo}/>
                         <MainInfo data={data}/>
                     </div>
                     

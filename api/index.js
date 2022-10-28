@@ -9,6 +9,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import { Server } from "socket.io";
 import {createServer} from "http";
+import path from 'path';
 const httpServer = createServer();
 const io = new Server(httpServer, { cors : { origin : "*" }});
 
@@ -54,8 +55,8 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) =>{
         // cb(null, req.body.name);
-        file.originalname = Buffer.from(file.originalname, 'latin1').toString('utf8');
-        cb(null, `${Date.now()}_${file.originalname}`);
+        const ext = path.extname(file.originalname);
+        cb(null, `${Date.now()}.${ext}`);
     }
 });
 
