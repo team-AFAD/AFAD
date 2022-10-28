@@ -91,7 +91,7 @@ export const getPost = async (req, res, next) =>{
     }
 }
 
-//GET ALL POSTS
+//GET ALL POSTS(게시판 띄우기)
 export const getPosts = async (req, res, next) =>{
     const username = req.query.user;
     const cateName = req.query.cate;

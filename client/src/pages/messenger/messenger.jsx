@@ -2,7 +2,7 @@ import "./messenger.scss";
 import Conversation from "../../components/Conversations/Conversation";
 import Message from "../../components/message/Message";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 // import {io} from "socket.io-client"; 
@@ -10,9 +10,8 @@ import io from 'socket.io-client';
 
 export default function Messenger() {
     const [conversations, setConversations] = useState([]);
-    // const [currentChat, setcurrentChat] = useState(null);
-    // const [messages, setMessages] = useState([]);
     const {user} = useContext(AuthContext);
+    const box = useRef();
     console.log(user);
     
     // let socket = io("http://localhost:8000", {transports: ["websocket"]});
@@ -22,18 +21,19 @@ export default function Messenger() {
         // socket.connect();
     },[]);
 
-    // useEffect(() => {
-    //     const getConversations = async () => {
-    //         try {
-    //             const res = await axios.get("/conversations/" + user._id);
-    //             setConversations(res.data)
-    //             console.log(res);
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     };
-    //     getConversations();
-    // }, [user._id]);
+    useEffect(() => {
+        const getConversations = async () => {
+            try {
+                const res = await axios.get("/conversations/" + user._id);
+                setConversations(res.data)
+                console.log(res);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        getConversations();
+    }, [user._id]);
+
     console.log(socket);
     socket.on("notice", (data) => {
         console.log("work");
@@ -42,8 +42,10 @@ export default function Messenger() {
     })
 
     socket.on("print", (id) => {
-        let box = document.querySelector(".chatBoxTop");
-        box.append(id + "님 환영합니다.");
+        // console.log(box.current);
+        // let p = document.createElement("p");
+        // p.innerText = id + "님 환영합니다.";
+        // box.append(p);
     })
 
     return (
@@ -51,11 +53,11 @@ export default function Messenger() {
             <div className="chatMenu">
                 <div className="chatMenuWrapper">
                     <input placeholder="Search for friends" className="chatMenuInput" />
-                    {/* {conversations.map((c) => (
+                    {conversations.map((c) => (
 
                 <Conversation conversation={c} currentUser={user} />
 
-            ))} */}
+            ))}
                     
                     {/* <Conversation /> */}
                     {/* <Conversation /> */}
@@ -64,7 +66,7 @@ export default function Messenger() {
             </div>
             <div className="chatBox">
                 <div className="chatBoxWrapper">
-                    <div className="chatBoxTop">
+                    <div className="chatBoxTop" ref={box}>
                         <Message />
                         <Message own={true}/>
                         <Message />
