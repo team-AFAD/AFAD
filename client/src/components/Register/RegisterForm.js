@@ -3,7 +3,7 @@ import InputRegister from "../Input/InputRegister";
 import './registerForm.scss';
 import InputPostFile from '../Input/InputPostFile';
 import InputSelect from '../Input/InputSelect';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 function RegisterForm () {
@@ -176,7 +176,7 @@ function RegisterForm () {
         .then((response) => {
             console.log(response.data);
             alert("회원가입 성공");
-            navigate("/login")
+            navigate("/login");
         })
         .catch((error) => {
             console.log(error.toJSON());
@@ -211,6 +211,7 @@ function RegisterForm () {
                 functionName={onChangeFile} fileDefault={'profilePic.png'}
                 />
             <button className='btn'>가입하기</button>
+            <p className='loginText'><Link to="/login" className='links'>로그인</Link></p>
             </form>
         </div>
         

@@ -13,19 +13,19 @@ function FindId_Code (props) {
     const codeInput = useRef();
 
     const findId = async () => {
-
         if (codeInput.current.value == props.code) {
-            const idResult = await axios.post(BACK_SERVER + "/user/findId", {email: props.input.current.value});
+            const idResult = await axios.post(BACK_SERVER + "/users/findId", {email: props.input.current.value});
+            console.log(idResult);
             const id = idResult.data.id;
-
+            console.log(id);
             if (id == null) {
                 props.setText('존재하지 않는 아이디');
 
             } else {
-                console.log(id.id);
+                console.log(id.identity);
                 setFind(true)
                 setUserEmail(props.input.current.value);
-                setUserId(id.id);
+                setUserId(id.identity);
                 props.setText('인증 완료!')
             }
 

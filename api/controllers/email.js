@@ -19,9 +19,9 @@ export const sendEmail = async(req, res, next) => {
     let info = await transporter.sendMail({   
         from: process.env.google_email,
         to: req.body.email,
-        subject: '[AFAD]의 비밀번호 재설정 메일입니다.',
+        subject: '[AFAD]의 인증 메일입니다.',
         text: "인증번호 " + String(number)
     });
 	
-    res.send(String(number));
+    res.send({code: String(number)});
 }
