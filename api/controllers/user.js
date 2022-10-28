@@ -46,7 +46,7 @@ export const getUser = async (req, res, next) =>{
 // 아이디 중복확인
 export const idCheck = async (req, res, next) =>{ 
     let result = await User.findOne(
-        {$set : req.body.id}
+        {identity : req.body.id}
     );
 
     console.log(result);
@@ -63,7 +63,7 @@ export const idCheck = async (req, res, next) =>{
 export const findId = async (req, res, next) => {
 
     let result = await User.findOne(
-        {$set : req.body.email}
+        {email: req.body.email}
     );
     console.log(result);
     res.send({id: result});
@@ -88,8 +88,8 @@ export const resetPW = async (req, res, next) => {
         password : hashedPassword
     };
 
-    let result = await User.update(obj, 
-        {$set : req.body.id}
+    let result = await User.Update(obj, 
+        {identity : req.body.id}
     );
     console.log(result);
     res.send(result);

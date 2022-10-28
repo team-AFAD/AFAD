@@ -47,7 +47,21 @@
                 outline: none;
             }
         }
-    }
+      }
+
+      .login_success{
+        width: 100%;
+        font-size: 0.9rem;
+        text-align: center;
+        color: green;
+      }
+
+      .login_error{
+        width: 100%;
+        font-size: 0.9rem;
+        text-align: center;
+        color: orangered;
+      }
 
       .find_wrap{
         padding: 10px 0;

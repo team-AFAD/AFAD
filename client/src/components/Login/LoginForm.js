@@ -3,10 +3,14 @@ import './loginForm.scss';
 import axios from 'axios';
 import { loginCall } from '../../apiCalls';
 import { AuthContext } from '../../context/AuthContext';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // axios.defaults.withCredentials = true;
 function LoginForm() {
+    const [text, setText] = useState();
+    const [ warning, setWarning ] = useState();
+    const navigate = useNavigate();
+
     const [values, setValues] = useState({
         id:"",
         password:"",
@@ -22,14 +26,28 @@ function LoginForm() {
         e.preventDefault();
         console.log(values);
         // axios 수정할 예정
-        
-        const response = await axios.post('http://localhost:8080/api/auth/login', values)
+        try{
+            const response = await axios.post('http://localhost:8080/api/auth/login', values)
+            
+            console.log(response.data);
+            setWarning('login_success');
+            setText("로그인 성공")
+            navigate("/");
 
-        // isLogin
+            localStorage.setItem("access_token", response.data.access_token);
+            console.log( "storage : ", localStorage.getItem("access_token"));
+            await loginCall( {userId: response.data._id, username: response.data.username}, dispatch );
+        }catch(error) {
+            console.log(error);
+            setWarning('login_error');
+            setText("아이디 또는 비밀번호를 다시 확인해 주세요.")
+        }
         
-        localStorage.setItem("access_token", response.data.access_token);
-        console.log( "storage : ", localStorage.getItem("access_token"));
-        await loginCall( {userId: response.data._id, username: response.data.username}, dispatch );
+        // const response = await axios.post('http://localhost:8080/api/auth/login', values)
+        
+        // localStorage.setItem("access_token", response.data.access_token);
+        // console.log( "storage : ", localStorage.getItem("access_token"));
+        // await loginCall( {userId: response.data._id, username: response.data.username}, dispatch );
         
     }
 
@@ -44,6 +62,7 @@ function LoginForm() {
                 <label className='labels'>
                     <input className='inputs' id='password' name='password' type="password" placeholder="비밀번호" onChange={onChange} required />
                 </label>
+                <p className={warning}>{text}</p>
                 <button className='btn'>로그인</button>
 
                 <ul className='find_wrap'>

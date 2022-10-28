@@ -108,47 +108,62 @@ function RegisterForm () {
         { value: "junggu", name: "중구" },
         { value: "jungnang", name: "중랑구" },
     ];
+    // 아이디 중복 확인
+    const idCheck = async (e) => {
+        const response = await axios.post('http://localhost:8080/api/auth/idCheck', {id : e.target.value});
+        console.log(e.target.value);
+        const validId = response.data.valid;
+        console.log("validId", validId);
 
-   // 아이디 중복 확인
-//    const idCheck = async (e) => {
+        if (e.target.value != "") {
+            if (validId == true) {
+                console.log("유효한 아이디");
+                setWarning('sign_checking');
+                setText('사용가능한 아이디입니다.');
+            } else {
+                console.log("중복 아이디");
+                setWarning('sign_warning');
+                setText('중복된 아이디입니다.');
+            }
+        } else {
+            setText("");
+        }
+    }
 
-//     const response = await axios.post('http://localhost:8080/api/auth/idCheck', {id : e.target.value});
-//     const validId = response.data.valid;
-
-//     if (e.target.value != "") {
-//         if (validId == true) {
-//             console.log("유효한 아이디");
-//             setWarning('sign_checking');
-//             setText('사용가능한 아이디입니다.');
-            
-//         } else {
-//             console.log("중복 아이디");
-//             setWarning('sign_warning');
-//             setText('중복된 아이디입니다.');
-            
-//         }
-//     }
-// }
-
+    // 이메일 중복 확인
+    const emailCheck = async (e) => {
+        const response = await axios.post('http://localhost:8080/api/auth/emailCheck', {email : e.target.value});
+        console.log(e.target.value);
+        const validId = response.data.valid;
+        console.log("validId", validId);
+        if (e.target.value != "") {
+            if (validId == true) {
+                console.log("유효한 이메일");
+                setWarning('sign_checking');
+                setText('사용가능한 이메일입니다.');
+            } else {
+                console.log("중복 이메일");
+                setWarning('sign_warning');
+                setText('중복된 이메일입니다.');
+            }
+        } else {
+            setText("");
+        }
+    }
 
     const onChange = (e) =>{
         setValues({...values, [e.target.name]: e.target.value });
     }
-    console.log(values);
 
-    // let formData = new FormData();
     const onChangeFile = () => {
         let fileUpload = document.querySelector(".InputPostFile input");
         console.log(fileUpload);
-        // formData.append("profilePicture", fileUpload.files[0]);
     }
 
     const registerSubmit = async (e) => {
-        // 이메일 중복 체크
-
         e.preventDefault();
         const formData = new FormData(e.target);
-        // console.log(Object.fromEntries(formData.entries()));
+
         for(var pair of formData.entries()) {
             console.log(pair[0]+ ': '+ pair[1]); 
         };
@@ -160,33 +175,35 @@ function RegisterForm () {
         })
         .then((response) => {
             console.log(response.data);
+            alert("회원가입 성공");
+            navigate("/login")
         })
         .catch((error) => {
             console.log(error.toJSON());
+            alert("회원가입 실패")
           });
     }
 
-    // console.log(values);
     return(
         <div className="RegisterForm">
 
             <form onSubmit={registerSubmit}>
                 <div className='registerTitle'>회원가입</div>
-                <span>{text}</span>
+                <p className={warning}>{text}</p>
 
                 {inputs.map((input) =>(
-                    // input.id === 1 ?  
-                    // <InputRegister 
-                    //     key={input.id} 
-                    //     {...input} 
-                    //     values={values[input.name]}
-                    //     onChange={idCheck}  
-                    // /> :
+                    input.id != 1 && input.id != 5 ?
                     <InputRegister 
                         key={input.id} 
                         {...input} 
                         values={values[input.name]}
                         onChange={onChange}  
+                    /> :
+                    <InputRegister 
+                        key={input.id} 
+                        {...input} 
+                        values={values[input.name]}
+                        onChange={input.id === 1 ? idCheck : emailCheck}  
                     />
                 ) )}
                 <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} defaultValue="seoul" />
