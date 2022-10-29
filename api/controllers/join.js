@@ -13,7 +13,24 @@ export const joinPeople =  async (req, res, next) => {
     }
 };
 
-//group
+//join 중복확인
+export const joinCheck = async (req, res, next) =>{ 
+  let result = await User.findOne(
+      {userId : req.body.id},
+      {postId : req.body.id}
+  );
+
+  console.log(result);
+
+  if (result == null) {
+      res.send({valid: true});
+  } else {
+      res.send({valid: false});
+  }
+}
+
+
+
 export const groupPeople =  async (req, res, next) => {
   console.log(req.query.postId);
   try{

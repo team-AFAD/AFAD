@@ -6,11 +6,7 @@ const LikeSchema = new mongoose.Schema({
       },
       postId:{
         type: String
-      },
-      likes:{
-        type: Array,
-        default:[]
-      },
+      }
     },
     { timestamps: true }
   );
