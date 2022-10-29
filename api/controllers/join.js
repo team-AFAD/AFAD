@@ -13,14 +13,36 @@ export const joinPeople =  async (req, res, next) => {
     }
 };
 
+//join 중복확인
+export const joinCheck = async (req, res, next) =>{ 
+  let result = await User.findOne(
+      {userId : req.body.id},
+      {postId : req.body.id}
+  );
+
+  console.log(result);
+
+  if (result == null) {
+      res.send({valid: true});
+  } else {
+      res.send({valid: false});
+  }
+}
+
+
 //group
   export const groupPeople =  async (req, res, next) => {
     try{
       const groupJoin = await Join.aggregate([
         {
+          $match : {
+            postId: `req.query.변수명`
+          }
+        },
+        {
             $group: {
                _id: '$postId',
-              $count: {$sum:1}
+              count: {$sum:1}
            }
        }
      ]);

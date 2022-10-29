@@ -21,7 +21,7 @@ import commentRoute from "./routes/comments.js";
 import paymentRoute from "./routes/payments.js"
 import conversationRoute from "./routes/conversations.js";
 import messageRoute from "./routes/messages.js";
-// import likeRoute from "./routes/likes.js";
+import likeRoute from "./routes/likes.js";
 import emailRouter from "./routes/emails.js";
 import joinRouter from "./routes/joins.js";
 
@@ -75,7 +75,7 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/comments", commentRoute);
 app.use("/api/payments", paymentRoute);
-// app.use("/api/likes", likeRoute);
+app.use("/api/likes", likeRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/emails", emailRouter);
