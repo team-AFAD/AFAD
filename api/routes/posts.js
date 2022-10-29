@@ -1,7 +1,7 @@
 import express from "express";
 import{createPost,updatePost, deletePost, getPost, getPosts} from "../controllers/post.js";
 
-import{ likePost } from "../controllers/like.js"
+// import{ likePost } from "../controllers/like.js"
 
 import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 import multer from "multer";
@@ -35,7 +35,7 @@ router.put("/:id", updatePost);
 //DELETE
 router.delete("/:id", verifyUser, deletePost);
 //like a post
-router.put("/:id/like", verifyUser, likePost);
+router.put("/:id/like", verifyUser);
 //GET
 router.get("/:id", getPost);
 // GET ALL(post)
