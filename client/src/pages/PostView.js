@@ -19,8 +19,8 @@ function PostView ( ){
         const response = await axios.get(`${BACK_SERVER}/posts/${id}`);
         console.log( response.data );
         setData(response.data);
-        // console.log(data._id +" data에 담김");
     }
+    
     useEffect(() => {
         getData();
     }, []);
@@ -41,7 +41,7 @@ function PostView ( ){
                     <div className='postViewWrap'>
                         <Writer writer={data.username} />
                         <Description description={data.desc} />
-                        <Comment postIdNum={data._id}/>
+                        {/* <Comment postIdNum={data._id}/> */}
                         
                     </div>
                 </div>

@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import axios from 'axios';
+
 
 // import dummy from '../../../data/comment.json';
 const BACK_SERVER = "http://localhost:8080/api";
@@ -25,19 +26,21 @@ function CommentTable (props){
     return(
         <>
         <table>
-            {/* <tbody>
-            {props.map( props => (
-                <tr key={props.id}>
+            <tbody>
+            {data.map( data => (
+                <tr key={data._id}>
                     
-                    <td>{props.nickname}</td>
-                    <td style={{"width":"450px"}}>{props.desc}</td>
-                    <td>{comment.date}</td>
+                    <td>{data.nickname}</td>
+                    <td style={{"width":"450px"}}>{data.desc}</td>
+                    <td>{data.createdAt}</td>
                     <td>
-                        <button type='button'>삭제</button>
+                        { data.userId ==  props.user._id ? 
+                            <button type='button'>삭제</button> : ""
+                        }
                     </td>
                     </tr>
             ))}
-            </tbody>        */}
+            </tbody>
         </table>
         </>
     );
