@@ -3,41 +3,53 @@ import Like from "../models/Like.js";
 // import router from "../routes/posts.js";
 
 
+// export const postLike =  async (req, res, next) => {
+  // console.log("req.body", req.body);
+//   const newLike = new Like({
+//     postId : req.body.postId,
+//     userId : req.body.userId
+//   });
+
+//   try {
+//     const savedLike = await newLike.save();
+//     res.status(200).send(savedLike);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// };
+
+
 //like
 export const postLike =  async (req, res, next) => {
   // console.log("req.body", req.body);
-  const newLike = new Like(req.body);
-
   try {
-    const savedLike = await newLike.save();
-    res.status(200).send(savedLike);
+    const newLike = new Like({
+      postId : req.body.postId,
+      userId : req.body.userId
+    });
+    await newLike.save();
+    res.status(200).send("Like it");
   } catch (err) {
     res.status(500).json(err);
   }
 };
 
-//dislike - destroy
-export const deleteLike = async (req, res, next) => {
-  console.log(req.body);
-  console.log(res.params);
-  try {
-    // const like = await Like.findById(res.params.userId);
-    // const post = await Like.findById(res.params.postId);
-    // if (req.body.userId === res.params.userId || req.body.postId === res.params.postId) {
-    //   await Like.findByIdAndDelete(req.query.id);
-    //   res.status(200).json("The like has been deleted.");
-    // } else {
-    //   return next(createError(403, "I don't like it"));
-    // }
-  } catch (err) {
-    next(err);
+
+  //DELETE
+export const deleteLike = async (req, res, next) =>{
+    console.log(req.body.id);
+  try{
+      await Like.findByIdAndDelete(req.body.id);
+      res.status(200).json("I don't like it! :( ")
+  }catch(err){
+    res.status(500).json(err);
   }
-};
+}
+
 
 
 //유지
 export const isLike = async (req, res, next) => {
-
     // console.log(req.params.userId);
     try{
         const match = await Like.findOne({ "userId": req.query.userId, 
@@ -48,15 +60,3 @@ export const isLike = async (req, res, next) => {
         next(err);
     }
 }
-
-
-// export const isLike = async (req, res, next) => {
-//   try{
-//       const match = await Like.findOne({ "userId": req.params.userId, 
-//       "postId": req.params.postId});
-//       console.log(match);
-//       res.status(200).json(match);
-//   }catch(err){
-//       next(err);
-//   }
-// }
