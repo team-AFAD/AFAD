@@ -35,7 +35,7 @@ router.put("/:id", updatePost);
 //DELETE
 router.delete("/:id", verifyUser, deletePost);
 //like a post
-// router.put("/:id/like", verifyUser, likePost);
+router.put("/:id/like", verifyUser);
 //GET
 router.get("/:id", getPost);
 // GET ALL(post)

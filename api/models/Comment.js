@@ -10,6 +10,9 @@ const CommentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    nickname : {
+      type: String
+    },
     desc: {
       type: String,
       required: true,
