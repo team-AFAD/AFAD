@@ -13,7 +13,7 @@ export const joinPeople =  async (req, res, next) => {
     }
 };
 
-//join 중복확인
+//join 중복확인 - joinpeople에서
 export const joinCheck = async (req, res, next) =>{ 
   let result = await User.findOne(
       {userId : req.body.id},
