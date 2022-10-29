@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 // import Header from '../components/Header/Header';
+import Main from '../pages/Main';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import FindId from '../pages/FindId';
@@ -19,8 +20,8 @@ const Router = () => {
             <BrowserRouter>
             {/* <Header /> */}
                 <Routes>
-                    <Route path="/" element={<LoginEmail/>} />
-                    {/* <Route path="/" element={<Main />} /> */}
+                    {/* <Route path="/" element={<LoginEmail/>} /> */}
+                    <Route path="/" element={<Main />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/findid" element={<FindId />} />

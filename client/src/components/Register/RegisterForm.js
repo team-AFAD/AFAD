@@ -81,7 +81,7 @@ function RegisterForm () {
     ];
 
     const OPTIONS = [
-        { value: "seoul", name: "서울시" },
+        { value: "서울시", name: "서울시" },
         { value: "gangnam", name: "강남구" },
         { value: "gangdong", name: "강동구" },
         { value: "gangbuk", name: "강북구" },
@@ -115,8 +115,8 @@ function RegisterForm () {
         const validId = response.data.valid;
         console.log("validId", validId);
 
-        if (e.target.value != "") {
-            if (validId == true) {
+        if (e.target.value !== "") {
+            if (validId === true) {
                 console.log("유효한 아이디");
                 setWarning('sign_checking');
                 setText('사용가능한 아이디입니다.');
@@ -136,8 +136,8 @@ function RegisterForm () {
         console.log(e.target.value);
         const validId = response.data.valid;
         console.log("validId", validId);
-        if (e.target.value != "") {
-            if (validId == true) {
+        if (e.target.value !== "") {
+            if (validId === true) {
                 console.log("유효한 이메일");
                 setWarning('sign_checking');
                 setText('사용가능한 이메일입니다.');
@@ -176,7 +176,7 @@ function RegisterForm () {
         .then((response) => {
             console.log(response.data);
             alert("회원가입 성공");
-            navigate("/login");
+            if ( response.status === 200 ) { navigate('/login') }
         })
         .catch((error) => {
             console.log(error.toJSON());
@@ -192,7 +192,7 @@ function RegisterForm () {
                 <p className={warning}>{text}</p>
 
                 {inputs.map((input) =>(
-                    input.id != 1 && input.id != 5 ?
+                    input.id !== 1 && input.id !== 5 ?
                     <InputRegister 
                         key={input.id} 
                         {...input} 

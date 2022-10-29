@@ -67,7 +67,7 @@ function LoginForm() {
 
                 <ul className='find_wrap'>
                    <li><Link to="/findid" className='links'>아이디 찾기</Link></li>  
-                   <li><Link to="/resetpw" className='links'>비밀번호 찾기</Link></li>
+                   <li><Link to="/findid" className='links'>비밀번호 찾기</Link></li>
                    <li><Link to="/register" className='links'>회원가입</Link></li>
                 </ul>
             </form>

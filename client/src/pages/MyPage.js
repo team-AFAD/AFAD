@@ -1,11 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import "../components/User/mypage.scss"
 
 const Mypage = () => {
-    const {user, isFetching} = useContext(AuthContext);
+    const {user, dispatch} = useContext(AuthContext);
     console.log(user);
+   
+
+
 
     return(
         <div className="Mypage">
@@ -18,6 +21,7 @@ const Mypage = () => {
         <Link to="/modify">회원정보 수정</Link>
         <hr />
         찜 목록
+
       
     
         
