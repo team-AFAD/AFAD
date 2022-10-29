@@ -27,7 +27,7 @@ function Comment({postIdNum}){
     const onClick = async () => {
         console.log("clicked");
         console.log(desc);
-        const result = await axios.post(BACK_SERVER + "/comments", {userId : user._id, postId : postIdNum, desc : desc});
+        const result = await axios.post(BACK_SERVER + "/comments", {userId : user._id, postId : postIdNum, desc : desc, nickname : user.nickname});
         console.log(result);
     }
 
@@ -35,7 +35,7 @@ function Comment({postIdNum}){
         <div className='Comment'>
             
             <div className='commentWrap'>
-                <CommentTable postId={postIdNum} nickname={user.nickname} desc={desc}/>
+                <CommentTable postId={postIdNum} userId={user._id} nickname={user.nickname} desc={desc}/>
             </div>
             <div className='commnetFormWrap'>
                 <form>

@@ -1,3 +1,6 @@
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+
 import './card.scss';
 import PostImg from './PostImg';
 import Title from "./_propeties/Title";
@@ -9,6 +12,15 @@ import Date from './_propeties/Date';
 
 
 function Card (props) {
+    // const [numPeople, setNumPeople] = useState(1);
+    //   // 현제 참여 인원 가져오기
+    // const getNumPeople = async () => {
+    //     // console.log("getNumber");
+    //     console.log(props.data._id);
+    //     const result = await axios.get(BACK_SERVER + "/joins/groupPeople", {params : {postId : props.data._id}});
+    //     console.log(result.data);
+    //     setNumPeople(result.data);
+    // }
     console.log(props.data.createdAt);
     console.log(props.data.photo);
     return(
