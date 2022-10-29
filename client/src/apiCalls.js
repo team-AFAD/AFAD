@@ -18,3 +18,9 @@ export const loginCall = async (userCredential,dispatch) => {
         dispatch({type:"LOGIN_FAILURE", err});
     }
 };
+
+// 로그아웃 추가
+export async function logout(dispatch) {
+    dispatch({ type: 'LOGOUT' });
+    localStorage.clear()
+}

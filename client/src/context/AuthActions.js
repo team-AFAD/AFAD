@@ -11,4 +11,8 @@ export const LoginStart = (userCredentials) => ({
     type: "LOGIN_FAILURE",
     payload: error
   });
+
+  export const LOGOUT = (error) => ({
+    type: "LOGOUT",
+  });
   

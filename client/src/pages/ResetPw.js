@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AuthContext } from "../context/AuthContext";
 
 const BACK_SERVER = "http://localhost:8080/api";
 
@@ -20,7 +19,7 @@ const ResetPw = () => {
   const ResetOnChange = (e) => {
     const button_click = document.querySelector('.reset_btn');
 
-    if (resetPW.current.value != e.target.value ) {
+    if (resetPW.current.value !== e.target.value ) {
       setResetWarning('reset_warning');
       setResetText('비밀번호가 다릅니다.');
       button_click.disabled = true;
@@ -40,7 +39,7 @@ const ResetPw = () => {
       console.log(result.data);
       alert("비밀번호 변경 완료! 변경하신 비밀번호로 다시 로그인해주시기 바랍니다.");
       console.log(id)
-      // if ( result.status == 200 ) { navigate('/login') }
+      if ( result.status === 200 ) { navigate('/login') }
   }
     return(
         <>
@@ -51,7 +50,7 @@ const ResetPw = () => {
                 <input type='password' placeholder='비밀번호' name="password" ref={resetPW} required></input><br />
                 <input type='password' placeholder='비밀번호 확인' name="password" onChange={ResetOnChange} ref={resetPWCheck} required></input><br />
                 <button type='button' className='reset_btn' onClick={changePW}>비밀번호 변경</button>     
-                <p>{resetText}</p>
+                <p className={resetWarning}>{resetText}</p>
             </form>      
         
         </>
