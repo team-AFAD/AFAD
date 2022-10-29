@@ -8,6 +8,7 @@ import axios from 'axios';
 
 
 // import Heart from '/heart_red.png';
+const BACK_SERVER = "http://localhost:8080/api";
 
 function PostForm () {
     // const {user} = useContext(AuthContext);
@@ -59,7 +60,7 @@ function PostForm () {
             console.log(key, ":", formData.get(key));
         }
 
-        let result = await axios.post("http://localhost:8080/api/posts/write", 
+        let result = await axios.post(BACK_SERVER + "/posts/write", 
             formData,
             {
             headers: {

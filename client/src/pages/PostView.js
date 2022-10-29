@@ -9,14 +9,15 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 // import '../postView.scss';
 
+const BACK_SERVER = "http://localhost:8080/api";
+
 function PostView ( ){
     const [data, setData] = useState(null);
     const { id } = useParams();
 
     const getData = async () => {
-        const response = await axios.get(`http://localhost:8080/api/posts/${id}`);
+        const response = await axios.get(`${BACK_SERVER}/posts/${id}`);
         console.log( response.data );
-        // console.log(response.data._id);
         setData(response.data);
         // console.log(data._id +" data에 담김");
     }
