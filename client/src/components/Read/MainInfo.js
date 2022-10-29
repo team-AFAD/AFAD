@@ -14,6 +14,8 @@ import JoinBtn from './_propeties/JoinBtn';
 
 import { AuthContext } from "../../context/AuthContext";
 
+const BACK_SERVER = "http://localhost:8080/api";
+
 function MainInfo (props) {
     const {user} = useContext(AuthContext);
     console.log(user);
@@ -26,7 +28,7 @@ function MainInfo (props) {
     const joinPost = async () => {
         console.log("joinPost");
         console.log("참여버튼 이거" + props.data._id);
-        const result = await axios.post("http://localhost:8080/api/joins", {postId : props.data._id, userId : user._id});
+        const result = await axios.post(BACK_SERVER+"/joins", {postId : props.data._id, userId : user._id});
         console.log(result);
         getNumPeople();
 
@@ -37,12 +39,12 @@ function MainInfo (props) {
         if (likeStatus) {
             // 좋아요 취소
             console.log("dislike");
-            // const result = await axios.delete("http://localhost:8080/api/", {postId : props.data._id, userId : user._id});
+            // const result = await axios.delete(BACK_SERVER + "", {postId : props.data._id, userId : user._id});
             setLikeStatus(false);
         } else {
             // 좋아요
             console.log("like");
-            // const result = await axios.post("http://localhost:8080/api/", {postId : props.data._id, userId : user._id});
+            // const result = await axios.post(BACK_SERVER + "", {postId : props.data._id, userId : user._id});
             setLikeStatus(true);
         }
     }
@@ -50,7 +52,7 @@ function MainInfo (props) {
     // 현재 좋아요 상태 가져오기
     const getLikeStatus = async () => {
         console.log("likeStatus");
-        // const result = await axios.get("http://localhost:8080/api/", {postId : props.data._id, userId : user._id});
+        // const result = await axios.get(BACK_SERVER + "", {postId : props.data._id, userId : user._id});
         // console.log(result);
         // setLikeStatus(result);
     }
@@ -59,7 +61,7 @@ function MainInfo (props) {
     const getNumPeople = async () => {
         // console.log("getNumber");
         console.log(props.data._id);
-        const result = await axios.get("http://localhost:8080/api/joins/groupPeople", {params : {postId : props.data._id}});
+        const result = await axios.get(BACK_SERVER + "/joins/groupPeople", {params : {postId : props.data._id}});
         console.log(result.data);
         setNumPeople(result.data);
     }

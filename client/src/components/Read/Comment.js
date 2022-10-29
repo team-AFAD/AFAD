@@ -5,12 +5,14 @@ import axios from 'axios';
 import './comment.scss';
 import CommentTable from './_propeties/CommentTable';
 
+const BACK_SERVER = "http://localhost:8080/api";
+
 function Comment({postIdNum}){
 
     const {user} = useContext(AuthContext);
     console.log(user);
     console.log("userID", user._id);
-
+    console.log("user닉값", user.nickname);
     console.log("post", postIdNum);
 
     const [desc, setDesc] = useState("");
@@ -25,7 +27,7 @@ function Comment({postIdNum}){
     const onClick = async () => {
         console.log("clicked");
         console.log(desc);
-        const result = await axios.post("http://localhost:8080/api/comments", {userId : user._id, postId : postIdNum, desc : desc});
+        const result = await axios.post(BACK_SERVER + "/comments", {userId : user._id, postId : postIdNum, desc : desc});
         console.log(result);
     }
 
@@ -33,7 +35,7 @@ function Comment({postIdNum}){
         <div className='Comment'>
             
             <div className='commentWrap'>
-                <CommentTable postIdNum={postIdNum}/>
+                <CommentTable postId={postIdNum} nickname={user.nickname} desc={desc}/>
             </div>
             <div className='commnetFormWrap'>
                 <form>

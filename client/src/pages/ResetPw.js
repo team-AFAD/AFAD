@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from "../context/AuthContext";
 
-const BACK_SERVER = "http://localhost:8080/api"
+const BACK_SERVER = "http://localhost:8080/api";
 
 const ResetPw = () => {
   const [resetText, setResetText] = useState();
