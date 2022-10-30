@@ -16,14 +16,14 @@ const UserModify = () => {
     const [ isOpen, setOpen ] = useState(false);
 
     const username = useParams();
-    console.log(username)
+    // console.log(username)
     
 
     // const onChange = (e) => {
     //     let {value} ={...e.target}
     //     setNickname(value);
     // }
-    console.log(user._id);
+    // console.log(user._id);
 
 
     const [values, setValues] = useState({
@@ -31,11 +31,12 @@ const UserModify = () => {
         email: user.email,
         nickname: user.nickname,
       });
-
+      console.log("정보확인 : ", user.email)
       const onChange = (e) =>{
         setValues({...values, [e.target.name]: e.target.value });
     }
-    console.log(values);
+    // console.log(values);
+
 
       const inputs = [
         {
