@@ -6,10 +6,12 @@ export default class FullPageExample extends React.Component {
     return (
       <FullPage controls>
         <Slide>
-          <h1>Inner slide content</h1>
+          <img src={ require('../images/apple.jpg')} alt = "1">
+          </img>
         </Slide>
         <Slide>
-          <h1>Another slide content</h1>
+        <img src={ require('../images/jujube.jpg')} alt = "2">
+          </img>
         </Slide>
       </FullPage>
     );
