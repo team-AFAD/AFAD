@@ -17,7 +17,7 @@ export default function Conversation({conversation, currentUser}) {
             }
                 });
                 setUser(res.data);
-                console.log(res);
+                // console.log(res);
             }catch(err){
                 console.log(err);
             }            
