@@ -14,6 +14,7 @@ export default function Messenger() {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const {user} = useContext(AuthContext);
+    const scrollRef = useRef();
     const box = useRef();
     // console.log(user);
     
@@ -63,6 +64,7 @@ export default function Messenger() {
 
         // console.log("내 메시지 목록 : ", messages);
 
+        //보낸메시지 db저장
         const handleSubmit = async (e) => {
             e.preventDefault();
             const message = {
@@ -72,11 +74,17 @@ export default function Messenger() {
             };
             try{
                 const res = await axios.post("http://localhost:8080/api/messages", message);
-            setMessages([...messages, res.data])
+                setMessages([...messages, res.data])
+                setNewMessage("");
             }catch(err){
                 console.log(err)
             }
         };
+
+        //스크롤다운useEffect
+        useEffect(()=>{
+            scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+        }, [messages])
        
 
     // console.log(socket);
@@ -115,7 +123,9 @@ export default function Messenger() {
                     <>  
                         <div className="chatBoxTop" ref={box}>
                             {messages.map(m=>(
-                                <Message message={m} own={m.sender === user._id} />
+                                <div ref={scrollRef}>
+                                    <Message message={m} own={m.sender === user._id} />
+                                </div>
                             ))}
                             
                         </div>
