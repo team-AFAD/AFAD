@@ -13,8 +13,8 @@ import MyPage from '../pages/MyPage';
 import UserModify from '../pages/UserModify';
 import LoginEmail from '../components/Login/LoginEmail';
 import Header from '../components/Layout/Header/Header';
-// import Footer from '../components/Layout/Footer/Footer';
-
+import Footer from '../components/Layout/Footer/Footer';
+import FullPageExample from '../pages/MainPage';
 
 const Router = () => {
     return (
@@ -23,7 +23,8 @@ const Router = () => {
             <Header />
                 <Routes>
                     {/* <Route path="/" element={<LoginEmail/>} /> */}
-                    <Route path="/" element={<Main />} />
+                    {/* <Route path="/" element={<Main />} /> */}
+                    <Route path="/" element={<FullPageExample />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/findid" element={<FindId />} />
