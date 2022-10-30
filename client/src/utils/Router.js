@@ -12,13 +12,14 @@ import Messenger from "../pages/messenger/messenger";
 import MyPage from '../pages/MyPage';
 import UserModify from '../pages/UserModify';
 import LoginEmail from '../components/Login/LoginEmail';
+import Header from '../components/Layout/Header/Header';
 
 
 const Router = () => {
     return (
         <div>
             <BrowserRouter>
-            {/* <Header /> */}
+            <Header />
                 <Routes>
                     {/* <Route path="/" element={<LoginEmail/>} /> */}
                     <Route path="/" element={<Main />} />
