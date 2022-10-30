@@ -5,25 +5,50 @@ import ChatOnline from "../../components/chatOnline/ChatOnline";
 import { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
-// import {io} from "socket.io-client"; 
-import io from 'socket.io-client';
+import {io} from "socket.io-client"; 
+// import io from 'socket.io-client';
 
 export default function Messenger() {
     const [conversations, setConversations] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
+    const [arrivalMessage, setArrivalMessage] = useState(null);
+    const socket = useRef(io("ws://localhost:8000"));
     const {user} = useContext(AuthContext);
     const scrollRef = useRef();
     const box = useRef();
     // console.log(user);
     
     // let socket = io("http://localhost:8000", {transports: ["websocket"]});
-    let socket = io("http://localhost:8000");
+    // let socket = io("http://localhost:8000");
+
 
     useEffect(()=> {
-        // socket.connect();
-    },[]);
+        socket.current = io("ws://localhost:8000");
+        socket.current.on("getMessage", data => {
+            setArrivalMessage({
+                sender: data.senderId,
+                text: data.text,
+                createAt : Date.now()
+            });
+        });
+    }, []);
+
+    useEffect(() => {
+        arrivalMessage && 
+        currentChat?.members.includes(arrivalMessage.sender) &&
+        setMessages((prev)=>[...prev, arrivalMessage]);
+    }, [arrivalMessage, currentChat]);
+
+    useEffect(() => {
+        socket.current.emit("addUser", user._id);
+        socket.current.on("getUsers", users=> {
+            console.log(users);
+        })
+    }, [user]);
+
+   console.log(socket);
 
     useEffect(() => {
         const getConversations = async () => {
@@ -72,6 +97,15 @@ export default function Messenger() {
                 text: newMessage,
                 conversationId : currentChat._id
             };
+
+            const receiverId = currentChat.members.find((member)=> member !== user._id);
+
+            socket.current.emit("sendMessage", {
+                senderId : user._id,
+                receiverId,
+                text : newMessage
+            });
+
             try{
                 const res = await axios.post("http://localhost:8080/api/messages", message);
                 setMessages([...messages, res.data])
@@ -81,25 +115,23 @@ export default function Messenger() {
             }
         };
 
+        
+
         //스크롤다운useEffect
         useEffect(()=>{
             scrollRef.current?.scrollIntoView({ behavior: "smooth" });
         }, [messages])
        
 
-    // console.log(socket);
-    socket.on("notice", (data) => {
-        // console.log("work");
-        // console.log("id", data);
-        socket.emit("msg", data);
-    })
 
-    socket.on("print", (id) => {
-        // console.log(box.current);
-        // let p = document.createElement("p");
-        // p.innerText = id + "님 환영합니다.";
-        // box.append(p);
-    })
+    // socket.on("notice", (data) => {
+
+    //     socket.emit("msg", data);
+    // })
+
+    // socket.on("print", (id) => {
+
+    // })
 
     // console.log("채팅확인currentChat : " , currentChat);
  
