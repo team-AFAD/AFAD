@@ -15,11 +15,14 @@ import LoginEmail from '../components/Login/LoginEmail';
 import Header from '../components/Layout/Header/Header';
 import Footer from '../components/Layout/Footer/Footer';
 import FullPageExample from '../pages/MainPage';
+import Layout from '../components/Layout/Layout';
+
 
 const Router = () => {
     return (
         <div>
             <BrowserRouter>
+            {/* <Layout> */}
             <Header />
                 <Routes>
                     {/* <Route path="/" element={<LoginEmail/>} /> */}
@@ -39,6 +42,7 @@ const Router = () => {
                     <Route path="/modify" element={<UserModify />} />
                 </Routes>
             <Footer />
+            {/* </Layout> */}
             </BrowserRouter>
         </div>
     )
