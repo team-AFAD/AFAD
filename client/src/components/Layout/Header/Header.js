@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
 import classes from "./Header.module.scss";
 import "../../../styles/index.scss"; // header csss
-
+import { AuthContext } from "../../../context/AuthContext";
+import { logout } from "../../../apiCalls"
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const {user, dispatch} = useContext(AuthContext);
     const history = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
     const [size, setSize] = useState({
         width: undefined,
         height: undefined,
     });
+    const LogOut = async () => {
+        logout(dispatch);
+        history("/");
+    }
 
     useEffect(() => {
         const handleResize = () => {
@@ -60,20 +66,42 @@ const Header = () => {
                                 co-buying
                             </Link>
                         </li>
-                        <li>
-                            <Link to="/mypage" onClick={menuToggleHandler}>
-                                My Page
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/register" onClick={menuToggleHandler}>
-                                Sign up
-                            </Link>
-                        </li>
+                        {
+                            user?
+                            (
+                                <li>
+                                    <Link to="/mypage" onClick={menuToggleHandler}>
+                                        My Page
+                                    </Link>
+                                </li>                               
+                            )
+                            :
+                            (
+
+                                <li>
+                                    <Link to="/register" onClick={menuToggleHandler}>
+                                        Sign up
+                                    </Link>
+                                </li>
+                            )
+                        }
                     </ul>
-                    <Link to="login">
-                        <button onClick={ctaClickHandler}>Sign in</button>
-                    </Link>
+                    {
+                        user?
+                        (
+                            <>
+                                <h2>{user.nickname}님</h2>
+                                <button onClick={LogOut}>로그아웃</button>
+                            </>
+                        )
+                        :
+                        (
+                            <Link to="login">
+                                <button onClick={ctaClickHandler}>Sign in</button>
+                            </Link>
+                        )
+                    }
+
                 </nav>
                 <div className={classes.header__content__toggle}>
                     {!menuOpen ? (
