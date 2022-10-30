@@ -13,6 +13,7 @@ import MyPage from '../pages/MyPage';
 import UserModify from '../pages/UserModify';
 import LoginEmail from '../components/Login/LoginEmail';
 import Header from '../components/Layout/Header/Header';
+import Footer from '../components/Layout/Footer/Footer';
 
 
 const Router = () => {
@@ -36,7 +37,7 @@ const Router = () => {
                     <Route path="/mypage" element={<MyPage />} />
                     <Route path="/modify" element={<UserModify />} />
                 </Routes>
-
+            <Footer />
             </BrowserRouter>
         </div>
     )
