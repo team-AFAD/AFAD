@@ -67,6 +67,7 @@ function PostForm () {
             formData,
             {
             headers: {
+                "Authorization": localStorage.getItem('access_token'),
                 "Content-Type": "multipart/form-data",
             }});
             alert("작성 완료");
