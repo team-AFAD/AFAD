@@ -3,7 +3,7 @@ import Comment from "../models/Comment.js";
 import Post from "../models/Post.js";
 
 export const addComment = async (req, res, next) => {
-  console.log(req.body,"이거다 이거");
+  console.log(req.body,"이제 찍힌다!");
   const newComment = new Comment({ ...req.body, userId: req.user.id });
   try {
     const savedComment = await newComment.save();
