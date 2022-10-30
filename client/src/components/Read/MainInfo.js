@@ -74,7 +74,7 @@ function MainInfo (props) {
     // 게시글 삭제
     const deletePost = async () => {
         console.log(props.data._id);
-        const result = await axios.delete(`${BACK_SERVER}/post/${props.data._id}`,
+        const result = await axios.delete(`${BACK_SERVER}/posts/${props.data._id}`,
             {data: {
                 postId : props.id
             }});
