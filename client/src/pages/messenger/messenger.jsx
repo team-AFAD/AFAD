@@ -12,6 +12,7 @@ export default function Messenger() {
     const [conversations, setConversations] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState("");
     const {user} = useContext(AuthContext);
     const box = useRef();
     // console.log(user);
@@ -43,7 +44,7 @@ export default function Messenger() {
     }, [user._id]);
 
 
-    console.log("채팅확인currentChat : ", currentChat);
+    // console.log("채팅확인currentChat : ", currentChat);
     useEffect(() => {
         const getMessages = async () => {
             try {
@@ -61,6 +62,22 @@ export default function Messenger() {
         }, [currentChat]);
 
         // console.log("내 메시지 목록 : ", messages);
+
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            const message = {
+                sender: user._id,
+                text: newMessage,
+                conversationId : currentChat._id
+            };
+            try{
+                const res = await axios.post("http://localhost:8080/api/messages", message);
+            setMessages([...messages, res.data])
+            }catch(err){
+                console.log(err)
+            }
+        };
+       
 
     // console.log(socket);
     socket.on("notice", (data) => {
@@ -89,10 +106,6 @@ export default function Messenger() {
                             <Conversation key={c} conversation={c} currentUser={user} />
                         </div>
             ))}
-                    
-                    {/* <Conversation /> */}
-                    {/* <Conversation /> */}
-                    {/* <Conversation /> */}
                 </div>
             </div>
             <div className="chatBox">
@@ -107,8 +120,13 @@ export default function Messenger() {
                             
                         </div>
                         <div className="chatBoxBottom">
-                            <textarea className="chatMessageInput" placeholder="메시지를 쳐주세요..."></textarea>
-                            <button className="chatSubmitButton">SEND</button>
+                            <textarea 
+                            className="chatMessageInput" 
+                            placeholder="메시지를 쳐주세요..." 
+                            onChange={(e)=>setNewMessage(e.target.value)}
+                            value={newMessage}
+                            ></textarea>
+                            <button className="chatSubmitButton" onClick={handleSubmit}>SEND</button>
                         </div>
                     </>
                     ) : (
