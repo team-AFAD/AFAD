@@ -69,6 +69,10 @@ function MainInfo (props) {
         }
     }
 
+    // 게시글 삭제
+    const deletePost = async () => {
+        const result = await axios.delete(`${BACK_SERVER}/post/${props._id}`)
+    }
 
 
     useEffect(()=>{
@@ -101,7 +105,9 @@ function MainInfo (props) {
                 <LikeBtn like={likeStatus} onClick={likePost}/>
                 <div className='TowBtnFlex'>
                     <JoinBtn title="채팅하기"/>
+                    {/* 삼항연산자로 버튼 생성하기 작성자와 현재사용자 비교 */}
                     <JoinBtn title="공동구매 참여" joinPost={joinPost}/>
+                    <JoinBtn title="게시글 삭제" joinPost={deletePost}/>
                 </div>
             </div>
 
