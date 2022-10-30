@@ -26,7 +26,7 @@ function CommentTable (props){
     return(
         <>
         <table>
-            <tbody>
+            {/* <tbody>
             {data.map( data => (
                 <tr key={data._id}>
                     
@@ -40,7 +40,7 @@ function CommentTable (props){
                     </td>
                     </tr>
             ))}
-            </tbody>
+            </tbody> */}
         </table>
         </>
     );
