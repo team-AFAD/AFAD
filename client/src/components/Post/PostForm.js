@@ -1,5 +1,5 @@
-import { useState } from "react";
-// import { AuthContext } from "../../context/AuthContext";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import './postForm.scss';
 import InputPost from '../Input/InputPost';
 import Textarea from '../Input/Textarea';
@@ -11,7 +11,7 @@ import axios from 'axios';
 const BACK_SERVER = "http://localhost:8080/api";
 
 function PostForm () {
-    // const {user} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     // console.log(user);
     // console.log(user.nickname);
 
@@ -45,8 +45,7 @@ function PostForm () {
     }
     
     const onSubmit = async () => {
-        // formData.append("nickname", user.nickname);
-        
+        formData.append("nickname", user.nickname);
         formData.append("title", formValue.title);
         formData.append("merchandise", formValue.merchandise);
         formData.append("price", formValue.price);
