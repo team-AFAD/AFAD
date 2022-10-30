@@ -3,8 +3,8 @@ import Comment from "../models/Comment.js";
 import Post from "../models/Post.js";
 
 export const addComment = async (req, res, next) => {
-  console.log(req.body,"이거다 이거");
-  const newComment = new Comment({ ...req.body, userId: req.user.id });
+  // console.log(req.body,"이거다 이거");
+  const newComment = new Comment({ ...req.body});
   try {
     const savedComment = await newComment.save();
     res.status(200).send(savedComment);
@@ -17,7 +17,7 @@ export const deleteComment = async (req, res, next) => {
   try {
     const comment = await Comment.findById(res.params.id);
     const post = await Post.findById(res.params.id);
-    if (req.user.id === comment.userId || req.user.id === post.userId) {
+    if (req.user.username === comment.userId || req.user.id === post.userId) {
       await Comment.findByIdAndDelete(req.params.id);
       res.status(200).json("The comment has been deleted.");
     } else {

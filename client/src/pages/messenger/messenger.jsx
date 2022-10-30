@@ -14,7 +14,7 @@ export default function Messenger() {
     const [messages, setMessages] = useState([]);
     const {user} = useContext(AuthContext);
     const box = useRef();
-    console.log(user);
+    // console.log(user);
     
     // let socket = io("http://localhost:8000", {transports: ["websocket"]});
     let socket = io("http://localhost:8000");
@@ -25,8 +25,13 @@ export default function Messenger() {
 
     useEffect(() => {
         const getConversations = async () => {
+            console.log("id : ",user._id);
             try {
-                const res = await axios.get("/conversations/" + user._id);
+                const res = await axios.get("http://localhost:8080/api/conversations/" + user._id, {   
+                    headers: {
+                    'Authorization': localStorage.getItem('access_token'),
+                }
+            });
                 setConversations(res.data)
                 console.log(res);
             } catch (err) {
@@ -49,9 +54,9 @@ export default function Messenger() {
           getMessages();
         }, [currentChat]);
 
-        console.log(messages);
+        // console.log(messages);
 
-    console.log(socket);
+    // console.log(socket);
     socket.on("notice", (data) => {
         console.log("work");
         console.log("id", data);
