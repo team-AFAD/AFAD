@@ -16,7 +16,7 @@ const Mypage = () => {
         {user.city ? <p>서울시 {user.city}</p> : <p>서울시</p>}
         <br />
         { user.profilePicture ? 
-        <img src={`images/${ user.profilePicture}`} className="profilePic" /> :
+        <img src={`/images/${ user.profilePicture}`} className="profilePic" /> :
         <img src='/profilePic.png' className="profilePic" />}
         <Link to={`/modify/${user._id}`}>회원정보 수정</Link>
         <hr />
