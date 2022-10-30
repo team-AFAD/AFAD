@@ -18,10 +18,10 @@ const Mypage = () => {
         { user.profilePicture ? 
         <img src={`images/${ user.profilePicture}`} className="profilePic" /> :
         <img src='/profilePic.png' className="profilePic" />}
-        <Link to="/modify">회원정보 수정</Link>
+        <Link to={`/modify/${user._id}`}>회원정보 수정</Link>
         <hr />
         찜 목록
-
+            
       
     
         

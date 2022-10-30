@@ -34,7 +34,7 @@ const Router = () => {
                     
                     <Route path="/messenger" element={<Messenger />} />
                     <Route path="/mypage" element={<MyPage />} />
-                    <Route path="/modify" element={<UserModify />} />
+                    <Route path="/modify/:id" element={<UserModify />} />
                 </Routes>
 
             </BrowserRouter>
