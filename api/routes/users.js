@@ -2,6 +2,8 @@ import express from "express";
 
 import{updateUser, deleteUser, getUser, idCheck, findId, resetPW} from "../controllers/user.js"
 import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
+import multer from "multer";
+import path from 'path';
 
 
 const router = express.Router();
@@ -21,10 +23,22 @@ router.get("/checkadmin/:id", verifyAdmin, (req,res,next)=>{
 })
 
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "../client/public/images");
+    },
+    filename: (req, file, cb) =>{
+        const ext = path.extname(file.originalname);
+        cb(null, `${Date.now()}.${ext}`);
+    }
+});
+
+const upload = multer({storage:storage})
+
 //아이디 수정
-router.put("modify/:id", verifyUser, updateUser);
+router.put("/modify/:id", upload.single('profilePicture'), updateUser);
 //DELETE
-router.delete("modify/:id", verifyUser, deleteUser);
+router.delete("/modify/:id", verifyUser, deleteUser);
 //get a user
 router.get("/", verifyUser, getUser);
 

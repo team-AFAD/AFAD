@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 
 //UPDATE
 export const updateUser = async (req, res, next) =>{
+    console.log("정보확인 : ", req.params.id )
     try{
         const updatedUser = await User.findByIdAndUpdate(
             req.params.id, 
@@ -14,6 +15,28 @@ export const updateUser = async (req, res, next) =>{
         next(err);
     }
 }
+
+//업데이트test중
+// export const updateUser = async (req, res, next) =>{
+//     console.log("req확인용 : ", req.body.userId);
+//     if (req.body.userId === req.params.id) {
+//         try {
+//           const updatedUser = await User.findByIdAndUpdate(
+//             req.params.id,
+//             {
+//               $set: req.body,
+//             },
+//             { new: true }
+//           );
+//           res.status(200).json(updatedUser);
+//         } catch (err) {
+//           res.status(500).json(err);
+//         }
+//       } else {
+//         res.status(401).json("You can update only your account!");
+//       }
+//     };
+
 
 //DELETE
 export const deleteUser = async (req, res, next) =>{

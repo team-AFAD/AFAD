@@ -4,7 +4,7 @@ import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
 import classes from "./Header.module.scss";
-
+import "../../../styles/index.scss"; // header csss
 
 import { Link, useNavigate } from "react-router-dom";
 

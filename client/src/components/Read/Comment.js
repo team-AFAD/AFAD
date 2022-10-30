@@ -39,7 +39,7 @@ function Comment({postIdNum}){
         <div className='Comment'>
             
             <div className='commentWrap'>
-                {/* <CommentTable postId={postIdNum} userId={user._id} nickname={user.nickname} desc={desc}/> */}
+                <CommentTable postId={postIdNum} userId={user._id} nickname={user.nickname} desc={desc}/>
             </div>
             <div className='commnetFormWrap'>
                 <form>

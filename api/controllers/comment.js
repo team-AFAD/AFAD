@@ -2,16 +2,34 @@ import {createError} from "../utils/error.js";
 import Comment from "../models/Comment.js";
 import Post from "../models/Post.js";
 
+// export const addComment = async (req, res, next) => {
+//   console.log(req.query.desc);
+//   const newComment = new Comment(...req.body);
+//   try {
+//     const savedComment = await newComment.save();
+//     res.status(200).send(savedComment);
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+//댓글작성(수정)
 export const addComment = async (req, res, next) => {
-  console.log(req.body,"이제 찍힌다!");
-  const newComment = new Comment({ ...req.body});
+  console.log(req.body);
+  
   try {
-    const savedComment = await newComment.save();
-    res.status(200).send(savedComment);
+    const newComment = new Comment({
+      postId : req.body.postId,
+      userId : req.body.userId,
+      desc : req.body.desc
+    });
+    await newComment.save();
+    res.status(200).send("댓글완성");
   } catch (err) {
     next(err);
   }
 };
+
 
 export const deleteComment = async (req, res, next) => {
   try {
