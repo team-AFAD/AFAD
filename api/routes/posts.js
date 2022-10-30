@@ -3,7 +3,7 @@ import{createPost,updatePost, deletePost, getPost, getPosts} from "../controller
 
 // import{ likePost } from "../controllers/like.js"
 
-import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
+// import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 import multer from "multer";
 import path from 'path';
 
@@ -23,9 +23,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage:storage})
 
-router.get("/checkadmin/:id", verifyAdmin, (req,res,next)=>{
-  res.send("hello admin, you are logged in and you can delete all accounts")
-})
+// router.get("/checkadmin/:id", verifyAdmin, (req,res,next)=>{
+//   res.send("hello admin, you are logged in and you can delete all accounts")
+// })
 
 //CREATE
 router.post("/write", upload.single('photo'), createPost);
@@ -33,9 +33,9 @@ router.post("/write", upload.single('photo'), createPost);
 // router.put("/:id", verifyUser, updatePost);
 router.put("/:id", updatePost);
 //DELETE
-router.delete("/:id", verifyUser, deletePost);
+router.delete("/:id", deletePost);
 //like a post
-router.put("/:id/like", verifyUser);
+// router.put("/:id/like", verifyUser);
 //GET
 router.get("/:id", getPost);
 // GET ALL(post)
