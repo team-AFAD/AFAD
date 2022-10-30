@@ -46,7 +46,7 @@ export const updatePost = async (req, res, next) =>{
 export const deletePost = async (req, res, next) =>{
     try {
         const post = await Post.findById(req.params.id);
-        if (post.username === req.body.username) {
+        if (post.nickname === req.body.nickname) {
           try {
             await post.delete();
             res.status(200).json("Post has been deleted...");
