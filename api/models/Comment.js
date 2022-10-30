@@ -13,8 +13,7 @@ const CommentSchema = new mongoose.Schema(
       type: String
     },
     desc: {
-      type: String,
-      required: true,
+      type: String
     },
   },
   { timestamps: true }
