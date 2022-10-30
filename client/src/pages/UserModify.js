@@ -1,18 +1,21 @@
 import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { logout } from "../apiCalls"
 import "../components/User/usermodify.scss";
 import axios from 'axios';
 import PwModal from "../components/User/PwModal";
 import InputRegister from "../components/Input/InputRegister";
 import { useNavigate } from "react-router";
+import InputSelect from "../components/Input/InputSelect";
+import PicModal from "../components/User/PicModal";
 
 const BACK_SERVER = "http://localhost:8080/api";
 
 const UserModify = () => {
-    const {user} = useContext(AuthContext);
     const navigate = useNavigate();
-
-   
+    const {user, dispatch} = useContext(AuthContext);
+    console.log(user.city);
+  
     const [ isOpen, setOpen ] = useState(false);
     
     const [values, setValues] = useState({
@@ -20,47 +23,94 @@ const UserModify = () => {
         email: user.email,
         nickname: user.nickname,
     });
-    //   console.log("정보확인 : ", user.email)
-      const onChange = (e) =>{
+   
+    const inputs = [
+    {
+        id: 4,
+        name: "username",
+        type: "text",
+        label:"이름",
+        required: true,
+    },
+    {
+        id: 5,
+        name: "email",
+        type: "email",
+        errorMessage: "이메일 형식이 올바르지 않습니다. 다시 입력해 주세요.",
+        label:"이메일",
+        required: true,
+    },
+    {
+        id: 6,
+        name: "nickname",
+        type: "text",
+        label:"닉네임",
+        required: true,
+    },
+    ];
+
+    const OPTIONS = [
+        { value: "서울시", name: "서울시" },
+        { value: "강남구", name: "강남구" },
+        { value: "강동구", name: "강동구" },
+        { value: "강북구", name: "강북구" },
+        { value: "강서구", name: "강서구" },
+        { value: "관악구", name: "관악구" },
+        { value: "광진구", name: "광진구" },
+        { value: "구로구", name: "구로구" },
+        { value: "금천구", name: "금천구" },
+        { value: "노원구", name: "노원구" },
+        { value: "도봉구", name: "도봉구" },
+        { value: "동대문구", name: "동대문구" },
+        { value: "동작구", name: "동작구" },
+        { value: "마포구", name: "마포구" },
+        { value: "서대문구", name: "서대문구" },
+        { value: "서초구", name: "서초구" },
+        { value: "성동구", name: "성동구" },
+        { value: "seongbuk", name: "성북구" },
+        { value: "송파구", name: "송파구" },
+        { value: "양천구", name: "양천구" },
+        { value: "영등포구", name: "영등포구" },
+        { value: "용산구", name: "용산구" },
+        { value: "은평구", name: "은평구" },
+        { value: "종로구", name: "종로구" },
+        { value: "중구", name: "중구" },
+        { value: "중랑구", name: "중랑구" },
+    ];
+
+    const onChange = (e) =>{
         setValues({...values, [e.target.name]: e.target.value });
     }
     console.log(values);
-   
-      const inputs = [
-        {
-            id: 4,
-            name: "username",
-            type: "text",
-            label:"이름",
-            required: true,
-        },
-        {
-            id: 5,
-            name: "email",
-            type: "email",
-            errorMessage: "이메일 형식이 올바르지 않습니다. 다시 입력해 주세요.",
-            label:"이메일",
-            required: true,
-        },
-        {
-            id: 6,
-            name: "nickname",
-            type: "text",
-            label:"닉네임",
-            required: true,
-        },
-        ];
-        
-        // console.log('http://localhost:8080/api/users/'+ user._id)
 
-        const modify = async (e) => {
-            e.preventDefault();
-            console.log("values", values);
+    const modifyUser = async (e) => {
+        e.preventDefault();
+        console.log("values", values);
 
-            const response = await axios.put(BACK_SERVER + "/users/modify/"+ user._id, values);
-            console.log(response.data);
-            // 로그인 다시 하라고 ~
-        }
+        const response = await axios.put(BACK_SERVER + "/users/modify/"+ user._id, values, 
+        {
+            headers: {
+            'Authorization': localStorage.getItem('access_token'),
+            }
+        });
+        console.log(response.data);
+        alert("다시 로그인 해주세요.")
+        logout(dispatch);
+        if (response.status === 200) {navigate("/login");}
+    }
+
+    const deleteUser = async (e) => {
+        const response = await axios.delete(BACK_SERVER + "/users/modify/"+ user._id, 
+        {
+            headers: {
+            'Authorization': localStorage.getItem('access_token'),
+            }
+        });
+        console.log(response)
+        alert("그동안 이용해주셔서 감사합니다.")
+        logout(dispatch);
+        if (response.status === 200) {navigate("/");}
+    }
     return(
         <div className="UserModify">
         <h1>회원정보 수정</h1>
@@ -82,15 +132,15 @@ const UserModify = () => {
                     onChange={onChange}  
                 />
             ))}
-
-            <button type="button" onClick={modify} >수정</button>
-            <button >탈퇴</button>
+            <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} defaultValue="seongbuk"/>
+            <button type="button" onClick={modifyUser} >수정</button>
+            <button type="button" onClick={deleteUser} >탈퇴</button>
         </form>
 
         <label>비밀번호</label>
         <button type="button" onClick={ () => setOpen(true) }>비밀번호 재설정</button>
         {isOpen === true ? <PwModal id={user.identity} /> : null}
-        
+        <PicModal />
         </div>
     );
 }

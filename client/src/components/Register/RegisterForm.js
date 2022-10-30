@@ -197,8 +197,10 @@ function RegisterForm () {
         })
         .then((response) => {
             console.log(response.data);
+            console.log(response.status);
+            
             alert("회원가입 성공");
-            if (response.status === 200) {navigate("/login");}
+            // if (response.status === 200) {navigate("/login");}
         })
         .catch((error) => {
             console.log(error.toJSON());
