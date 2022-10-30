@@ -38,7 +38,7 @@ const Router = () => {
                     <Route path="/mypage" element={<MyPage />} />
                     <Route path="/modify" element={<UserModify />} />
                 </Routes>
-            <Footer />
+            {/* <Footer /> */}
             </BrowserRouter>
         </div>
     )
