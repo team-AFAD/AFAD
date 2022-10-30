@@ -1,10 +1,13 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+
 import './postForm.scss';
 import InputPost from '../Input/InputPost';
 import Textarea from '../Input/Textarea';
 import InputPostFile from '../Input/InputPostFile';
-import axios from 'axios';
+
 
 
 // import Heart from '/heart_red.png';
@@ -12,9 +15,8 @@ const BACK_SERVER = "http://localhost:8080/api";
 
 function PostForm () {
     const {user} = useContext(AuthContext);
-    // console.log(user);
-    // console.log(user.nickname);
-
+    console.log(user._id);
+    const navigate = useNavigate();
     const [formValue, setFormValue] = useState({
         title : "",
         merchandise : "",
@@ -26,13 +28,13 @@ function PostForm () {
         url : "",
         userfile : "/defaultImage.jpg"
     });
+
     //Form에 내용이 채워질때
     const onChangeForm = (e) => {
         setFormValue({
         ...formValue,
         [e.target.name]: e.target.value,
         });
-        // console.log(perPayment);
     };
 
     let formData = new FormData();
@@ -44,7 +46,9 @@ function PostForm () {
         formData.append("photo", fileUpload.files[0]);
     }
     
+    // 등록
     const onSubmit = async () => {
+        // formData.append("userId", user._id);
         formData.append("nickname", user.nickname);
         formData.append("title", formValue.title);
         formData.append("merchandise", formValue.merchandise);
@@ -63,8 +67,11 @@ function PostForm () {
             formData,
             {
             headers: {
+                "Authorization": localStorage.getItem('access_token'),
                 "Content-Type": "multipart/form-data",
             }});
+            alert("작성 완료");
+            navigate("/post");
     }
 
 

@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 import './mainInfo.scss';
@@ -20,6 +21,7 @@ function MainInfo (props) {
     const {user} = useContext(AuthContext);
     console.log(user);
     console.log(user._id);
+    const navigate = useNavigate();
 
     const [numPeople, setNumPeople] = useState(1);
     const [likeStatus, setLikeStatus] = useState(false);
@@ -69,6 +71,17 @@ function MainInfo (props) {
         }
     }
 
+    // 게시글 삭제
+    const deletePost = async () => {
+        console.log(props.data._id);
+        const result = await axios.delete(`${BACK_SERVER}/post/${props.data._id}`,
+            {data: {
+                postId : props.id
+            }});
+        console.log(props.data);
+        alert("삭제 완료");
+        navigate("/post");
+    }
 
 
     useEffect(()=>{
@@ -101,7 +114,14 @@ function MainInfo (props) {
                 <LikeBtn like={likeStatus} onClick={likePost}/>
                 <div className='TowBtnFlex'>
                     <JoinBtn title="채팅하기"/>
-                    <JoinBtn title="공동구매 참여" joinPost={joinPost}/>
+                    {/* 삼항연산자로 버튼 생성하기 작성자와 현재사용자 비교 */}
+                    {
+                        user.nickname == props.data.nickname ? 
+                            <JoinBtn title="게시글 삭제" onClick={deletePost}/>
+                            :
+                            <JoinBtn title="공동구매 참여" onClick={joinPost}/>
+                    }
+                    
                 </div>
             </div>
 
