@@ -25,7 +25,8 @@ export default function Messenger() {
 
     useEffect(() => {
         const getConversations = async () => {
-            console.log("id : ",user._id);
+            // console.log("id : ",user._id);
+            console.log("현재 로그인 id : " ,user._id);
             try {
                 const res = await axios.get("http://localhost:8080/api/conversations/" + user._id, {   
                     headers: {
@@ -41,11 +42,16 @@ export default function Messenger() {
         getConversations();
     }, [user._id]);
 
-    console.log(currentChat);
+
+    console.log("채팅확인currentChat : ", currentChat);
     useEffect(() => {
         const getMessages = async () => {
             try {
-              const res = await axios.get("/messages/" + currentChat?._id);
+              const res = await axios.get("http://localhost:8080/api/messages/" + currentChat?._id , {   
+                headers: {
+                'Authorization': localStorage.getItem('access_token'),
+            }
+        });
               setMessages(res.data);
             } catch (err) {
               console.log(err);
@@ -54,12 +60,12 @@ export default function Messenger() {
           getMessages();
         }, [currentChat]);
 
-        // console.log(messages);
+        // console.log("내 메시지 목록 : ", messages);
 
     // console.log(socket);
     socket.on("notice", (data) => {
-        console.log("work");
-        console.log("id", data);
+        // console.log("work");
+        // console.log("id", data);
         socket.emit("msg", data);
     })
 
@@ -69,6 +75,9 @@ export default function Messenger() {
         // p.innerText = id + "님 환영합니다.";
         // box.append(p);
     })
+
+    // console.log("채팅확인currentChat : " , currentChat);
+ 
 
     return (
         <div className="messenger">
@@ -89,27 +98,22 @@ export default function Messenger() {
             <div className="chatBox">
                 <div className="chatBoxWrapper">
                     {
-                        currentChat ?
+                        currentChat ? (
                     <>  
-                    <div className="chatBoxTop" ref={box}>
-                        <Message />
-                        <Message own={true}/>
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                    </div>
-                    <div className="chatBoxBottom">
-                        <textarea className="chatMessageInput" placeholder="메시지를 쳐주세요..."></textarea>
-                        <button className="chatSubmitButton">SEND</button>
-                    </div></> : <span className="noConversationText"> Open a conversation to start a chat.텅...</span>} 
+                        <div className="chatBoxTop" ref={box}>
+                            {messages.map(m=>(
+                                <Message message={m} own={m.sender === user._id} />
+                            ))}
+                            
+                        </div>
+                        <div className="chatBoxBottom">
+                            <textarea className="chatMessageInput" placeholder="메시지를 쳐주세요..."></textarea>
+                            <button className="chatSubmitButton">SEND</button>
+                        </div>
+                    </>
+                    ) : (
+                    <span className="noConversationText"> Open a conversation to start a chat.텅...</span>
+                )} 
                 </div>
             </div>
             <div className="chatOnline">
