@@ -80,3 +80,17 @@ export const emailCheck = async (req, res, next) =>{
         res.send({valid: false});
     }
 }
+
+export const nicknameCheck = async (req, res, next) =>{ 
+    let result = await User.findOne(
+        {nickname: req.body.nickname}
+    );
+
+    console.log(result);
+
+    if (result == null) {
+        res.send({valid: true});
+    } else {
+        res.send({valid: false});
+    }
+}

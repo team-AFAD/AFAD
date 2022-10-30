@@ -1,43 +1,31 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import "../components/User/usermodify.scss";
 import axios from 'axios';
 import PwModal from "../components/User/PwModal";
 import InputRegister from "../components/Input/InputRegister";
-import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router";
 
 const BACK_SERVER = "http://localhost:8080/api";
 
 const UserModify = () => {
     const {user} = useContext(AuthContext);
-    console.log(user);
+    const navigate = useNavigate();
 
-    // const [nickname, setNickname] = useState(user.nickname);
+   
     const [ isOpen, setOpen ] = useState(false);
-
-    const username = useParams();
-    // console.log(username)
     
-
-    // const onChange = (e) => {
-    //     let {value} ={...e.target}
-    //     setNickname(value);
-    // }
-    // console.log(user._id);
-
-
     const [values, setValues] = useState({
         username: user.username,
         email: user.email,
         nickname: user.nickname,
-      });
-      console.log("정보확인 : ", user.email)
+    });
+    //   console.log("정보확인 : ", user.email)
       const onChange = (e) =>{
         setValues({...values, [e.target.name]: e.target.value });
     }
-    // console.log(values);
-
-
+    console.log(values);
+   
       const inputs = [
         {
             id: 4,
@@ -67,9 +55,11 @@ const UserModify = () => {
 
         const modify = async (e) => {
             e.preventDefault();
-            console.log("values", values); 
-            const response = await axios.put(BACK_SERVER + "/users/modify/"+ user._id, {id: user._id, values });
+            console.log("values", values);
+
+            const response = await axios.put(BACK_SERVER + "/users/modify/"+ user._id, values);
             console.log(response.data);
+            // 로그인 다시 하라고 ~
         }
     return(
         <div className="UserModify">
@@ -93,8 +83,8 @@ const UserModify = () => {
                 />
             ))}
 
-            <button type="button" onClick={modify}>수정</button>
-            <button>탈퇴</button>
+            <button type="button" onClick={modify} >수정</button>
+            <button >탈퇴</button>
         </form>
 
         <label>비밀번호</label>
