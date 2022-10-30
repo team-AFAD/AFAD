@@ -1,15 +1,16 @@
 import Header from "./Header/Header"
 import Footer from "./Footer/Footer"
 import React from "react"
+import classes from "./Layout.module.scss";
 
-const Layout = () => {
+const Layout = ({ children }) => {
     return (
-        <div>
+        <>
             <Header />
-            
+            <div className={classes.container}>{children}</div>
             <Footer />
-        </div>
-    )
-}
+        </>
+    );
+};
 
-export default Layout
+export default Layout;
