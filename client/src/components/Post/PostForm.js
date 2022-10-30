@@ -46,7 +46,6 @@ function PostForm () {
     
     const onSubmit = async () => {
         formData.append("nickname", user.nickname);
-        
         formData.append("title", formValue.title);
         formData.append("merchandise", formValue.merchandise);
         formData.append("price", formValue.price);
