@@ -1,14 +1,33 @@
-import React from "react";
-import { Container } from "react-bootstrap";
+import styles from "./Footer.module.scss";
+
+import { BiCopyright } from "react-icons/bi";
 
 const Footer = () => {
   return (
     <footer>
-      <Container>
-        <div style={{ textAlign: "center" }}>
-          &copy; 2022 SeSAC-web4-2nd-teamPrj. 김정화, 문서영, 이수림, 함유정 All Rights Reserved. 
+        <nav>
+            <a href='https://github.com/team-AFAD/AFAD' target='_blank'>Github</a>
+        </nav>
+        <p>
+            <span>team member : 김정화, 이수림, 문서영, 함유정</span><br/>
+            <span>SeSAC web 4기</span><br/>
+            <span><BiCopyright /> Copyright 2022. AFAD. All Rights Reserved.</span>
+        </p>
+        <p/>
+      {/* <div className={styles.footer__content}>
+        <div className={styles.footer__content__logo}>
+          <h2>Logo</h2>
         </div>
-      </Container>
+        <address className={styles.footer__content__team}>
+          
+        </address>
+        <div className={styles.footer__content__copyright}>
+          <BiCopyright />
+          저작권표시
+        </div>
+        <div className={styles.footer__content__site}>
+        </div>
+      </div> */}
     </footer>
   );
 };

@@ -41,7 +41,7 @@ function PostView ( ){
                     <div className='postViewWrap'>
                         <Writer writer={data.username} />
                         <Description description={data.desc} />
-                        <Comment postIdNum={data._id}/>
+                        {/* <Comment postIdNum={data._id}/> */}
                         
                     </div>
                 </div>
