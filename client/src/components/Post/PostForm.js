@@ -48,7 +48,7 @@ function PostForm () {
     
     // 등록
     const onSubmit = async () => {
-        formData.append("userId", user._id);
+        // formData.append("userId", user._id);
         formData.append("nickname", user.nickname);
         formData.append("title", formValue.title);
         formData.append("merchandise", formValue.merchandise);
