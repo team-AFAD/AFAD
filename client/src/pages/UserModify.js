@@ -6,7 +6,8 @@ import PwModal from "../components/User/PwModal";
 import InputRegister from "../components/Input/InputRegister";
 import { useNavigate } from "react-router";
 import InputSelect from "../components/Input/InputSelect";
-import { put, deleteData } from "../utils/Axios";
+import { put, deleteData, deleteNoToken } from "../utils/Axios";
+import axios from "axios";
 
 
 const UserModify = () => {
@@ -57,7 +58,7 @@ const UserModify = () => {
         { value: "서대문구", name: "서대문구" },
         { value: "서초구", name: "서초구" },
         { value: "성동구", name: "성동구" },
-        { value: "seongbuk", name: "성북구" },
+        { value: "성북구", name: "성북구" },
         { value: "송파구", name: "송파구" },
         { value: "양천구", name: "양천구" },
         { value: "영등포구", name: "영등포구" },
@@ -88,9 +89,9 @@ const UserModify = () => {
     const deleteUser = async (e) => {
         const response = await deleteData("/users/modify/"+ user._id);
         console.log(response)
-        // alert("그동안 이용해주셔서 감사합니다.")
-        // logout(dispatch);
-        // if (response.status === 200) {navigate("/");}
+        alert("그동안 이용해주셔서 감사합니다.")
+        logout(dispatch);
+        if (response.status === 200) {navigate("/");}
     }
     return(
         <div className="UserModify">
