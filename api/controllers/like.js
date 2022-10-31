@@ -25,7 +25,7 @@ export const postLike =  async (req, res, next) => {
   try {
     const newLike = new Like({
       postId : req.body.postId,
-      userId : req.body.userId
+      userId : req.user.id
     });
     await newLike.save();
     res.status(200).send("Like it");
@@ -37,9 +37,9 @@ export const postLike =  async (req, res, next) => {
 
   //DELETE
 export const deleteLike = async (req, res, next) =>{
-    console.log("좋아요 취소 : ", req.body);
+  console.log( "Like Delete : ", req.body );
   try{
-      await Like.findByIdAndDelete(req.body);
+      await Like.deleteMany(req.body);
       res.status(200).json("I don't like it! :( ")
   }catch(err){
     res.status(500).json(err);

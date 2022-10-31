@@ -12,9 +12,9 @@ const PostList = ()=> {
     const [likeStatus, setLikeStatus] = useState(false);
 
     const getData = async () => {
-        const response = await getNoToken(`http://localhost:8080/api/posts`);
+        const response = await getNoToken(`/posts`);
         console.log( response );
-        setData(response);
+        setData(response.data);
     }
 
     // 좋아요 버튼
