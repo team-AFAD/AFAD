@@ -172,7 +172,7 @@ export default function Messenger() {
                         </div>
                     </>
                     ) : (
-                    <span className="noConversationText"> Open a conversation to start a chat.텅...</span>
+                    <span className="noConversationText">  Open a conversation to start a chat.텅...</span>
                 )} 
                 </div>
             </div>

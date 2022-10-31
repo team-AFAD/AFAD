@@ -27,7 +27,7 @@ export default function Conversation({conversation, currentUser}) {
 
     return (
         <div className="conversation">
-            <img className="conversationImg" src="" alt="" />
+            {/* <img className="conversationImg" alt="" /> */}
             <span className="conversationName">{user?.username}</span>
         </div>
     )

@@ -26,6 +26,11 @@ function MainInfo (props) {
     console.log(user);
     console.log(user._id);
     const navigate = useNavigate();
+    const [friends, setFriends] = useState([]);
+
+    //follow관련
+    const { user : currentUser, dispatch} = useContext(AuthContext);
+    const [followed, setFollowed] = useState(currentUser.followings.includes(user?.id));
 
     const button = useRef();
 
@@ -118,10 +123,43 @@ function MainInfo (props) {
         navigate("/messenger");
     }
 
+    //About follow and unfollow
+        const getFriends = async () => {
+          try {
+            const friendList = await getNoToken("/users/friends/" + user._id);
+            setFriends(friendList.data);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+
+
+        // const handleClick = async () => {
+        //     try {
+        //       if (followed) {
+        //         await axios.put(`/users/${user._id}/unfollow`, {
+        //           userId: currentUser._id,
+        //         });
+        //         dispatch({ type: "UNFOLLOW", payload: user._id });
+        //       } else {
+        //         await axios.put(`/users/${user._id}/follow`, {
+        //           userId: currentUser._id,
+        //         });
+        //         dispatch({ type: "FOLLOW", payload: user._id });
+        //       }
+        //       setFollowed(!followed);
+        //     } catch (err) {
+        //     }
+        //   };
+
+
+    //unfollow
+
     useEffect(()=>{
         getNumPeople();
         getLikeStatus();
         isJoined();
+        getFriends();
     }, []);
 
     console.log( props );
