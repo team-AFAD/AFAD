@@ -1,15 +1,14 @@
 import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { logout } from "../apiCalls"
+import { updateCall, logout } from "../apiCalls"
 import "../components/User/usermodify.scss";
-import axios from 'axios';
 import PwModal from "../components/User/PwModal";
 import InputRegister from "../components/Input/InputRegister";
 import { useNavigate } from "react-router";
 import InputSelect from "../components/Input/InputSelect";
 import PicModal from "../components/User/PicModal";
+import { put, deleteData } from "../utils/Axios";
 
-const BACK_SERVER = "http://localhost:8080/api";
 
 const UserModify = () => {
     const navigate = useNavigate();
@@ -25,13 +24,6 @@ const UserModify = () => {
     });
    
     const inputs = [
-    {
-        id: 4,
-        name: "username",
-        type: "text",
-        label:"이름",
-        required: true,
-    },
     {
         id: 5,
         name: "email",
@@ -87,41 +79,32 @@ const UserModify = () => {
         e.preventDefault();
         console.log("values", values);
 
-        const response = await axios.put(BACK_SERVER + "/users/modify/"+ user._id, values, 
-        {
-            headers: {
-            'Authorization': localStorage.getItem('access_token'),
-            }
-        });
-        console.log(response.data);
-        alert("다시 로그인 해주세요.")
-        logout(dispatch);
-        if (response.status === 200) {navigate("/login");}
+        const response = await put("/users/modify/"+ user._id, values);
+        console.log(response);
+        // updateCall(values, dispatch)
+        // alert("다시 로그인 해주세요.")
+        // logout(dispatch);
+        // if (response.status === 200) {navigate("/login");}
     }
 
     const deleteUser = async (e) => {
-        const response = await axios.delete(BACK_SERVER + "/users/modify/"+ user._id, 
-        {
-            headers: {
-            'Authorization': localStorage.getItem('access_token'),
-            }
-        });
+        const response = await deleteData("/users/modify/"+ user._id);
         console.log(response)
-        alert("그동안 이용해주셔서 감사합니다.")
-        logout(dispatch);
-        if (response.status === 200) {navigate("/");}
+        // alert("그동안 이용해주셔서 감사합니다.")
+        // logout(dispatch);
+        // if (response.status === 200) {navigate("/");}
     }
     return(
         <div className="UserModify">
         <h1>회원정보 수정</h1>
         <form className="modifyForm">
-            {/* <label>아이디</label>
-            <input value={user.identity} readOnly></input>
+            <label>아이디</label>
+            <input value={user.identity} readOnly style={{backgroundColor: "lightgray"}}></input>
 
-            <label>이메일</label>
-            <input value={user.email} readOnly></input>
+            <label>이름</label>
+            <input value={user.username} readOnly style={{backgroundColor: "lightgray"}}></input>
 
-            <label>닉네임</label>
+            {/* <label>닉네임</label>
             <input type="text" value={nickname} onChange={onChange}></input> */}
             
             {inputs.map((input) => (

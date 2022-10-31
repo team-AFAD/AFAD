@@ -28,10 +28,10 @@ const PicModal = () => {
         })
         .then((response) => {
             console.log(response.data);
-            console.log(response.status);
-            alert("다시 로그인 해주세요.")
-            logout(dispatch);
-            if (response.status === 200) {navigate("/login");}
+            // console.log(response.status);
+            // alert("다시 로그인 해주세요.")
+            // logout(dispatch);
+            // if (response.status === 200) {navigate("/login");}
             
         })
         .catch((error) => {

@@ -23,7 +23,8 @@ const UserSchema = new mongoose.Schema({
     },
     profilePicture:{
         type:String,
-        default:""
+        default: "profilePic.png",
+        required: false,
     },
     city: {
         type: String,
