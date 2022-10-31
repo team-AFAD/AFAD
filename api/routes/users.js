@@ -36,7 +36,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage:storage})
 
 //아이디 수정
-router.put("/modify/:id", upload.single('profilePicture'), updateUser);
+router.put("/modify/:id", upload.single('profilePicture'), verifyUser, updateUser);
 //DELETE
 router.delete("/modify/:id", verifyUser, deleteUser);
 //get a user

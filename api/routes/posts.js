@@ -1,9 +1,6 @@
 import express from "express";
 import{createPost,updatePost, deletePost, getPost, getPosts} from "../controllers/post.js";
-
-// import{ likePost } from "../controllers/like.js"
-
-// import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
+import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 import multer from "multer";
 import path from 'path';
 
@@ -28,12 +25,12 @@ const upload = multer({storage:storage})
 // })
 
 //CREATE
-router.post("/write", upload.single('photo'), createPost);
+router.post("/write", upload.single('photo'), verifyToken,createPost);
 //UPDATE
 // router.put("/:id", verifyUser, updatePost);
-router.put("/:id", updatePost);
+router.put("/:id", verifyToken,updatePost);
 //DELETE
-router.delete("/:id", deletePost);
+router.delete("/:id", verifyToken,deletePost);
 //like a post
 // router.put("/:id/like", verifyUser);
 //GET
