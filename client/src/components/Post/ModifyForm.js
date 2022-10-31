@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { put, deleteData } from "../../utils/Axios";
+import { get } from "../../utils/Axios";
 
 import './postForm.scss';
 import InputPost from '../Input/InputPost';
@@ -10,24 +10,14 @@ import InputPostFile from '../Input/InputPostFile';
 
 
 
-// import Heart from '/heart_red.png';
+
 const BACK_SERVER = "http://localhost:8080/api";
 
 function ModifyForm () {
     const {user} = useContext(AuthContext);
     console.log(user._id);
     const navigate = useNavigate();
-    const [formValue, setFormValue] = useState({
-        title : "",
-        merchandise : "",
-        amount : 0,
-        num_people : 1,
-        time_limit : "",
-        place : "",
-        content : "",
-        url : "",
-        userfile : "/defaultImage.jpg"
-    });
+    const [formValue, setFormValue] = useState({});
 
     //Form에 내용이 채워질때
     const onChangeForm = (e) => {
