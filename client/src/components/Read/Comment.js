@@ -27,12 +27,10 @@ function Comment({postIdNum}){
     const onClick = async () => {
         console.log("clicked");
         console.log(desc);
-        const result = await axios.post(BACK_SERVER + "/comments", {data:{userId : user._id, postId : postIdNum, desc : desc, nickname : user.nickname}},{
-                    headers: {
-                        'Authorization': localStorage.getItem('access_token'),
-                    }
-                });
-        console.log(result); // 여기서 데이터가 안넘어가는거같은데 경로도 다 확인했고..
+        const result = await axios.post(BACK_SERVER + "/comments", 
+            {data:{userId : user._id, postId : postIdNum, desc : desc, nickname : user.nickname}},
+            {headers: {'Authorization': localStorage.getItem('access_token')}});
+        // console.log(result);
     }
 
     return(
