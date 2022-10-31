@@ -3,15 +3,15 @@ import './inputSelect.scss';
 
 const InputSelect = (props) => {
     
-    const handleChange = (e) => {
-		// event handler
-		console.log(e.target.value);
-	};
+    // const handleChange = (e) => {
+	// 	// event handler
+	// 	console.log(e.target.value);
+	// };
     
 	return (
         <div className="InputSelect">
             <label className='labels'>{props.label}</label>
-            <select name={props.name} onChange={handleChange} className="selects">
+            <select name={props.name} onChange={props.onChange} className="selects">
                 
                 {props.options.map((option) => (
                     <option

@@ -15,7 +15,6 @@ const UserModify = () => {
     const {user, dispatch} = useContext(AuthContext);
 
     const [ isOpen, setOpen ] = useState(false);
-    
     const [values, setValues] = useState({
         username: user.username,
         email: user.email,
@@ -72,11 +71,19 @@ const UserModify = () => {
     const onChange = (e) =>{
         setValues({...values, [e.target.name]: e.target.value });
     }
-    console.log(values);
+    const [isData, setData] = useState(user.city);
+
+    const onSelect = (e) => {
+        console.log(e.target.value);
+        console.log(e.target.name);
+        setData({[e.target.name]: e.target.value});
+    }
+    console.log(isData)
 
     const modifyUser = async (e) => {
         e.preventDefault();
         console.log("values", values);
+
 
         const response = await put("/users/modify/"+ user._id, values);
         console.log(response);
@@ -114,7 +121,7 @@ const UserModify = () => {
                     onChange={onChange}  
                 />
             ))}
-            <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} defaultValue="seongbuk"/>
+            <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} onChange={onSelect}/>
             <button type="button" onClick={modifyUser} >수정</button>
             <button type="button" onClick={deleteUser} >탈퇴</button>
         </form>
