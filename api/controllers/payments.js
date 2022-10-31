@@ -68,11 +68,12 @@ export const payments =  async (req, res) => {
 // paymentsComp
 export const paymentComp = async (req,res) => {
   console.log( req.query );
+  console.log( req.body );
   let data = {
-    merchant_uid: req.query.merchant_uid,
-    nickname: req.query.buyer_name,
-    productName: req.query.name,
-    productPrice: req.query.amount
+    merchant_uid: req.body.merchant_uid,
+    nickname: req.body.buyer_name,
+    productName: req.body.name,
+    productPrice: req.body.amount
   }
   try{
     const newPayment = new Payments(data);

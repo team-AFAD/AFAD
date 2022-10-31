@@ -4,7 +4,6 @@ import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
 import classes from "./Header.module.scss";
-import "../../../styles/index.scss"; // header csss
 import { AuthContext } from "../../../context/AuthContext";
 import { logout } from "../../../apiCalls"
 import { Link, useNavigate } from "react-router-dom";

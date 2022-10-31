@@ -14,6 +14,7 @@ import LikeBtn from './_propeties/LikeBtn';
 import JoinBtn from './_propeties/JoinBtn';
 
 import { AuthContext } from "../../context/AuthContext";
+import Payments from '../../pages/Payments';
 
 const BACK_SERVER = "http://localhost:8080/api";
 
@@ -25,15 +26,22 @@ function MainInfo (props) {
 
     const [numPeople, setNumPeople] = useState(1);
     const [likeStatus, setLikeStatus] = useState(false);
+    const [doJoin, setDoJoin] = useState(false);
+    const [message, setMessage] = useState("");
 
     // 참여하기
-    const joinPost = async () => {
-        console.log("joinPost");
-        console.log("참여버튼 이거" + props.data._id);
-        const result = await axios.post(BACK_SERVER+"/joins", 
-            {postId : props.data._id, userId : user._id});
-        // console.log(result);
-        getNumPeople();
+    const payComplete = async (message) => {
+        setDoJoin(() => false);
+        setMessage(() => "");
+
+        if ( message == 'success' ) {
+            console.log("joinPost");
+            const result = await axios.post(BACK_SERVER+"/joins", {postId : props.data._id, userId : user._id});
+            console.log(result);
+            getNumPeople();
+        } else {
+            alert(message);
+        }
     }
 
     // 현재 참여 인원 가져오기
@@ -87,8 +95,6 @@ function MainInfo (props) {
         getLikeStatus();
     }, []);
 
-
-
     console.log( props );
     return (
         <div className="MainInfo">
@@ -117,12 +123,13 @@ function MainInfo (props) {
                         user.nickname == props.data.nickname ? 
                             <JoinBtn title="게시글 삭제" onClick={deletePost}/>
                             :
-                            <JoinBtn title="공동구매 참여" onClick={joinPost}/>
+                            <JoinBtn title="공동구매 참여" onClick={()=>setDoJoin(true)}/>
                     }
                     
                 </div>
             </div>
 
+            {doJoin && <Payments user={user} data={props.data} payComplete={payComplete} />}
         </div>
     )
 }

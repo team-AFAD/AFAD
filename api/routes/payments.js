@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get("/", paymentView);
 router.post("/", payments);
-router.get("/complete", paymentComp);
+router.post("/complete", paymentComp);
 
 export default router
