@@ -6,9 +6,6 @@
     width: 100%;
     height: $headerHeight;
     padding: 0 1.5rem;
-    width: 100%;
-    font-family: $Poppins;
-
     @include breakpoint(md) {
         padding: 0 3rem;
     }
