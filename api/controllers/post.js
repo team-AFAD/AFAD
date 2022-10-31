@@ -89,7 +89,6 @@ export const getPosts = async (req, res, next) =>{
       });
     } else {
       posts = await Post.find().sort({'createdAt' : -1});
-      console.log(posts);
     }
     res.status(200).json(posts);
   } catch (err) {
