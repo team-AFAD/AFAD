@@ -3,7 +3,7 @@ import './writer.scss';
 function Writer( props ){
     return(
         <div className='Writer'>
-            {props.username}
+            공동구매 주최자 : {props.writer}
         </div>
     )
 }

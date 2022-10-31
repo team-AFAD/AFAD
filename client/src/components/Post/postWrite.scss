@@ -2,9 +2,17 @@
     display: flex;
     justify-content: center;
     
-        h1 {
-            text-align: center; 
-            margin: 50px auto;
-            color: darkgreen;
+    h1 {
+        text-align: center; 
+        margin: 50px auto;
+        color: darkgreen;
+    }
+    p {
+        color: gray;
+        font-size: 15px;
+        span {
+            font-size: 22x;
+            font-weight: 700;
         }
+    }
 }

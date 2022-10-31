@@ -1,19 +1,4 @@
-import { useState, useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
-import axios from 'axios';
-
-import './postForm.scss';
-import InputPost from '../Input/InputPost';
-import Textarea from '../Input/Textarea';
-import InputPostFile from '../Input/InputPostFile';
-
-
-
-// import Heart from '/heart_red.png';
-const BACK_SERVER = "http://localhost:8080/api";
-
-function PostForm () {
+function ModifyForm () {
     const {user} = useContext(AuthContext);
     console.log(user._id);
     const navigate = useNavigate();
@@ -78,7 +63,7 @@ function PostForm () {
     let perPayment = Math.ceil((formValue.price)/(formValue.num_people));
 
     return (
-        <div className="PostForm">
+        <div className="ModifyForm">
             <form>
                 <InputPost title={"제목"} name={"title"} type={"text"} required
                 onChangeForm={onChangeForm}
@@ -116,4 +101,4 @@ function PostForm () {
     )
 }
 
-export default PostForm;
+export default ModifyForm;

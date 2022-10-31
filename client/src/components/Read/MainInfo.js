@@ -98,6 +98,10 @@ function MainInfo (props) {
         }
     }
 
+    // 게시글 수정
+    const modifyPost = () => {
+        navigate(`/post/modify/${props.data._id}`)
+    }
     // 게시글 삭제
     const deletePost = async () => {
         console.log(props.data._id);
@@ -140,7 +144,10 @@ function MainInfo (props) {
                     {/* 삼항연산자로 버튼 생성하기 작성자와 현재사용자 비교 */}
                     {
                         user.nickname == props.data.nickname ? 
+                        <>
+                            <JoinBtn title="게시글 수정" onClick={modifyPost}/>
                             <JoinBtn title="게시글 삭제" onClick={deletePost}/>
+                        </>
                             :
                             <div ref={button}>
                                 <JoinBtn title="공동구매 참여" onClick={()=>setDoJoin(true)}/>
