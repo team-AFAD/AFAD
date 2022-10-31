@@ -28,7 +28,7 @@ function Comment({postIdNum}){
     const onClick = async () => {
         console.log("clicked");
         console.log(desc);
-        const result = await post(BACK_SERVER + "/comments", {userId : user._id, postId : postIdNum, desc : desc, nickname : user.nickname});
+        const result = await post("/comments", {userId : user._id, postId : postIdNum, desc : desc, nickname : user.nickname});
         console.log( "result : ", result );
         // console.log(result);
     }

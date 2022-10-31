@@ -3,21 +3,22 @@ import axios from 'axios';
 const headers = {'Authorization': localStorage.getItem('access_token')};
 const BACK_SERVER = "http://localhost:8080/api";
 
-const getNoToken = (url,  params) => {
+const getNoToken = (url,  data) => {
+    console.log( data );
     return new Promise((resolve, reject) => {
-        axios.get(BACK_SERVER + url, params)
+        axios.get(BACK_SERVER + url, {params: data})
         .then((res) => {
             console.log( res );
-            resolve(res.data);
+            resolve(res);
         });
     });
 }
 
-const get = (url,  params) => {
+const get = (url,  data) => {
     return new Promise((resolve, reject) => {
-        axios.get(BACK_SERVER + url, params, headers)
+        axios.get(BACK_SERVER + url, {params: data}, {headers})
         .then((res) => {
-            resolve(res.data);
+            resolve(res);
         });
     });
 }
@@ -25,27 +26,34 @@ const get = (url,  params) => {
 
 const post = (url,  data) => {
     return new Promise((resolve, reject) => {
-        axios.post(BACK_SERVER + url, data,headers)
+        axios.post(BACK_SERVER + url, data, {headers})
         .then((res) => {
-            resolve(res.data);
+            resolve(res);
         });
     });
 }
 
 const put = (url,  data) => {
     return new Promise((resolve, reject) => {
-        axios.put(BACK_SERVER + url, data,headers)
+        axios.put(BACK_SERVER + url, data, {headers})
         .then((res) => {
-            resolve(res.data);
+            resolve(res);
         });
     });
 }
-
+const deleteNoToken = (url, data) => {
+    return new Promise((resolve, reject) => {
+        axios.delete(BACK_SERVER + url, data)
+        .then((res) => {
+            resolve(res);
+        });
+    });
+}
 const deleteData = (url, data) => {
     return new Promise((resolve, reject) => {
-        axios.delete(BACK_SERVER + url, data, headers)
+        axios.delete(BACK_SERVER + url, data, {headers})
         .then((res) => {
-            resolve(res.data);
+            resolve(res);
         });
     });
 }
