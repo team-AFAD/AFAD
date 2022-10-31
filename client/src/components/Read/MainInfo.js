@@ -149,7 +149,7 @@ function MainInfo (props) {
                     <JoinBtn title="채팅하기" onClick={goChat}/>
                     {/* 삼항연산자로 버튼 생성하기 작성자와 현재사용자 비교 */}
                     {
-                        user.nickname == props.data.nickname ? 
+                        user._id == props.data.userId ? 
                         <>
                             <JoinBtn title="게시글 수정" onClick={modifyPost}/>
                             <JoinBtn title="게시글 삭제" onClick={deletePost}/>

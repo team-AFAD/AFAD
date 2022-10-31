@@ -45,8 +45,10 @@ export const deleteComment = async (req, res, next) => {
 };
 
 export const getComments = async (req, res, next) => {
+  console.log("모르겠다 정말",req.params);
   try {
-    const comments = await Comment.find({ postId: req.params.postId });
+    const comments = await Comment.find({ postId: req.params.postid });
+    console.log("모르겠다 정말222",comments);
     res.status(200).json(comments);
   } catch (err) {
     next(err);

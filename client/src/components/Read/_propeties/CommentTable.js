@@ -1,6 +1,6 @@
 import { useState, useEffect} from 'react';
 import axios from 'axios';
-import {getNoToken, get} from '../../../utils/Axios';
+import {getNoToken, } from '../../../utils/Axios';
 
 
 // import dummy from '../../../data/comment.json';
@@ -17,7 +17,7 @@ function CommentTable (props){
     // console.log(props.nickname);
     // console.log("이거 포스트아이디 나와야대",props.postId);
         const getData = async () => {
-        const response = await get(`/comments/${props.postId}`);
+        const response = await getNoToken (`/comments/${props.postId}`);
         console.log("여기에 댓글 관련 data",response.data);
         setData(response.data);
         

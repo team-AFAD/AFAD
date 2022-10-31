@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from "../../context/AuthContext";
 
 import './comment.scss';
@@ -30,12 +30,16 @@ function Comment({postIdNum}){
         console.log(desc);
         const result = await post("/comments", {userId : user._id, postId : postIdNum, desc : desc, nickname : user.nickname});
         console.log( "result : ", result );
+        alert("댓글 작성 완료");
+        document.querySelector('textarea').value = "";
         // console.log(result);
     }
 
     const deleteData = async() => {
         await deleteData(BACK_SERVER + "/comments" + "/[_id]", null);
     }
+
+
 
     return(
         <div className='Comment'>
