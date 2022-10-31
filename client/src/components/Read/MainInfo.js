@@ -30,17 +30,18 @@ function MainInfo (props) {
     const joinPost = async () => {
         console.log("joinPost");
         console.log("참여버튼 이거" + props.data._id);
-        const result = await axios.post(BACK_SERVER+"/joins", {postId : props.data._id, userId : user._id});
-        console.log(result);
+        const result = await axios.post(BACK_SERVER+"/joins", 
+            {postId : props.data._id, userId : user._id});
+        // console.log(result);
         getNumPeople();
     }
 
     // 현재 참여 인원 가져오기
     const getNumPeople = async () => {
         // console.log("getNumber");
-        console.log(props.data._id);
+        // console.log(props.data._id);
         const result = await axios.get(BACK_SERVER + "/joins/groupPeople", {params : {postId : props.data._id}});
-        console.log(result.data);
+        // console.log(result.data);
         setNumPeople(result.data);
     }
 
@@ -74,10 +75,7 @@ function MainInfo (props) {
     // 게시글 삭제
     const deletePost = async () => {
         console.log(props.data._id);
-        const result = await axios.delete(`${BACK_SERVER}/posts/${props.data._id}`,
-            {data: {
-                postId : props.id
-            }});
+        const result = await axios.delete(`${BACK_SERVER}/posts/${props.data._id}`);
         console.log(props.data);
         alert("삭제 완료");
         navigate("/post");
