@@ -75,6 +75,7 @@ export const getPost = async (req, res, next) =>{
 //GET ALL POSTS(게시판 띄우기)
 export const getPosts = async (req, res, next) =>{
     const username = req.query.user;
+    console.log(username);
     const cateName = req.query.cate;
   try {
     let posts;
@@ -87,7 +88,8 @@ export const getPosts = async (req, res, next) =>{
         },
       });
     } else {
-      posts = await Post.find();
+      posts = await Post.find().sort({'createdAt' : -1});
+      console.log(posts);
     }
     res.status(200).json(posts);
   } catch (err) {
