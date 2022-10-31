@@ -1,5 +1,6 @@
 import React from 'react';
 import {FullPage,Slide} from "https://cdn.skypack.dev/react-full-page@0.1.12";
+import "../styles/mainPage.scss";
 
 export default class FullPageExample extends React.Component {
   render() {
