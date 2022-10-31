@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -24,10 +24,28 @@ function MainInfo (props) {
     console.log(user._id);
     const navigate = useNavigate();
 
+    const button = useRef();
+
     const [numPeople, setNumPeople] = useState(1);
     const [likeStatus, setLikeStatus] = useState(false);
     const [doJoin, setDoJoin] = useState(false);
     const [message, setMessage] = useState("");
+    // const [letJoin, setLetJoin] = useState(false);
+
+    // 참여 여부 확인하기
+    const isJoined = async () => {
+        const result = await axios.get(BACK_SERVER + "/joins/joinCheck", {params : {postId : props.data._id, userId : user._id}});
+        // console.log(result.data.valid);
+        const btn = button.current.querySelector(".ReadBtn");
+        // console.log(button.current.querySelector(".ReadBtn"));
+        if (result.data.valid) {
+            btn.disabled = false;
+            // setLetJoin(true);
+        } else {
+            btn.disabled = true;
+            // setLoinJoin(false);
+        }
+    }
 
     // 참여하기
     const payComplete = async (message) => {
@@ -72,7 +90,7 @@ function MainInfo (props) {
     const getLikeStatus = async () => {
         console.log("likeStatus");
         const result = await axios.get(BACK_SERVER + "/likes/islike", { params : {postId : props.data._id, userId : user._id}});
-        console.log(result.data);
+        console.log("LIKE", result.data);
         if (result.data == null) {
             setLikeStatus(false);
         } else {
@@ -93,6 +111,7 @@ function MainInfo (props) {
     useEffect(()=>{
         getNumPeople();
         getLikeStatus();
+        isJoined();
     }, []);
 
     console.log( props );
@@ -123,7 +142,9 @@ function MainInfo (props) {
                         user.nickname == props.data.nickname ? 
                             <JoinBtn title="게시글 삭제" onClick={deletePost}/>
                             :
-                            <JoinBtn title="공동구매 참여" onClick={()=>setDoJoin(true)}/>
+                            <div ref={button}>
+                                <JoinBtn title="공동구매 참여" onClick={()=>setDoJoin(true)}/>
+                            </div>
                     }
                     
                 </div>

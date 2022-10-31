@@ -1,5 +1,5 @@
 import express from "express";
-import { joinPeople, groupPeople } from "../controllers/join.js";
+import { joinPeople, groupPeople, joinCheck } from "../controllers/join.js";
 
 const router = express.Router();
 
@@ -7,5 +7,6 @@ const router = express.Router();
 // router.post("/", mail.sendEmail);
 router.post("/", joinPeople);
 router.get("/groupPeople", groupPeople);
+router.get("/joinCheck", joinCheck);
 
 export default router;
