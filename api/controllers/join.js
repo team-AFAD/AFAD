@@ -15,12 +15,12 @@ export const joinPeople =  async (req, res, next) => {
 
 //join 중복확인 - joinpeople에서
 export const joinCheck = async (req, res, next) =>{ 
-  let result = await User.findOne(
-      {userId : req.body.id},
-      {postId : req.body.id}
+  let result = await Join.findOne(
+      {userId : req.query.userId,
+      postId : req.query.postId}
   );
 
-  console.log(result);
+  console.log("join", result);
 
   if (result == null) {
       res.send({valid: true});
