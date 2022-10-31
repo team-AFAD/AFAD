@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../components/User/mypage.scss"
 
 const Mypage = () => {
-    const {user, dispatch} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     console.log(user);
    
 
@@ -15,9 +15,6 @@ const Mypage = () => {
         <h1>마이페이지 - {user.nickname}님</h1>
         {user.city ? <p>서울시 {user.city}</p> : <p>서울시</p>}
         <br />
-        { user.profilePicture ? 
-        <img src={`/images/${ user.profilePicture}`} className="profilePic" /> :
-        <img src='/profilePic.png' className="profilePic" />}
         <Link to={`/modify/${user._id}`}>회원정보 수정</Link>
         <hr />
         찜 목록

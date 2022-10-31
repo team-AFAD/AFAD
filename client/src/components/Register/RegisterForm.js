@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import InputRegister from "../Input/InputRegister";
 import './registerForm.scss';
-import InputPostFile from '../Input/InputPostFile';
 import InputSelect from '../Input/InputSelect';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -177,10 +176,6 @@ function RegisterForm () {
         setValues({...values, [e.target.name]: e.target.value });
     }
 
-    const onChangeFile = () => {
-        let fileUpload = document.querySelector(".InputPostFile input");
-        console.log(fileUpload);
-    }
 
     const registerSubmit = async (e) => {
         e.preventDefault();
@@ -231,9 +226,6 @@ function RegisterForm () {
                     />
                 ) )}
                 <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} defaultValue="seoul" />
-                <InputPostFile title={"프로필 사진"} name={"profilePicture"} type={"file"}
-                functionName={onChangeFile} fileDefault={'profilePic.png'}
-                />
             <button className='btn'>가입하기</button>
             <p className='loginText'><Link to="/login" className='links'>로그인하러 가기</Link></p>
             </form>
