@@ -20,7 +20,7 @@ export const addComment = async (req, res, next) => {
       postId : req.body.postId,
       userId : req.body.userId,
       desc : req.body.desc,
-      // nickname : req.body.nickname
+      nickname : req.body.nickname
     });
     await newComment.save();
     res.status(200).send("댓글완성");

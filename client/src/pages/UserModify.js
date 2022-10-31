@@ -12,7 +12,7 @@ import { put, deleteData } from "../utils/Axios";
 const UserModify = () => {
     const navigate = useNavigate();
     const {user, dispatch} = useContext(AuthContext);
-  
+
     const [ isOpen, setOpen ] = useState(false);
     
     const [values, setValues] = useState({

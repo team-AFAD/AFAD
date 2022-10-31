@@ -12,9 +12,9 @@ function Comment({postIdNum}){
 
     const {user} = useContext(AuthContext);
     console.log(user);
-    console.log("userID", user._id);
-    console.log("user닉값", user.nickname);
-    console.log("post", postIdNum);
+    // console.log("userID", user._id);
+    // console.log("user닉값", user.nickname);
+    // console.log("post", postIdNum);
 
     const [desc, setDesc] = useState("");
 
@@ -41,7 +41,7 @@ function Comment({postIdNum}){
         <div className='Comment'>
             
             <div className='commentWrap'>
-                <CommentTable postId={postIdNum} userId={user._id} nickname={user.nickname} desc={desc}/>
+                <CommentTable postId={postIdNum} userId={user._id} nickname={user.nickname} desc={desc} />
             </div>
             <div className='commnetFormWrap'>
                 <form>
