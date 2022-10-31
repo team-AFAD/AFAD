@@ -8,6 +8,7 @@ import ResetPw from '../pages/ResetPw';
 import PostList from '../pages/PostList';
 import PostWrite from '../pages/PostWrite';
 import PostView from '../pages/PostView';
+import Payments from '../pages/Payments';
 import Messenger from "../pages/messenger/messenger";
 import MyPage from '../pages/MyPage';
 import UserModify from '../pages/UserModify';
@@ -36,6 +37,7 @@ const Router = () => {
                     <Route path="/post" element={<PostList />} />
                     <Route path="/post/write" element={<PostWrite />} />
                     <Route path="/post/:id" element={<PostView />} />
+                    <Route path="/payments" element={<Payments/>} />
                     
                     <Route path="/messenger" element={<Messenger />} />
                     <Route path="/mypage" element={<MyPage />} />
