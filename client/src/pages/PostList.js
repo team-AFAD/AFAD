@@ -4,7 +4,7 @@ import '../components/Read/postList.scss';
 import Card from '../components/Read/Card';
 import JoinBtn from '../components/Read/_propeties/JoinBtn';
 import LikeBtn from '../components/Read/_propeties/LikeBtn';
-import axios from 'axios';
+import { getNoToken } from "../utils/Axios";
 
 const PostList = ()=> {
 
@@ -12,9 +12,9 @@ const PostList = ()=> {
     const [likeStatus, setLikeStatus] = useState(false);
 
     const getData = async () => {
-        const response = await axios.get(`http://localhost:8080/api/posts`);
-        console.log( response.data );
-        setData(response.data);
+        const response = await getNoToken(`http://localhost:8080/api/posts`);
+        console.log( response );
+        setData(response);
     }
 
     // 좋아요 버튼

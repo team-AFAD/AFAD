@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from "../../context/AuthContext";
-import axios from 'axios';
 
 import './comment.scss';
 import CommentTable from './_propeties/CommentTable';
+
+import { post, deleteData } from '../../utils/Axios';
 
 const BACK_SERVER = "http://localhost:8080/api";
 
@@ -27,10 +28,13 @@ function Comment({postIdNum}){
     const onClick = async () => {
         console.log("clicked");
         console.log(desc);
-        const result = await axios.post(BACK_SERVER + "/comments", 
-            {data:{userId : user._id, postId : postIdNum, desc : desc, nickname : user.nickname}},
-            {headers: {'Authorization': localStorage.getItem('access_token')}});
+        const result = await post(BACK_SERVER + "/comments", {userId : user._id, postId : postIdNum, desc : desc, nickname : user.nickname});
+        console.log( "result : ", result );
         // console.log(result);
+    }
+
+    const deleteData = async() => {
+        await deleteData(BACK_SERVER + "/comments" + "/[_id]", null);
     }
 
     return(

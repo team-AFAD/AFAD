@@ -6,7 +6,8 @@ import axios from 'axios';
 const BACK_SERVER = "http://localhost:8080/api";
 
 function CommentTable (props){
-    const [data, setData] = useState("");
+    console.log( "props : ", props );
+    const [datas, setData] = useState(null);
     //postId가 1인 댓글만 보여지게
     // const postId = 1;
     // const commentList = dummy.comments.filter(comment =>(
@@ -26,21 +27,22 @@ function CommentTable (props){
     return(
         <>
         <table>
-            {/* <tbody>
-            {data.map( data => (
-                <tr key={data._id}>
+            <tbody>
+            { datas != null && datas.map( data => (
+
+                <tr key={data["_id"]}>
                     
                     <td>{data.nickname}</td>
                     <td style={{"width":"450px"}}>{data.desc}</td>
                     <td>{data.createdAt}</td>
                     <td>
-                        { data.userId ==  props.user._id ? 
+                        { data.userId ==  props.userId ? 
                             <button type='button'>삭제</button> : ""
                         }
                     </td>
                     </tr>
             ))}
-            </tbody> */}
+            </tbody>
         </table>
         </>
     );
