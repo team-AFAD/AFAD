@@ -7,7 +7,6 @@ export default function ChatOnline() {
               <div className="chatOnlineImgContainer">
                 <img
                   className="chatOnlineImg"
-                  src=""
                   alt=""
                 />
                 <div className="chatOnlineBadge"></div>
@@ -20,7 +19,6 @@ export default function ChatOnline() {
               <div className="chatOnlineImgContainer">
                 <img
                   className="chatOnlineImg"
-                  src=""
                   alt=""
                 />
                 <div className="chatOnlineBadge"></div>
@@ -32,7 +30,6 @@ export default function ChatOnline() {
               <div className="chatOnlineImgContainer">
                 <img
                   className="chatOnlineImg"
-                  src=""
                   alt=""
                 />
                 <div className="chatOnlineBadge"></div>
