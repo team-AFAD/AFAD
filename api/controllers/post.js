@@ -65,7 +65,7 @@ export const deletePost = async (req, res, next) =>{
 //GET(find)
 export const getPost = async (req, res, next) =>{
     try{
-        const post = await Post.findById(req.params.id).sort('-createAt');
+        const post = await Post.findById(req.params.id).sort({'create_at' : -1});
         res.status(200).json(post);
     }catch(err){
         next(err);

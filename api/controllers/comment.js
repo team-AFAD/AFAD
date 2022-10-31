@@ -14,9 +14,7 @@ import Post from "../models/Post.js";
 // };
 
 //댓글작성(수정)
-export const addComment = async (req, res, next) => {
-  console.log(req.body);
-  
+export const addComment = async (req, res, next) => {  
   try {
     const newComment = new Comment({
       postId : req.body.postId,
@@ -35,8 +33,7 @@ export const addComment = async (req, res, next) => {
 export const deleteComment = async (req, res, next) => {
   try {
     const comment = await Comment.findById(res.params.id);
-    const post = await Post.findById(res.params.id);
-    if (req.user.username === comment.userId || req.user.id === post.userId) {
+    if ( req.user.id === comment.userId ) {
       await Comment.findByIdAndDelete(req.params.id);
       res.status(200).json("The comment has been deleted.");
     } else {

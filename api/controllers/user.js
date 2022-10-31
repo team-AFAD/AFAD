@@ -4,14 +4,21 @@ import bcrypt from "bcryptjs";
 //UPDATE
 export const updateUser = async (req, res, next) =>{
     console.log("정보확인 : ", req.params.id )
+    const data = {
+            nickname : req.body.nickname,
+            email: req.body.email,
+            profilePicture: req.file.filename,
+            city: req.body.city
+    }
     try{
         const updatedUser = await User.findByIdAndUpdate(
             req.params.id, 
-            {$set : req.body}, 
+            {$set : data}, 
             {new: true}
         );
         res.status(200).json(updatedUser)
     }catch(err){
+        console.log( "err : ", err );
         next(err);
     }
 }
