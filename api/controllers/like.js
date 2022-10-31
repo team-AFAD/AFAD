@@ -21,7 +21,7 @@ import Like from "../models/Like.js";
 
 //like
 export const postLike =  async (req, res, next) => {
-  // console.log("req.body", req.body);
+  console.log("좋아요 :", req.body);
   try {
     const newLike = new Like({
       postId : req.body.postId,
@@ -37,9 +37,9 @@ export const postLike =  async (req, res, next) => {
 
   //DELETE
 export const deleteLike = async (req, res, next) =>{
-    console.log(req.body.id);
+    console.log("좋아요 취소 : ", req.body);
   try{
-      await Like.findByIdAndDelete(req.body.id);
+      await Like.findByIdAndDelete(req.body);
       res.status(200).json("I don't like it! :( ")
   }catch(err){
     res.status(500).json(err);
