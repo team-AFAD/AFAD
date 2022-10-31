@@ -4,7 +4,7 @@ import '../components/Read/postList.scss';
 import Card from '../components/Read/Card';
 import JoinBtn from '../components/Read/_propeties/JoinBtn';
 import LikeBtn from '../components/Read/_propeties/LikeBtn';
-import { getNoToken } from "../utils/Axios";
+import { getNoToken, deleteData, post } from "../utils/Axios";
 
 const PostList = ()=> {
 
@@ -22,12 +22,12 @@ const PostList = ()=> {
         if (likeStatus) {
             // 좋아요 취소
             console.log("dislike");
-            // const result = await axios.delete(BACK_SERVER + "", {postId : props.data._id, userId : user._id});
+            const result = await deleteData("/likes/delete", {data:{ postId : props.data._id, userId : user._id}});
             setLikeStatus(false);
         } else {
             // 좋아요
             console.log("like");
-            // const result = await axios.post(BACK_SERVER + "", {postId : props.data._id, userId : user._id});
+            const result = await post("/likes", {postId : props.data._id, userId: user._id});
             setLikeStatus(true);
         }
     }
@@ -35,9 +35,13 @@ const PostList = ()=> {
     // 현재 좋아요 상태 가져오기
     const getLikeStatus = async () => {
         console.log("likeStatus");
-        // const result = await axios.get(BACK_SERVER + "", {postId : props.data._id, userId : user._id});
-        // console.log(result);
-        // setLikeStatus(result);
+        const result = await getNoToken("/likes/islike", {postId : props.data._id, userId: user._id});
+        console.log("LIKE", result.data);
+        if (result.data == null) {
+            setLikeStatus(false);
+        } else {
+            setLikeStatus(true);
+        }
     }
 
     useEffect(() => {
@@ -63,7 +67,6 @@ const PostList = ()=> {
                             <div onClick={() => {link(data._id)}}> 
                                 <Card key={data._id} data={data} />
                             </div>
-                            <LikeBtn like={likeStatus} onClick={likePost}/>
                         </div>
                     );
                 })}

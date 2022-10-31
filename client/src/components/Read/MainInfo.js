@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
+
+
 import './mainInfo.scss';
 import Title from "./_propeties/Title";
 import RecruitingBtn from './_propeties/RecruitingBtn';
@@ -106,12 +108,15 @@ function MainInfo (props) {
     // 게시글 삭제
     const deletePost = async () => {
         console.log(props.data._id);
-        const result = await axios.delete(`${BACK_SERVER}/posts/${props.data._id}`);
+        const result = await deleteData(`/posts/${props.data._id}`);
         console.log(props.data);
         alert("삭제 완료");
         navigate("/post");
     }
-
+    
+    const goChat =()=>{
+        navigate("/messenger");
+    }
 
     useEffect(()=>{
         getNumPeople();
@@ -141,7 +146,7 @@ function MainInfo (props) {
             <div className='CompoWrap_flex ReadBtn'>
                 <LikeBtn like={likeStatus} onClick={likePost}/>
                 <div className='TowBtnFlex'>
-                    <JoinBtn title="채팅하기"/>
+                    <JoinBtn title="채팅하기" onClick={goChat}/>
                     {/* 삼항연산자로 버튼 생성하기 작성자와 현재사용자 비교 */}
                     {
                         user.nickname == props.data.nickname ? 

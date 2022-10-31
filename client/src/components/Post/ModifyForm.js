@@ -1,3 +1,18 @@
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { put, deleteData } from "../../utils/Axios";
+
+import './postForm.scss';
+import InputPost from '../Input/InputPost';
+import Textarea from '../Input/Textarea';
+import InputPostFile from '../Input/InputPostFile';
+
+
+
+// import Heart from '/heart_red.png';
+const BACK_SERVER = "http://localhost:8080/api";
+
 function ModifyForm () {
     const {user} = useContext(AuthContext);
     console.log(user._id);
