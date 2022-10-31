@@ -6,7 +6,6 @@ import PwModal from "../components/User/PwModal";
 import InputRegister from "../components/Input/InputRegister";
 import { useNavigate } from "react-router";
 import InputSelect from "../components/Input/InputSelect";
-import PicModal from "../components/User/PicModal";
 import { put, deleteData } from "../utils/Axios";
 
 
@@ -123,7 +122,6 @@ const UserModify = () => {
         <label>비밀번호</label>
         <button type="button" onClick={ () => setOpen(true) }>비밀번호 재설정</button>
         {isOpen === true ? <PwModal id={user.identity} /> : null}
-        <PicModal />
         </div>
     );
 }
