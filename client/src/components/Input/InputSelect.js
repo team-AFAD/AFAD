@@ -3,10 +3,10 @@ import './inputSelect.scss';
 
 const InputSelect = (props) => {
     
-    // const handleChange = (e) => {
-	// 	// event handler
-	// 	console.log(e.target.value);
-	// };
+    const handleChange = (e) => {
+		// event handler
+		console.log(e.target.value);
+	};
     
 	return (
         <div className="InputSelect">

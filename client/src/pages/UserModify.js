@@ -9,7 +9,6 @@ import InputSelect from "../components/Input/InputSelect";
 import { put, deleteData, deleteNoToken } from "../utils/Axios";
 import axios from "axios";
 
-
 const UserModify = () => {
     const navigate = useNavigate();
     const {user, dispatch} = useContext(AuthContext);
@@ -19,7 +18,9 @@ const UserModify = () => {
         username: user.username,
         email: user.email,
         nickname: user.nickname,
+        city: user.city
     });
+    console.log(values)
    
     const inputs = [
     {
@@ -71,18 +72,11 @@ const UserModify = () => {
     const onChange = (e) =>{
         setValues({...values, [e.target.name]: e.target.value });
     }
-    const [isData, setData] = useState(user.city);
-
-    const onSelect = (e) => {
-        console.log(e.target.value);
-        console.log(e.target.name);
-        setData({[e.target.name]: e.target.value});
-    }
-    console.log(isData)
 
     const modifyUser = async (e) => {
         e.preventDefault();
         console.log("values", values);
+        console.log(values["city"])
 
 
         const response = await put("/users/modify/"+ user._id, values);
@@ -121,14 +115,15 @@ const UserModify = () => {
                     onChange={onChange}  
                 />
             ))}
-            <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} onChange={onSelect}/>
+            <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} onChange={onChange} value={values["city"]}/>
             <button type="button" onClick={modifyUser} >수정</button>
             <button type="button" onClick={deleteUser} >탈퇴</button>
         </form>
 
-        <label>비밀번호</label>
+        {/* <label>비밀번호</label>
         <button type="button" onClick={ () => setOpen(true) }>비밀번호 재설정</button>
-        {isOpen === true ? <PwModal id={user.identity} /> : null}
+        {isOpen === true ? <PwModal id={user.identity} /> : null} */}
+
         </div>
     );
 }
