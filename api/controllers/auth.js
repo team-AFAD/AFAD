@@ -13,7 +13,6 @@ export const register = async (req, res, next) => {
             username: req.body.username,
             nickname : req.body.nickname,
             email: req.body.email,
-            profilePicture: req.file.filename,
             identity: req.body.id,
             city: req.body.city,
             password: hash

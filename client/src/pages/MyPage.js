@@ -17,7 +17,7 @@ const Mypage = () => {
         <br />
         <Link to={`/modify/${user._id}`}>회원정보 수정</Link>
         <hr />
-        찜 목록
+        찜목록
             
       
     
