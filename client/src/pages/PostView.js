@@ -19,8 +19,8 @@ function PostView ( ){
 
     const getData = async () => {
         const response = await axios.get(`${BACK_SERVER}/posts/${id}`);
-        console.log( response.data );
         setData(response.data);
+        
     }
     
     useEffect(() => {
@@ -41,7 +41,7 @@ function PostView ( ){
                     </div>
                     
                     <div className='postViewWrap'>
-                        <Writer writer={data.username} />
+                        <Writer writer={data.nickname} />
                         <Description description={data.desc} />
                         <Comment postIdNum={data._id}/>
                         

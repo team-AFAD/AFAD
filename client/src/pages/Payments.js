@@ -26,7 +26,7 @@ const Payments = (props) => {
             pay_method: "card",
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: data.merchandise,
-            amount: data.price || 1000,
+            amount: data.perPayment,
             buyer_email: user.email,
             buyer_name: user.username,
             buyer_tel: "010-0000-0000",

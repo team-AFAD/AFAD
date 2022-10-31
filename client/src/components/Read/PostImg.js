@@ -2,9 +2,9 @@ import './postImg.scss';
 
 
 function PostImg( props ){
-    console.log ("사진이름이야?"+props.photo);
+    // console.log ("사진이름"+props.photo);
     let src = "/images/" + decodeURI(props.photo)
-    console.log( "src : ", src );
+    // console.log( "src : ", src );
     return(
         <div className="PostImg">
             <div className='postImgWrap'>
