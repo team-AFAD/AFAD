@@ -15,7 +15,7 @@ import UserModify from '../pages/UserModify';
 import LoginEmail from '../components/Login/LoginEmail';
 import Header from '../components/Layout/Header/Header';
 import Footer from '../components/Layout/Footer/Footer';
-import FullPageExample from '../pages/MainPage';
+import SimpleSlider from '../pages/MainPage';
 import Layout from '../components/Layout/Layout';
 
 
@@ -28,7 +28,7 @@ const Router = () => {
                 <Routes>
                     {/* <Route path="/" element={<LoginEmail/>} /> */}
                     {/* <Route path="/" element={<Main />} /> */}
-                    <Route path="/" element={<FullPageExample />} />
+                    <Route path="/" element={<SimpleSlider />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/findid" element={<FindId />} />
