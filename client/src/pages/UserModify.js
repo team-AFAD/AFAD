@@ -13,7 +13,7 @@ import axios from "axios";
 const UserModify = () => {
     const navigate = useNavigate();
     const {user, dispatch} = useContext(AuthContext);
-  
+
     const [ isOpen, setOpen ] = useState(false);
     
     const [values, setValues] = useState({
