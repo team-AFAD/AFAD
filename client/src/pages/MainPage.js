@@ -65,7 +65,7 @@ export default class SimpleSlider extends Component {
       slidesToScroll: 1
     };
     return (
-      <div>
+      <div className="mainWrap">
         <Slider {...settings}>
           <div className="section-common section-area1">
             <div className='con'>혼자 살면서 과일 사먹기 너무 비쌌죠?<br/>
