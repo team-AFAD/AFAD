@@ -7,7 +7,7 @@ export const updateUser = async (req, res, next) =>{
     const data = {
             nickname : req.body.nickname,
             email: req.body.email,
-            profilePicture: req.file.filename,
+            // profilePicture: req.file.filename,
             city: req.body.city
     }
     try{

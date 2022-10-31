@@ -20,9 +20,10 @@ export const loginCall = async (userCredential,dispatch) => {
 };
 
 export const updateCall = async (userCredential,dispatch) => {
-    dispatch({ type: "LOGIN_START" });
+    dispatch({ type: "MODIFY", payload: JSON.parse(localStorage.getItem("user")) });
     try{
-        console.log( "token" );
+        console.log( "token1111" );
+        console.log( "params : ", userCredential );
         const res =  await axios({
             url: "http://localhost:8080/api/users",
             params: userCredential,
