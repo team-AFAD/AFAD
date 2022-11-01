@@ -4,6 +4,7 @@
 import './card.scss';
 import PostImg from './PostImg';
 import Title from "./_propeties/Title";
+import Merchandise from './_propeties/Merchandise';
 import RecruitingBtn from './_propeties/RecruitingBtn';
 import Place from './_propeties/Place';
 import NumPeople from './_propeties/NumPeople';
@@ -34,6 +35,7 @@ function Card (props) {
             </div>
 
             <Title title={props.data.title}/>
+            <Merchandise merchandise={props.data.merchandise}/>
 
             <div className='CompoWrap_flex bottomInfo'>
                 <NumPeople num_people={props.data.num_people}/>
