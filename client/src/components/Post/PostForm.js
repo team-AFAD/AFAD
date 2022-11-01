@@ -2,11 +2,13 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { get } from '../../utils/Axios';
 
 import './postForm.scss';
 import InputPost from '../Input/InputPost';
 import Textarea from '../Input/Textarea';
 import InputPostFile from '../Input/InputPostFile';
+import JoinBtn from "../Read/_propeties/JoinBtn";
 
 
 
@@ -86,15 +88,19 @@ function PostForm () {
                 <InputPost title={"상품명"} name={"merchandise"} type={"text"} required
                 onChangeForm={onChangeForm} inputSize="short"
                 /> <p>한 사람이 구매할 수량 (예시 : 사과 5kg을 본인을 포함하여 5명이 나눌 경우 <span>사과 1kg</span>으로 작성)</p>
+                
+                <div className="CompoWrap_flex">
                 <InputPost title={"총 금액"} name={"price"} type={"text"} required
                 onChangeForm={onChangeForm} inputSize="short"
                 />
                 <InputPost title={"모집 인원"} name={"num_people"} type={"number"} required
                 onChangeForm={onChangeForm} inputSize="short"
-                /><p>수정이 불가한 항목입니다.(예시 : 사과 5kg을 5명이서 나눌 경우 <span>사과 1kg</span>으로 작성)</p>
+                />
+                <div className='payment'>1인 결제금액 : {perPayment} 원</div>
+                </div>
+                <p>수정이 불가한 항목입니다. ( 전체금액 / 본인 포함 인원 수 )</p>
                 
-                <div className='payment'><p>1인 결제금액 : {perPayment} 원</p></div>
-
+                
                 <InputPost title={"모집 기한"} name={"end_date"} type={"date"}
                 onChangeForm={onChangeForm}
                 />
@@ -110,7 +116,7 @@ function PostForm () {
                 <InputPostFile title={"이미지 첨부 파일"} name={"photo"} type={"file"}
                 functionName={onChangeFile} fileDefault={'/defaultImage.jpg'}
                 />
-                <button type="button" onClick={onSubmit}>등록</button>
+                <JoinBtn onClick={onSubmit}>등록</JoinBtn>
             </form>
         </div>
     )
