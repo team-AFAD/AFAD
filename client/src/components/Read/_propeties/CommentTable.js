@@ -25,6 +25,7 @@ function CommentTable (props){
     useEffect(() => {
         getData();
     }, []);
+    
     return(
         <>
         <table>

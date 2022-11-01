@@ -1,26 +1,28 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { updateCall, logout, loginCall } from "../apiCalls"
+import { updateCall, logout } from "../apiCalls"
 import "../components/User/usermodify.scss";
 import PwModal from "../components/User/PwModal";
 import InputRegister from "../components/Input/InputRegister";
 import { useNavigate } from "react-router";
 import InputSelect from "../components/Input/InputSelect";
-import { put, deleteData, deleteNoToken } from "../utils/Axios";
+import { put, deleteData } from "../utils/Axios";
 import axios from "axios";
-
 
 const UserModify = () => {
     const navigate = useNavigate();
     const {user, dispatch} = useContext(AuthContext);
+    const [text, setText] = useState();
+    const [ warning, setWarning ] = useState();
 
     const [ isOpen, setOpen ] = useState(false);
-    
     const [values, setValues] = useState({
         username: user.username,
         email: user.email,
         nickname: user.nickname,
+        city: user.city
     });
+    console.log(values)
    
     const inputs = [
     {
@@ -72,11 +74,55 @@ const UserModify = () => {
     const onChange = (e) =>{
         setValues({...values, [e.target.name]: e.target.value });
     }
-    console.log(values);
+
+    // 이메일 중복 확인
+    const emailCheck = async (e) => {
+        const response = await axios.post('http://localhost:8080/api/auth/emailCheck', {email : e.target.value});
+        console.log(e.target.value);
+        const validId = response.data.valid;
+        console.log("validId", validId);
+        if (e.target.value !== "") {
+            if (validId === true) {
+                console.log("유효한 이메일");
+                setWarning('sign_checking');
+                setText('사용가능한 이메일입니다.');
+            } else {
+                console.log("중복 이메일");
+                setWarning('sign_warning');
+                setText('중복된 이메일입니다.');
+            }
+        } else {
+            setText("");
+        }
+    }
+
+    // 닉네임 중복 확인
+    const nicknameCheck = async (e) => {
+        const response = await axios.post('http://localhost:8080/api/auth/nicknameCheck', {nickname : e.target.value});
+        console.log(e.target.value);
+        const validId = response.data.valid;
+        console.log("validId", validId);
+
+        if (e.target.value !== "") {
+            if (validId === true) {
+                console.log("유효한 닉네임");
+                setWarning('sign_checking');
+                setText('사용가능한 닉네임입니다.');
+            } else {
+                console.log("중복 닉네임");
+                setWarning('sign_warning');
+                setText('중복된 닉네임입니다.');
+            }
+        } else {
+            setText("");
+        }
+    }
 
     const modifyUser = async (e) => {
         e.preventDefault();
         console.log("values", values);
+        console.log(values["city"])
+
 
         const response = await put("/users/modify/"+ user._id, values);
         console.log(response);
@@ -107,14 +153,16 @@ const UserModify = () => {
             <input type="text" value={nickname} onChange={onChange}></input> */}
             
             {inputs.map((input) => (
+
                 <InputRegister
                     key={input.id}
                     {...input}
                     value={values[input.name]}
                     onChange={onChange}  
                 />
+
             ))}
-            <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} defaultValue="seongbuk"/>
+            <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} onChange={onChange} value={values["city"]}/>
             <button type="button" onClick={modifyUser} >수정</button>
             <button type="button" onClick={deleteUser} >탈퇴</button>
         </form>
@@ -122,6 +170,7 @@ const UserModify = () => {
         <label>비밀번호</label>
         <button type="button" onClick={ () => setOpen(true) }>비밀번호 재설정</button>
         {isOpen === true ? <PwModal id={user.identity} /> : null}
+
         </div>
     );
 }

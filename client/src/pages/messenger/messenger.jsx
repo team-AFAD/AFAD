@@ -153,7 +153,9 @@ export default function Messenger() {
                         </div>
                     </>
                     ) : (
+
                     <span className="noConversationText"> Open a conversation to start a chat.</span>
+
                 )} 
                 </div>
             </div>

@@ -1,5 +1,6 @@
+
 import { useEffect, useRef, useContext, useState } from 'react';
-// import User from '../../../../../api/models/User';
+
 import './writer.scss';
 import { AuthContext } from "../../../context/AuthContext";
 import { deleteData, post, get, getNoToken, put } from '../../../utils/Axios';
@@ -22,8 +23,10 @@ function Writer( props ){
     //     }
     // }
 
+
     // 현재 팔로우 상태 가져오기
     const getfollowStatus = async () => {
+
         const icon = div.current.querySelector("i");
         console.log("followStatus");
         const result = await getNoToken("/users/isfollow", {followerId : props.writer, userId : user._id});
@@ -56,7 +59,9 @@ function Writer( props ){
             icon.classList.add("bi-person-check");
             setFollowStatus(true);
         }
+
     }
+
 
     useEffect(() => {
         getfollowStatus();
@@ -75,6 +80,7 @@ function Writer( props ){
                         <i style={style} className="bi bi-person-plus"></i>
                     </div>
                 )}
+
             </div>
         </>
     );

@@ -1,12 +1,14 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { get } from "../../utils/Axios";
+import { get , put } from "../../utils/Axios";
+import axios from "axios";
 
 import './postForm.scss';
 import InputPost from '../Input/InputPost';
 import Textarea from '../Input/Textarea';
 import InputPostFile from '../Input/InputPostFile';
+import JoinBtn from "../Read/_propeties/JoinBtn";
 
 
 
@@ -15,7 +17,6 @@ const BACK_SERVER = "http://localhost:8080/api";
 
 function ModifyForm () {
     const {user} = useContext(AuthContext);
-    console.log(user._id);
     const navigate = useNavigate();
     const [formValue, setFormValue] = useState({});
 
@@ -27,6 +28,7 @@ function ModifyForm () {
         });
     };
 
+    
     let formData = new FormData();
     
     //이미지 미리보기
@@ -37,8 +39,8 @@ function ModifyForm () {
     }
     
     // 등록
-    const onSubmit = async () => {
-        // formData.append("userId", user._id);
+    const modifyPost = async () => {
+        formData.append("userId", user._id);
         formData.append("nickname", user.nickname);
         formData.append("title", formValue.title);
         formData.append("merchandise", formValue.merchandise);
@@ -64,27 +66,33 @@ function ModifyForm () {
             navigate("/post");
     }
 
+    const cancel = () => {
+        navigate(-1);
+    }
 
     let perPayment = Math.ceil((formValue.price)/(formValue.num_people));
 
     return (
-        <div className="ModifyForm">
+        <div className="PostForm ModifyForm">
             <form>
                 <InputPost title={"제목"} name={"title"} type={"text"} required
-                onChangeForm={onChangeForm}
+                onChangeForm={onChangeForm} value={""}
                 />
                 <InputPost title={"상품명"} name={"merchandise"} type={"text"} required
                 onChangeForm={onChangeForm} inputSize="short"
-                /> <p>한 사람이 구매할 수량 (예시 : 사과 5kg을 5명이서 나눌 경우 <span>사과 1kg</span>으로 작성)</p>
-                <InputPost title={"총 금액"} name={"price"} type={"text"} required
-                onChangeForm={onChangeForm} inputSize="short"
+                /> <p>한 사람이 구매할 수량 (예시 : 사과 5kg을 본인을 포함하여 5명이 나눌 경우 <span>사과 1kg</span>으로 작성)</p>
+                <div className="CompoWrap_flex">
+                <InputPost title={"총 금액"} name={"price"} type={"text"} 
+                onChangeForm={onChangeForm} inputSize="short" readonly
                 />
-                <InputPost title={"모집 인원"} name={"num_people"} type={"number"} required
-                onChangeForm={onChangeForm} inputSize="short"
+                <InputPost title={"모집 인원"} name={"num_people"} type={"number"}
+                onChangeForm={onChangeForm} inputSize="short" readonly
                 />
+                <div className='payment'>1인 결제금액 : {perPayment} 원</div>
+                </div>
+                <p>수정이 불가한 항목입니다. ( 전체금액 / 본인 포함 인원 수 )</p>
                 
-                <div className='payment'><p>1인 결제금액 : {perPayment} 원</p></div>
-
+                
                 <InputPost title={"모집 기한"} name={"end_date"} type={"date"}
                 onChangeForm={onChangeForm}
                 />
@@ -100,7 +108,12 @@ function ModifyForm () {
                 <InputPostFile title={"이미지 첨부 파일"} name={"photo"} type={"file"}
                 functionName={onChangeFile} fileDefault={'/defaultImage.jpg'}
                 />
-                <button type="button" onClick={onSubmit}>등록</button>
+                <br />
+                <div className="CompoWrap_flex">
+                    <JoinBtn title="수 정" onClick={modifyPost}></JoinBtn>
+                    <JoinBtn title="취 소" onClick={cancel}></JoinBtn>
+                </div>
+                <br />
             </form>
         </div>
     )

@@ -5,6 +5,7 @@ export default function ChatOnline() {
         <div className="chatOnline">
             <div className="chatOnlineFriend">
               <div className="chatOnlineImgContainer">
+
                 <div className="chatOnlineBadge"></div>
               </div>
               <span className="chatOnlineName">우리..조..</span>
