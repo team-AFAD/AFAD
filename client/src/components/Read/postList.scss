@@ -1,8 +1,15 @@
 @import '../../styles/properties';
 
+.postListBtnWrap {
+    margin: 20px;
+}
 .PostList {
+    padding: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    border: 1px solid red;
+    // border: 1px solid red;
     .CompoWrap_flex{
         display: flex;
         flex-wrap: wrap;

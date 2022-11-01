@@ -55,10 +55,11 @@ const PostList = ()=> {
         navigate("/post/" + url);
     }
     return (
-        <div className="PostList">
-            <div onClick={() => {link('write')}}>
+        <>
+            <div className='postListBtnWrap' onClick={() => {link('write')}}>
                 <JoinBtn title="게시글 작성"/>
             </div>
+        <div className="PostList">
             <div className='CompoWrap_flex'>
                 {data.map( data =>{
                     console.log(data.id);
@@ -74,6 +75,7 @@ const PostList = ()=> {
             </div>
             
         </div>
+        </>
     )
 }
 
