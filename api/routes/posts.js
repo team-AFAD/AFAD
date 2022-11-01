@@ -28,7 +28,7 @@ const upload = multer({storage:storage})
 router.post("/write", upload.single('photo'), verifyToken,createPost);
 //UPDATE
 // router.put("/:id", verifyUser, updatePost);
-router.put("/:id", verifyToken,updatePost);
+router.put("/modify/:id", upload.single('photo'), verifyToken, updatePost);
 //DELETE
 router.delete("/:id", verifyToken,deletePost);
 //like a post

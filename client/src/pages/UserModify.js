@@ -24,23 +24,23 @@ const UserModify = () => {
     });
     console.log(values)
    
-    const inputs = [
-    {
-        id: 5,
-        name: "email",
-        type: "email",
-        errorMessage: "이메일 형식이 올바르지 않습니다. 다시 입력해 주세요.",
-        label:"이메일",
-        required: true,
-    },
-    {
-        id: 6,
-        name: "nickname",
-        type: "text",
-        label:"닉네임",
-        required: true,
-    },
-    ];
+    // const inputs = [
+    // {
+    //     id: 5,
+    //     name: "email",
+    //     type: "email",
+    //     errorMessage: "이메일 형식이 올바르지 않습니다. 다시 입력해 주세요.",
+    //     label:"이메일",
+    //     required: true,
+    // },
+    // {
+    //     id: 6,
+    //     name: "nickname",
+    //     type: "text",
+    //     label:"닉네임",
+    //     required: true,
+    // },
+    // ];
 
     const OPTIONS = [
         { value: "서울시", name: "서울시" },
@@ -74,9 +74,11 @@ const UserModify = () => {
     const onChange = (e) =>{
         setValues({...values, [e.target.name]: e.target.value });
     }
+    
 
     // 이메일 중복 확인
     const emailCheck = async (e) => {
+        setValues({...values, [e.target.name]: e.target.value });
         const response = await axios.post('http://localhost:8080/api/auth/emailCheck', {email : e.target.value});
         console.log(e.target.value);
         const validId = response.data.valid;
@@ -98,6 +100,7 @@ const UserModify = () => {
 
     // 닉네임 중복 확인
     const nicknameCheck = async (e) => {
+        setValues({...values, [e.target.name]: e.target.value });
         const response = await axios.post('http://localhost:8080/api/auth/nicknameCheck', {nickname : e.target.value});
         console.log(e.target.value);
         const validId = response.data.valid;
@@ -152,19 +155,37 @@ const UserModify = () => {
             {/* <label>닉네임</label>
             <input type="text" value={nickname} onChange={onChange}></input> */}
             
-            {inputs.map((input) => (
-
+            {/* {inputs.map((input) => (
                 <InputRegister
                     key={input.id}
                     {...input}
                     value={values[input.name]}
                     onChange={onChange}  
                 />
+            ))} */}
 
-            ))}
+            <InputRegister 
+                type={"email"} 
+                name={"email"} 
+                errorMessage={"이메일 형식이 올바르지 않습니다. 다시 입력해 주세요."} 
+                label={"이메일"} 
+                onChange={emailCheck} 
+                value={values["email"]} 
+                required 
+            />
+            <InputRegister 
+                type={"text"} 
+                name={"nickname"} 
+                errorMessage={"닉네임을 작성해 주세요."} 
+                label={"닉네임"} 
+                onChange={nicknameCheck} 
+                value={values["nickname"]} 
+                required 
+            />
             <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} onChange={onChange} value={values["city"]}/>
             <button type="button" onClick={modifyUser} >수정</button>
             <button type="button" onClick={deleteUser} >탈퇴</button>
+            <p>{text}</p>
         </form>
 
         <label>비밀번호</label>
