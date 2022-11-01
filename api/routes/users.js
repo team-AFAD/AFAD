@@ -1,6 +1,6 @@
 import express from "express";
 
-import{updateUser, deleteUser, getUser, idCheck, findId, resetPW, followUser, unfollowUser} from "../controllers/user.js"
+import{updateUser, deleteUser, getUser, idCheck, findId, resetPW, followUser, unfollowUser, isFollow} from "../controllers/user.js"
 import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 import multer from "multer";
 import path from 'path';
@@ -50,9 +50,11 @@ router.post("/findId", findId);
 router.post("/resetPW", resetPW);
 
 //follow a user
-router.put("/:id/follow", followUser);
+router.put("/follow", followUser);
 //unfollow a user
-router.put("/:id/unfollow", unfollowUser);
+router.put("/unfollow", unfollowUser);
+//팔로우 유지
+router.get("/isfollow", isFollow);
 
 
 

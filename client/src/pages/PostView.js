@@ -19,8 +19,8 @@ function PostView ( ){
 
     const getData = async () => {
         const response = await axios.get(`${BACK_SERVER}/posts/${id}`);
+        console.log("data", response.data);
         setData(response.data);
-        
     }
     
     useEffect(() => {
