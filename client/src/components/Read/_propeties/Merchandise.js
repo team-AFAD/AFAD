@@ -1,9 +1,9 @@
-const Marchandise = (props) => {
+const Merchandise = (props) => {
     return (
-        <div className='Marchandise'>
+        <div className='Merchandise'>
             <p>{props.title}{props.merchandise}</p>
         </div>
     );
 }
 
-export default Marchandise;
+export default Merchandise;
