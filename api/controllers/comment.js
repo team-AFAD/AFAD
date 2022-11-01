@@ -47,6 +47,7 @@ export const addComment = async (req, res, next) => {
 
 // 유정 수정본
 export const deleteComment = async (req, res, next) => {
+
   console.log("나도 삭제하고 싶어"); // 여기까지 Ok
   console.log(res); // 매우 긴 객체옴.
   console.log(res.params); // undefined
@@ -65,6 +66,7 @@ export const deleteComment = async (req, res, next) => {
     next(err);
   }
 };
+
 
 export const getComments = async (req, res, next) => {
   console.log("모르겠다 정말",req.params);

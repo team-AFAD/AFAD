@@ -18,6 +18,7 @@ function CommentTable (props){
     console.log("확인할거",datas);
     // 댓글 삭제
     const deleteData1 = async(id) => {
+
         console.log("deleteDate1 함수 시작") // 버튼 잘 눌림.
         console.log(id); // 해당 삭제 버튼에 대한 댓글 _id 잘 들어옴.
         console.log( "댓글 삭제버튼 눌렸다");
