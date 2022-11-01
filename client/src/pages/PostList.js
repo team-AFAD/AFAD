@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import '../components/Read/postList.scss';
 import Card from '../components/Read/Card';
 import JoinBtn from '../components/Read/_propeties/JoinBtn';
-import LikeBtn from '../components/Read/_propeties/LikeBtn';
+// import LikeBtn from '../components/Read/_propeties/LikeBtn';
 import { getNoToken, deleteData, post } from "../utils/Axios";
 
 const PostList = ()=> {

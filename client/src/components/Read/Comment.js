@@ -1,10 +1,10 @@
 import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from "../../context/AuthContext";
+import { post}  from '../../utils/Axios';
 
 import './comment.scss';
 import CommentTable from './_propeties/CommentTable';
 
-import { post, deleteData } from '../../utils/Axios';
 
 const BACK_SERVER = "http://localhost:8080/api";
 
@@ -36,17 +36,12 @@ function Comment({postIdNum}){
         window.location.replace(`/post/${postIdNum}`);
     }
 
-    const deleteData = async() => {
-        await deleteData(BACK_SERVER + "/comments" + "/[_id]", null);
-    }
-
-
 
     return(
         <div className='Comment'>
             
             <div className='commentWrap'>
-                <CommentTable postId={postIdNum} userId={user._id} nickname={user.nickname} desc={desc} />
+                <CommentTable  postId={postIdNum} userId={user._id} nickname={user.nickname} desc={desc}  />
             </div>
             <div className='commnetFormWrap'>
                 <form>
