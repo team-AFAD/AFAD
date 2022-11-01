@@ -7,7 +7,7 @@ const router = express.Router();
 
 //verifyToken post랑 delete에 잠시 토큰지우기
 router.post("/", verifyToken, addComment);
-router.delete("/:id", verifyToken, deleteComment);
+router.delete("/:id", deleteComment);
 router.get("/:postid", getComments);
 
 

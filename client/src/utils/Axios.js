@@ -63,5 +63,6 @@ export {
     get,
     post,
     put,
-    deleteData
+    deleteData,
+    deleteNoToken
 };
