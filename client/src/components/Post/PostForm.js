@@ -114,9 +114,9 @@ function PostForm () {
                 <Textarea title={"내용"} name={"desc"}
                 onChangeForm={onChangeForm}
                 />
-                <InputPost title={"관련 링크"} name={"url"} type={"url"}
+                {/* <InputPost title={"관련 링크"} name={"url"} type={"url"}
                 onChangeForm={onChangeForm}
-                />
+                /> */}
                 <InputPostFile title={"이미지 첨부 파일"} name={"photo"} type={"file"}
                 functionName={onChangeFile} fileDefault={'/defaultImage.jpg'}
                 />

@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { deleteData, post, get, getNoToken } from '../../utils/Axios';
 import axios from 'axios';
-
 
 import './mainInfo.scss';
 import Title from "./_propeties/Title";
@@ -14,10 +15,7 @@ import Place from './_propeties/Place';
 import Date from './_propeties/Date';
 import LikeBtn from './_propeties/LikeBtn';
 import JoinBtn from './_propeties/JoinBtn';
-
-import { AuthContext } from "../../context/AuthContext";
 import Payments from '../../pages/Payments';
-import { deleteData, post, get, getNoToken } from '../../utils/Axios';
 
 const BACK_SERVER = "http://localhost:8080/api";
 
@@ -118,12 +116,12 @@ function MainInfo (props) {
 
     //About follow and unfollow
         const getFriends = async () => {
-          try {
-            const friendList = await getNoToken("/users/friends/" + user._id);
-            setFriends(friendList.data);
-          } catch (err) {
-            console.log(err);
-          }
+            try {
+                const friendList = await getNoToken("/users/friends/" + user._id);
+                setFriends(friendList.data);
+            } catch (err) {
+                console.log(err);
+            }
         };
 
 
