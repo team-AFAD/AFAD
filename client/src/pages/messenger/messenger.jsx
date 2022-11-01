@@ -18,11 +18,6 @@ export default function Messenger() {
     const {user} = useContext(AuthContext);
     const scrollRef = useRef();
     const box = useRef();
-    // console.log(user);
-    
-    // let socket = io("http://localhost:8000", {transports: ["websocket"]});
-    // let socket = io("http://localhost:8000");
-
 
     useEffect(()=> {
         socket.current = io("ws://localhost:8000");
@@ -87,8 +82,6 @@ export default function Messenger() {
           getMessages();
         }, [currentChat]);
 
-        // console.log("내 메시지 목록 : ", messages);
-
         //보낸메시지 db저장
         const handleSubmit = async (e) => {
             e.preventDefault();
@@ -124,19 +117,7 @@ export default function Messenger() {
        
 
 
-    // socket.on("notice", (data) => {
-
-    //     socket.emit("msg", data);
-    // })
-
-    // socket.on("print", (id) => {
-
-    // })
-
-    // console.log("채팅확인currentChat : " , currentChat);
- 
-
-    return (
+      return (
         <div className="messenger">
             <div className="chatMenu">
                 <div className="chatMenuWrapper">
@@ -172,7 +153,7 @@ export default function Messenger() {
                         </div>
                     </>
                     ) : (
-                    <span className="noConversationText"> Open a conversation to start a chat.텅...</span>
+                    <span className="noConversationText"> Open a conversation to start a chat.</span>
                 )} 
                 </div>
             </div>

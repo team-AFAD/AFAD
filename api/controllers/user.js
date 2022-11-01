@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Follow from "../models/Follow.js";
 import bcrypt from "bcryptjs";
 
 //UPDATE
@@ -107,44 +108,85 @@ export const resetPW = async (req, res, next) => {
 
 
 //follow a user;
-export const followUser = async (req, res, next) =>{
-    if (req.body.userId !== req.params.id) {
-        try {
-          const user = await User.findById(req.params.id);
-          const currentUser = await User.findById(req.body.userId);
-          if (!user.followers.includes(req.body.userId)) {
-            await user.updateOne({ $push: { followers: req.body.userId } });
-            await currentUser.updateOne({ $push: { followings: req.params.id } });
-            res.status(200).json("user has been followed");
-          } else {
-            res.status(403).json("you allready follow this user");
-          }
-        } catch (err) {
-          res.status(500).json(err);
-        }
-      } else {
-        res.status(403).json("you cant follow yourself");
-      }
-    };
+// export const followUser = async (req, res, next) =>{
+//     if (req.body.userId !== req.params.id) {
+//         try {
+//           const user = await User.findById(req.params.id);
+//           const currentUser = await User.findById(req.body.userId);
+//           if (!user.followers.includes(req.body.userId)) {
+//             await user.updateOne({ $push: { followers: req.body.userId } });
+//             await currentUser.updateOne({ $push: { followings: req.params.id } });
+//             res.status(200).json("user has been followed");
+//           } else {
+//             res.status(403).json("you allready follow this user");
+//           }
+//         } catch (err) {
+//           res.status(500).json(err);
+//         }
+//       } else {
+//         res.status(403).json("you cant follow yourself");
+//       }
+//     };
 
 
 //unfollow a user
+// export const unfollowUser = async (req, res, next) =>{
+//     if (req.body.userId !== req.params.id) {
+//         try {
+//           const user = await User.findById(req.params.id);
+//           const currentUser = await User.findById(req.body.userId);
+//           if (user.followers.includes(req.body.userId)) {
+//             await user.updateOne({ $pull: { followers: req.body.userId } });
+//             await currentUser.updateOne({ $pull: { followings: req.params.id } });
+//             res.status(200).json("user has been unfollowed");
+//           } else {
+//             res.status(403).json("you dont follow this user");
+//           }
+//         } catch (err) {
+//           res.status(500).json(err);
+//         }
+//       } else {
+//         res.status(403).json("you cant unfollow yourself");
+//       }
+//     };
+
+
+    //팔로우해서 db저장
+export const followUser =  async (req, res, next) => {
+  console.log("팔로우 :", req.body);
+  try {
+    const newfollow = new Follow({
+      userId : req.body.userId,
+      followerId : req.body.followerId
+    });
+    await newfollow.save();
+    res.status(200).send("Like it");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+
+  //언팔로우 db삭제
 export const unfollowUser = async (req, res, next) =>{
-    if (req.body.userId !== req.params.id) {
-        try {
-          const user = await User.findById(req.params.id);
-          const currentUser = await User.findById(req.body.userId);
-          if (user.followers.includes(req.body.userId)) {
-            await user.updateOne({ $pull: { followers: req.body.userId } });
-            await currentUser.updateOne({ $pull: { followings: req.params.id } });
-            res.status(200).json("user has been unfollowed");
-          } else {
-            res.status(403).json("you dont follow this user");
-          }
-        } catch (err) {
-          res.status(500).json(err);
-        }
-      } else {
-        res.status(403).json("you cant unfollow yourself");
-      }
-    };
+  console.log( "팔로우 취소 : ", req.body );
+  try{
+      await Follow.deleteMany(req.body);
+      res.status(200).json("팔로우 취소")
+  }catch(err){
+    res.status(500).json(err);
+  }
+}
+
+
+
+//유지
+export const isFollow = async (req, res, next) => {
+    try{
+        const match = await Follow.findOne({ "userId": req.query.userId, 
+        "followerId": req.query.followerId});
+        res.status(200).json(match);
+    }catch(err){
+        next(err);
+    }
+}
