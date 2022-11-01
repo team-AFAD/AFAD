@@ -31,6 +31,7 @@ export const addComment = async (req, res, next) => {
 
 
 export const deleteComment = async (req, res, next) => {
+  console.log("파람 : ", res.params)
   try {
     const comment = await Comment.findById(res.params.id);
     if ( req.user.id === comment.userId ) {
@@ -43,6 +44,7 @@ export const deleteComment = async (req, res, next) => {
     next(err);
   }
 };
+
 
 export const getComments = async (req, res, next) => {
   console.log("모르겠다 정말",req.params);

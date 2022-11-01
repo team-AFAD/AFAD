@@ -17,9 +17,9 @@ function CommentTable (props){
     console.log("확인할거",datas);
     // 댓글 삭제
     const deleteData1 = async(id) => {
-        console.log(id);
+        console.log("아이디 확인 :" , id);
         console.log( "댓글 삭제버튼 눌렸다");
-        const result = await deleteData(`/comments/${id}`);
+        const result = await getNoToken (`/comments/${id}`);
         // console.log(props.data);
         setData(result.data);
         alert("삭제 완료");

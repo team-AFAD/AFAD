@@ -29,7 +29,7 @@ const io = require("socket.io")(8000, {
 io.on("connection", (socket) => {
     //연결되었을때
     console.log("user connected.")
-    //take userId and sockeyId from user
+    //take userId and socketId from user
     socket.on("addUser", userId => {
       addUser(userId, socket.id);
       io.emit("getUsers", users);

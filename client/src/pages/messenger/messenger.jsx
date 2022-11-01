@@ -38,7 +38,7 @@ export default function Messenger() {
     useEffect(() => {
         socket.current.emit("addUser", user._id);
         socket.current.on("getUsers", (users)=> {
-            console.log(users);
+            console.log("users 콘솔 : ", users);
         })
     }, [user]);
 
@@ -49,11 +49,7 @@ export default function Messenger() {
             // console.log("id : ",user._id);
             console.log("현재 로그인 id : " ,user._id);
             try {
-                const res = await axios.get("http://localhost:8080/api/conversations/" + user._id, {   
-                    headers: {
-                    'Authorization': localStorage.getItem('access_token'),
-                }
-            });
+                const res = await axios.get("http://localhost:8080/api/conversations/" + user._id);
                 setConversations(res.data)
                 console.log(res);
             } catch (err) {
