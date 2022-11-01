@@ -1,7 +1,7 @@
 import "./messenger.scss";
 import Conversation from "../../components/Conversations/Conversation";
 import Message from "../../components/message/Message";
-import ChatOnline from "../../components/chatOnline/ChatOnline";
+// import ChatOnline from "../../components/chatOnline/ChatOnline";
 import { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
@@ -145,7 +145,7 @@ export default function Messenger() {
                         <div className="chatBoxBottom">
                             <textarea 
                             className="chatMessageInput" 
-                            placeholder="메시지를 쳐주세요..." 
+                            placeholder="메시지를 작성해 주세요..." 
                             onChange={(e)=>setNewMessage(e.target.value)}
                             value={newMessage}
                             ></textarea>
@@ -158,8 +158,8 @@ export default function Messenger() {
                 </div>
             </div>
             <div className="chatOnline">
-                <div className="chatOnlineWrapper">online
-                <ChatOnline />
+                <div className="chatOnlineWrapper">
+                {/* <ChatOnline /> */}
                 </div>
             </div>
         </div>
