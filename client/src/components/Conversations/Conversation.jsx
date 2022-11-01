@@ -7,7 +7,7 @@ export default function Conversation({conversation, currentUser}) {
 
     useEffect(() => {
         const friendId = conversation.members.find((m) => m !== currentUser._id);
-
+        //친구정보 가져오기
         const getUser = async() => {
             try{
                 const res = await axios("http://localhost:8080/api/users?userId=" + friendId, {
