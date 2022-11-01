@@ -17,7 +17,7 @@ import { updateCall } from "../../apiCalls";
 const BACK_SERVER = "http://localhost:8080/api";
 
 function ModifyForm (props) {
-    const {user ,dispatch} = useContext(AuthContext);
+    // const {user ,dispatch} = useContext(AuthContext);
     const navigate = useNavigate();
     const { id } = useParams();
     console.log(id)
@@ -69,53 +69,29 @@ function ModifyForm (props) {
     
     // 등록
     const modifyPost = async () => {
-        // // formData.append("userId", user._id);
-        // // formData.append("nickname", user.nickname);
+        // formData.append("userId", user._id);
+        // formData.append("nickname", user.nickname);
         formData.append("title", formValue.title);
         formData.append("merchandise", formValue.merchandise);
-        // // formData.append("price", formValue.price);
-        // // formData.append("num_people", formValue.num_people);
-        // // formData.append("perPayment", formValue.perPayment);
+        // formData.append("price", formValue.price);
+        // formData.append("num_people", formValue.num_people);
+        // formData.append("perPayment", formValue.perPayment);
         formData.append("end_date", formValue.end_date);
         formData.append("place", formValue.place);
         formData.append("desc", formValue.desc);
-        // formData.append(formValue);
         
         for (let key of formData.keys()) {
             console.log(key, ":", formData.get(key));
         }
-        // console.log("formValue", formValue)
 
-        // await put(`/posts/${id}`, formData, {
-        //     headers: {
-        //         "Content-Type": "multipart/form-data",
-        //     },
-        // })
-        // .then((response) => {
-        //     console.log(response.data);
-        //     alert("수정 완료");
-        // })
-
-        let response = await axios.put(`${BACK_SERVER}/posts/modify/${id}`, formData,
-        // formData,
+        const response = await axios.put(`${BACK_SERVER}/posts/modify/${id}`, formData,
             {
             headers: {
                 "Authorization": localStorage.getItem('access_token'),
                 "Content-Type": "multipart/form-data",
             }});
-        alert("작성 완료");
+        alert("수정 완료");
         console.log(response.data);
-        // await updateCall( {userId: response.data._id, username: response.data.username}, dispatch );
-    //     const response = await axios.put(`${BACK_SERVER}/posts/${id}` , 
-    //         formData,
-    //         {
-    //         headers: {
-    //             "Authorization": localStorage.getItem('access_token'),
-    //             "Content-Type": "multipart/form-data",
-    //         }});
-    //         console.log(response.data);
-    //         alert("수정 완료");
-    //         // navigate("/post");
     }
 
     const cancel = () => {

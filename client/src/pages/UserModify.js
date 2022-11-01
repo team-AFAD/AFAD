@@ -2,8 +2,6 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { updateCall, logout } from "../apiCalls"
 import "../components/User/usermodify.scss";
-import PwModal from "../components/User/PwModal";
-import InputRegister from "../components/Input/InputRegister";
 import { useNavigate } from "react-router";
 import InputSelect from "../components/Input/InputSelect";
 import { put, deleteData } from "../utils/Axios";
@@ -15,7 +13,6 @@ const UserModify = () => {
     const [text, setText] = useState();
     const [ warning, setWarning ] = useState();
 
-    const [ isOpen, setOpen ] = useState(false);
     const [values, setValues] = useState({
         username: user.username,
         email: user.email,
@@ -24,23 +21,6 @@ const UserModify = () => {
     });
     console.log(values)
    
-    // const inputs = [
-    // {
-    //     id: 5,
-    //     name: "email",
-    //     type: "email",
-    //     errorMessage: "이메일 형식이 올바르지 않습니다. 다시 입력해 주세요.",
-    //     label:"이메일",
-    //     required: true,
-    // },
-    // {
-    //     id: 6,
-    //     name: "nickname",
-    //     type: "text",
-    //     label:"닉네임",
-    //     required: true,
-    // },
-    // ];
 
     const OPTIONS = [
         { value: "서울시", name: "서울시" },
@@ -83,18 +63,20 @@ const UserModify = () => {
         console.log(e.target.value);
         const validId = response.data.valid;
         console.log("validId", validId);
-        if (e.target.value !== "") {
+        const regExp =  /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+        if (!regExp .test(e.target.value)) {
+            setWarning('error');
+            setText('이메일 형식이 올바르지 않습니다. 다시 입력해 주세요.');
+        }else {
             if (validId === true) {
                 console.log("유효한 이메일");
-                setWarning('sign_checking');
+                setWarning('success');
                 setText('사용가능한 이메일입니다.');
             } else {
                 console.log("중복 이메일");
-                setWarning('sign_warning');
+                setWarning('error');
                 setText('중복된 이메일입니다.');
             }
-        } else {
-            setText("");
         }
     }
 
@@ -109,12 +91,12 @@ const UserModify = () => {
         if (e.target.value !== "") {
             if (validId === true) {
                 console.log("유효한 닉네임");
-                setWarning('sign_checking');
-                setText('사용가능한 닉네임입니다.');
+                setWarning('success');
+                setText('사용 가능한 닉네임입니다.');
             } else {
                 console.log("중복 닉네임");
-                setWarning('sign_warning');
-                setText('중복된 닉네임입니다.');
+                setWarning('error');
+                setText('중복 닉네임입니다.');
             }
         } else {
             setText("");
@@ -129,10 +111,8 @@ const UserModify = () => {
 
         const response = await put("/users/modify/"+ user._id, values);
         console.log(response);
+        alert("수정 완료!")
         await updateCall( {userId: response.data._id, username: response.data.username}, dispatch );
-        // alert("다시 로그인 해주세요.")
-        // logout(dispatch);
-        // if (response.status === 200) {navigate("/login");}
     }
 
     const deleteUser = async (e) => {
@@ -142,55 +122,38 @@ const UserModify = () => {
         logout(dispatch);
         if (response.status === 200) {navigate("/");}
     }
+
+    const cancel = () => {
+        navigate(-1);
+    }
+
     return(
         <div className="UserModify">
-        <h1>회원정보 수정</h1>
-        <form className="modifyForm">
-            <label>아이디</label>
-            <input value={user.identity} readOnly style={{backgroundColor: "lightgray"}}></input>
+        <form>
+            <div className='title'>회원정보 수정</div>
+            <label className="labels">아이디</label>
+            <input className="inputs" value={user.identity} readOnly style={{backgroundColor: "lightgray"}}></input>
 
-            <label>이름</label>
-            <input value={user.username} readOnly style={{backgroundColor: "lightgray"}}></input>
+            <label className="labels">이름</label>
+            <input className="inputs" value={user.username} readOnly style={{backgroundColor: "lightgray"}}></input>
 
-            {/* <label>닉네임</label>
-            <input type="text" value={nickname} onChange={onChange}></input> */}
-            
-            {/* {inputs.map((input) => (
-                <InputRegister
-                    key={input.id}
-                    {...input}
-                    value={values[input.name]}
-                    onChange={onChange}  
-                />
-            ))} */}
+            <label className="labels">이메일</label>
+            <input className="inputs" type="email" name="email" onChange={emailCheck} value={values["email"]} required ></input>
 
-            <InputRegister 
-                type={"email"} 
-                name={"email"} 
-                errorMessage={"이메일 형식이 올바르지 않습니다. 다시 입력해 주세요."} 
-                label={"이메일"} 
-                onChange={emailCheck} 
-                value={values["email"]} 
-                required 
-            />
-            <InputRegister 
-                type={"text"} 
-                name={"nickname"} 
-                errorMessage={"닉네임을 작성해 주세요."} 
-                label={"닉네임"} 
-                onChange={nicknameCheck} 
-                value={values["nickname"]} 
-                required 
-            />
+            <label className="labels">닉네임</label>
+            <input className="inputs" type="text" name="nickname" onChange={nicknameCheck} value={values["nickname"]} required ></input>
+
+
             <InputSelect label={"지역 선택"} name={"city"} options={OPTIONS} onChange={onChange} value={values["city"]}/>
-            <button type="button" onClick={modifyUser} >수정</button>
-            <button type="button" onClick={deleteUser} >탈퇴</button>
-            <p>{text}</p>
-        </form>
 
-        <label>비밀번호</label>
-        <button type="button" onClick={ () => setOpen(true) }>비밀번호 재설정</button>
-        {isOpen === true ? <PwModal id={user.identity} /> : null}
+            <p className={warning}>{text}</p>
+            <div className='btns'>
+                <button type="button" className="btn2" onClick={modifyUser} >수정</button>
+                <button type="button" className="btn2" onClick={cancel} >취소</button>
+            </div>
+            {/* <button type="button" className="btn2" onClick={deleteUser} >탈퇴</button> */}
+        </form>
+            
 
         </div>
     );
