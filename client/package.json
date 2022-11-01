@@ -10,6 +10,7 @@
     "fullpage.js": "^2.9.6",
     "include-media": "^1.4.10",
     "jquery": "^3.6.1",
+    "mongoose": "^6.7.0",
     "node-sass": "^7.0.3",
     "open-color": "^1.9.1",
     "react": "^18.2.0",
