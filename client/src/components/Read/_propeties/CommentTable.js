@@ -23,7 +23,7 @@ function CommentTable (props){
         console.log( "댓글 삭제버튼 눌렸다");
         let result = await getNoToken(`/comments/${id}`);
         // let result = await deleteNoToken(`/comments/${id}`); 상단 코드에서 getNoToken을 해줘서 deleteNoToken 처리 해줌 / 근데 이 코드 처리가 아예 안됨.
-        // 
+        // 이젠 깃도 안되네 ^^
         
         setComment(result);
         // console.log(props.data);
