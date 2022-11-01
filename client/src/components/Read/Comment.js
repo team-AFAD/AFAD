@@ -20,7 +20,7 @@ function Comment({postIdNum}){
 
     // 텍스트 가져오기
     const onChange = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         setDesc(e.target.value);
     }
 
@@ -33,6 +33,7 @@ function Comment({postIdNum}){
         alert("댓글 작성 완료");
         document.querySelector('textarea').value = "";
         // console.log(result);
+        window.location.replace(`/post/${postIdNum}`);
     }
 
     const deleteData = async() => {
