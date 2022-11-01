@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { get } from "../../utils/Axios";
+import { get , put } from "../../utils/Axios";
 import axios from "axios";
 
 import './postForm.scss';
@@ -17,7 +17,6 @@ const BACK_SERVER = "http://localhost:8080/api";
 
 function ModifyForm () {
     const {user} = useContext(AuthContext);
-    console.log(user._id);
     const navigate = useNavigate();
     const [formValue, setFormValue] = useState({});
 
@@ -29,6 +28,7 @@ function ModifyForm () {
         });
     };
 
+    
     let formData = new FormData();
     
     //이미지 미리보기
@@ -40,7 +40,7 @@ function ModifyForm () {
     
     // 등록
     const modifyPost = async () => {
-        // formData.append("userId", user._id);
+        formData.append("userId", user._id);
         formData.append("nickname", user.nickname);
         formData.append("title", formValue.title);
         formData.append("merchandise", formValue.merchandise);
@@ -76,17 +76,17 @@ function ModifyForm () {
         <div className="PostForm ModifyForm">
             <form>
                 <InputPost title={"제목"} name={"title"} type={"text"} required
-                onChangeForm={onChangeForm}
+                onChangeForm={onChangeForm} value={""}
                 />
                 <InputPost title={"상품명"} name={"merchandise"} type={"text"} required
                 onChangeForm={onChangeForm} inputSize="short"
                 /> <p>한 사람이 구매할 수량 (예시 : 사과 5kg을 본인을 포함하여 5명이 나눌 경우 <span>사과 1kg</span>으로 작성)</p>
                 <div className="CompoWrap_flex">
-                <InputPost title={"총 금액"} name={"price"} type={"text"} required
-                onChangeForm={onChangeForm} inputSize="short"
+                <InputPost title={"총 금액"} name={"price"} type={"text"} 
+                onChangeForm={onChangeForm} inputSize="short" readonly
                 />
-                <InputPost title={"모집 인원"} name={"num_people"} type={"number"} required
-                onChangeForm={onChangeForm} inputSize="short"
+                <InputPost title={"모집 인원"} name={"num_people"} type={"number"}
+                onChangeForm={onChangeForm} inputSize="short" readonly
                 />
                 <div className='payment'>1인 결제금액 : {perPayment} 원</div>
                 </div>
