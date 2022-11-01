@@ -9,6 +9,7 @@ import RecruitingBtn from './_propeties/RecruitingBtn';
 import Amount from './_propeties/Amount';
 import NumPeople from './_propeties/NumPeople';
 import PerPayment from './_propeties/PerPayment';
+import Marchandise from './_propeties/Merchandise';
 import Place from './_propeties/Place';
 import Date from './_propeties/Date';
 import LikeBtn from './_propeties/LikeBtn';
@@ -164,18 +165,21 @@ function MainInfo (props) {
             </div>
 
             <div className='CompoWrap_flex middleInfo'>
+                <div>
                 { props.data.num_people != "" &&  <NumPeople current_people={numPeople} num_people={props.data.num_people} /> }
+                <Marchandise title="상품명 : " merchandise={props.data.merchandise}/>
+                </div>
                 <PerPayment perPayment={props.data.perPayment}/>
             </div>
 
             <div className='bottomInfo'>
-                <Place title="모집 장소 :"/>
+                <Place title="모집 장소 : " place={props.data.place}/>
                 <Date title="모집 기한 :" createdAt={props.data.createdAt} end_date={props.data.end_date}/>
             </div>
 
             <div className='CompoWrap_flex ReadBtn'>
                 <LikeBtn like={likeStatus} onClick={likePost}/>
-                <div className='TowBtnFlex'>
+                <div className='BtnFlex'>
                     <JoinBtn title="채팅하기" onClick={goChat}/>
                     {/* 삼항연산자로 버튼 생성하기 작성자와 현재사용자 비교 */}
                     {

@@ -76,6 +76,10 @@ function PostForm () {
             navigate("/post");
     }
 
+    const cancel = () => {
+        navigate(-1);
+    }
+
 
     let perPayment = Math.ceil((formValue.price)/(formValue.num_people));
 
@@ -116,7 +120,12 @@ function PostForm () {
                 <InputPostFile title={"이미지 첨부 파일"} name={"photo"} type={"file"}
                 functionName={onChangeFile} fileDefault={'/defaultImage.jpg'}
                 />
-                <JoinBtn onClick={onSubmit}>등록</JoinBtn>
+                <br />
+                <div className="CompoWrap_flex">
+                    <JoinBtn title="게시글 작성" onClick={onSubmit}></JoinBtn>
+                    <JoinBtn title="취 소" onClick={cancel}></JoinBtn>
+                </div>
+                <br />
             </form>
         </div>
     )
