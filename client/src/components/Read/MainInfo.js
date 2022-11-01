@@ -27,9 +27,6 @@ function MainInfo (props) {
     const navigate = useNavigate();
     const [friends, setFriends] = useState([]);
 
-    //follow관련
-    const { user : currentUser, dispatch} = useContext(AuthContext);
-    const [followed, setFollowed] = useState(currentUser.followings.includes(user?.id));
 
     const button = useRef();
 
