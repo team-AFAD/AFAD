@@ -1,11 +1,13 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './findid.scss'
 
 const BACK_SERVER = "http://localhost:8080/api";
 
 function FindId_Code (props) {
-
+    const [ text, setText ] = useState("");
+    const [ warning, setWarning ] = useState();
     const [ userId , setUserId ] = useState();
     const [ userEmail, setUserEmail ] = useState();
     const [ find , setFind ] = useState(false);
@@ -19,18 +21,21 @@ function FindId_Code (props) {
             const id = idResult.data.id;
             console.log(id);
             if (id == null) {
-                props.setText('존재하지 않는 아이디');
+                setWarning('error')
+                setText('존재하지 않는 아이디');
 
             } else {
                 console.log(id.identity);
                 setFind(true)
                 setUserEmail(props.input.current.value);
                 setUserId(id.identity);
-                props.setText('인증 완료!')
+                setWarning('success');
+                setText('인증 완료!')
             }
 
         } else {
-            props.setText('인증 실패!');
+            setWarning('error')
+            setText('인증 실패!');
         }
     }
 
@@ -39,14 +44,21 @@ function FindId_Code (props) {
         <div >
             {
                 find == false ? 
-            (<div><input type="text" name="code" placeholder="인증코드 5자리를 입력해주세요." ref={codeInput} />
-            <button type="button" onClick={findId}>아이디 찾기</button></div>) 
+            (
+            <div>
+                <label className='labels'>
+                    <input className='inputs'  type="text" name="code" placeholder="인증코드 5자리를 입력해주세요." ref={codeInput} />
+                </label>
+                <p className={warning}>{text}</p>
+                <button type="button" className="btn" onClick={findId}>아이디 찾기</button>
+            </div>
+            ) 
             : 
             (<div>
-                <p>고객님의 아이디는 <span>{userId}</span>입니다.</p>
-                <div>
-                    <button onClick={() => navigate('/login')}>로그인하러가기</button>
-                    <button onClick={() => navigate('/resetpw', { state: { id: userId , email: userEmail }})}>비밀번호 재설정</button>
+                <p className='pId'>고객님의 아이디는 <span className='spanId'>{userId}</span>입니다.</p>
+                <div className='btns'>
+                    <button className="btn2" onClick={() => navigate('/login')}>로그인하러 가기</button>
+                    <button className="btn2" onClick={() => navigate('/resetpw', { state: { id: userId , email: userEmail }})}>비밀번호 변경</button>
                 </div>
             </div> )
             }

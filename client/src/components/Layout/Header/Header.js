@@ -68,11 +68,18 @@ const Header = () => {
                         {
                             user?
                             (
+                                <>
+                                <li>
+                                    <Link to="/messenger" onClick={menuToggleHandler}>
+                                        Messenger
+                                    </Link>
+                                </li>
                                 <li>
                                     <Link to="/mypage" onClick={menuToggleHandler}>
                                         My Page
                                     </Link>
-                                </li>                               
+                                </li>  
+                                </>                              
                             )
                             :
                             (
@@ -88,10 +95,10 @@ const Header = () => {
                     {
                         user?
                         (
-                            <>
-                                <h2>{user.nickname}님</h2>
+                            <div style={{display: "flex", alignItems: "center", gap:"0 15px"}}>
+                                <span style={{fontSize:"1.3rem", fontWeight:"600"}}>{user.nickname}님</span>
                                 <button onClick={LogOut}>로그아웃</button>
-                            </>
+                            </div>
                         )
                         :
                         (

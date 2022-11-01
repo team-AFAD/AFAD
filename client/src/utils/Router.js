@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import Header from '../components/Header/Header';
-import Main from '../pages/Main';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import FindId from '../pages/FindId';
@@ -27,8 +26,6 @@ const Router = () => {
             {/* <Layout> */}
             <Header />
                 <Routes>
-                    {/* <Route path="/" element={<LoginEmail/>} /> */}
-                    {/* <Route path="/" element={<Main />} /> */}
                     <Route path="/" element={<SimpleSlider />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />

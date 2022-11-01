@@ -1,5 +1,5 @@
 @import '../../styles/properties';
-.UserModify{
+.FindId{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,24 +15,32 @@
         width: 500px;
         border: 1px solid #ccc;
         box-shadow: 3px 3px 3px #888;
-
-        .title{
-            font-size: 1.5rem;
-            text-align: center;
-            font-weight: lighter;
-            margin-bottom: 20px;
+      
+      .findidTitle{
+        font-size: 1.5rem;
+        text-align: center;
+        font-weight: lighter;
+        margin-bottom: 20px;
         }
 
-        .labels{
-            font-size: 0.8rem;
-        }
+      .labels{
+        border-bottom: 1px solid #d9d9d9;
+        margin: 0 0 8px;
 
         .inputs{
-            padding: 15px;
-            margin: 5px 0px;
-            border-radius: 2px;
-            border: 1px solid #888;
+            width: 100%;
+            height: 50px;
+            line-height: 45px;
+            padding: 2px 2px 2px 7px;
+            border: 0 none;
+            font-size: 16px;
+            letter-spacing: 1px;
             background-color: rgba(255, 255, 255, 0.1);
+
+            &:focus{
+                outline: none;
+                }
+            }
         }
 
         .success{
@@ -48,6 +56,37 @@
             text-align: center;
             color: orangered;
         }
+
+        .pId{
+            width: 100%;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .spanId{
+            width: 100%;
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .btn{
+            width: 100%;
+            height: 50px;
+            border: none;
+            background: $main-color-2;
+            color: darkslategray;
+            border-radius: 2px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 15px 0;
+            &:hover {
+              letter-spacing: 2px;
+              transform: scale(1.2);
+              cursor: pointer;
+            }
+          }
 
         .btns{
             display: flex;
@@ -72,6 +111,10 @@
                 }
               }
           }
+          
 
     }
+
+
+
 }
