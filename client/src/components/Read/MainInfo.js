@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
-
 import './mainInfo.scss';
 import Title from "./_propeties/Title";
 import RecruitingBtn from './_propeties/RecruitingBtn';
@@ -17,7 +16,7 @@ import JoinBtn from './_propeties/JoinBtn';
 
 import { AuthContext } from "../../context/AuthContext";
 import Payments from '../../pages/Payments';
-import { deleteData, post,get, getNoToken } from '../../utils/Axios';
+import { deleteData, post, get, getNoToken } from '../../utils/Axios';
 
 const BACK_SERVER = "http://localhost:8080/api";
 
