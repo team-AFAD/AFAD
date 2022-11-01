@@ -18,6 +18,8 @@ export const createPost = async (req, res, next) => {
 export const updatePost = async (req, res, next) =>{
     try {
       console.log("req.params.id", req.params.id);
+      console.log(req.body);
+      console.log(req.file);
       
       const data = {
         title : req.body.title,
@@ -31,7 +33,7 @@ export const updatePost = async (req, res, next) =>{
         // const post = await Post.findById(req.params.id);
         // if (post.userId === req.body.userId) {
           try {
-            console.log("************")
+            console.log("************");
             const updatedPost = await Post.findByIdAndUpdate(
               req.params.id,
               {

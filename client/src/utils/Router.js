@@ -10,7 +10,7 @@ import PostWrite from '../pages/PostWrite';
 import PostView from '../pages/PostView';
 import PostModify from '../pages/PostModify';
 import Payments from '../pages/Payments';
-import Messenger from "../pages/messenger/Messenger";
+import Messenger from "../pages/messenger/messenger";
 import MyPage from '../pages/MyPage';
 import UserModify from '../pages/UserModify';
 import LoginEmail from '../components/Login/LoginEmail';
