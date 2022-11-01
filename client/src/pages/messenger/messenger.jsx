@@ -6,7 +6,6 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import {io} from "socket.io-client"; 
-// import io from 'socket.io-client';
 
 export default function Messenger() {
     const [conversations, setConversations] = useState([]);
@@ -21,7 +20,7 @@ export default function Messenger() {
 
     useEffect(()=> {
         socket.current = io("ws://localhost:8000");
-        socket.current.on("getMessage", data => {
+        socket.current.on("getMessage", (data) => {
             setArrivalMessage({
                 sender: data.senderId,
                 text: data.text,
@@ -38,7 +37,7 @@ export default function Messenger() {
 
     useEffect(() => {
         socket.current.emit("addUser", user._id);
-        socket.current.on("getUsers", users=> {
+        socket.current.on("getUsers", (users)=> {
             console.log(users);
         })
     }, [user]);
@@ -69,11 +68,7 @@ export default function Messenger() {
     useEffect(() => {
         const getMessages = async () => {
             try {
-              const res = await axios.get("http://localhost:8080/api/messages/" + currentChat?._id , {   
-                headers: {
-                'Authorization': localStorage.getItem('access_token'),
-            }
-        });
+              const res = await axios.get("http://localhost:8080/api/messages/" + currentChat?._id );
               setMessages(res.data);
             } catch (err) {
               console.log(err);
@@ -81,6 +76,8 @@ export default function Messenger() {
           };
           getMessages();
         }, [currentChat]);
+
+        // console.log("메시지 확인 : ", messages);
 
         //보낸메시지 db저장
         const handleSubmit = async (e) => {

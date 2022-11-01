@@ -1,16 +1,9 @@
 import mongoose from "mongoose";
 
 const ConversationSchema = new mongoose.Schema({
-    members : {
-        type: Array
-    },
-    sender : {
-        type: String
-    },
-    text : {
-        type: String
-    },
-
+        members : {
+            type: Array
+        },
     },
     { timestamps: true }
   );
