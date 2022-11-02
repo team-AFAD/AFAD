@@ -1,8 +1,9 @@
+@import '../../styles/properties';
 .Description {
     margin-top: 30px;
     padding: 20px;
     width: 700px;
     height: auto;
-    border: 1px solid red;
+    // border: 1px solid $main-color-1;
     white-space: pre-wrap;
 }
