@@ -3,7 +3,7 @@ import {getNoToken, deleteData, deleteNoToken } from '../../../utils/Axios';
 import axios from 'axios';
 
 
-const BACK_SERVER = "http://localhost:8080/api";
+const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 function CommentTable (props){
     console.log( "props : ", props );

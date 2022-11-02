@@ -28,7 +28,8 @@ import joinRouter from "./routes/joins.js";
 
 
 const app = express();
-dotenv.config();
+dotenv.config({path: './api/.env' } ); 
+// 서버용
 // 어떤 경로에서도 통신 가능하게
 app.use(cors());
 
@@ -36,6 +37,7 @@ app.use(cors());
 app.set('view engine', 'ejs');
 
 //env.MONGO와 연결
+console.log( process.env.MONGO );
 const connect = async () => {
     try{
         await mongoose.connect(process.env.MONGO);
@@ -92,32 +94,6 @@ app.use((err, req, res, next) => {
         stack: err.stack
     });
 });
-
-io.on("connection", (socket) => {
-
-    // socket.on("enterRoom", (room, done) => {
-        // socket.join(room.room);
-        // done();
-        // 자신 제외
-        // socket.to(room.room).emit("welcome");
-        // 자기한테도
-        // socket.emit("welcome");
-    // })
-
-    // console.log("socket.id", socket.id);
-    // socket.emit("notice", socket.id);
-
-    // socket.on("newMsg", (data, done) => {
-    //     socket.to(data.room).emit("newMsg", data.msg);
-    //     done();
-    // })
-
-    // socket.on("disconnecting", () => {
-    //     socket.rooms.forEach((room) => {
-    //         socket.to(room).emit("bye");
-    //     })
-    // })
-})
 
 //8080연결완료
 app.listen(8080, ()=>{

@@ -3,7 +3,7 @@ import axios from 'axios';
 import FindId_Code from "../components/User/FindId_Code";
 import '../components/User/findid.scss'
 
-const BACK_SERVER = "http://localhost:8080/api";
+const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 const FindId = () => {
     const [ text, setText ] = useState("");

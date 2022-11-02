@@ -5,7 +5,7 @@ import '../components/User/resetpw.scss'
 import { AuthContext } from "../context/AuthContext";
 import { logout } from "../apiCalls"
 
-const BACK_SERVER = "http://localhost:8080/api";
+const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 const ResetPw = () => {
   const [resetText, setResetText] = useState();

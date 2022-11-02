@@ -13,13 +13,13 @@ export default function Messenger() {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [arrivalMessage, setArrivalMessage] = useState(null);
-    const socket = useRef(io("ws://localhost:8000"));
+    const socket = useRef(io("ws://54.180.123.252:8000"));
     const {user} = useContext(AuthContext);
     const scrollRef = useRef();
     const box = useRef();
 
     useEffect(()=> {
-        socket.current = io("ws://localhost:8000");
+        socket.current = io("ws://54.180.123.252:8000");
         socket.current.on("getMessage", (data) => {
             setArrivalMessage({
                 sender: data.senderId,
@@ -49,7 +49,7 @@ export default function Messenger() {
             // console.log("id : ",user._id);
             console.log("현재 로그인 id : " ,user._id);
             try {
-                const res = await axios.get("http://localhost:8080/api/conversations/" + user._id);
+                const res = await axios.get(process.env.REACT_APP_URL + "/api/conversations/" + user._id);
                 setConversations(res.data)
                 console.log(res);
             } catch (err) {
@@ -64,7 +64,7 @@ export default function Messenger() {
     useEffect(() => {
         const getMessages = async () => {
             try {
-              const res = await axios.get("http://localhost:8080/api/messages/" + currentChat?._id );
+              const res = await axios.get(process.env.REACT_APP_URL + "/api/messages/" + currentChat?._id );
               setMessages(res.data);
             } catch (err) {
               console.log(err);
@@ -93,7 +93,7 @@ export default function Messenger() {
             });
 
             try{
-                const res = await axios.post("http://localhost:8080/api/messages", message);
+                const res = await axios.post(process.env.REACT_APP_URL + "/api/messages", message);
                 setMessages([...messages, res.data])
                 setNewMessage("");
             }catch(err){

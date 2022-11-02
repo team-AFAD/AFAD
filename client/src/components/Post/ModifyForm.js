@@ -9,12 +9,11 @@ import InputPost from '../Input/InputPost';
 import Textarea from '../Input/Textarea';
 import InputPostFile from '../Input/InputPostFile';
 import JoinBtn from "../Read/_propeties/JoinBtn";
-import { connect } from "mongoose";
 import { updateCall } from "../../apiCalls";
 
 
 
-const BACK_SERVER = "http://localhost:8080/api";
+const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 function ModifyForm (props) {
     // const {user ,dispatch} = useContext(AuthContext);

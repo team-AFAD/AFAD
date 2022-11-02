@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const headers = {'Authorization': localStorage.getItem('access_token')};
-const BACK_SERVER = "http://localhost:8080/api";
+const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 const getNoToken = (url,  data) => {
     console.log( data );

@@ -27,8 +27,7 @@ function LoginForm() {
         console.log(values);
         // axios 수정할 예정
         try{
-            const response = await axios.post('http://localhost:8080/api/auth/login', values)
-            
+            const response = await axios.post(process.env.REACT_APP_URL + '/api/auth/login', values)
             console.log(response.data);
             setWarning('login_success');
             setText("로그인 성공")

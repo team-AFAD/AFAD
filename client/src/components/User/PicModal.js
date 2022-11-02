@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/AuthContext"
 import { logout } from "../../apiCalls"
 import { useNavigate } from "react-router";
 import axios from 'axios';
-const BACK_SERVER = "http://localhost:8080/api";
+const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 const PicModal = () => {
     const navigate = useNavigate();

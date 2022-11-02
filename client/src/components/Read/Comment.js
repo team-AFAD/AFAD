@@ -6,7 +6,7 @@ import './comment.scss';
 import CommentTable from './_propeties/CommentTable';
 
 
-const BACK_SERVER = "http://localhost:8080/api";
+const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 function Comment({postIdNum}){
 

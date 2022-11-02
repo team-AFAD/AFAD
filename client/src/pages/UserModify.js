@@ -59,7 +59,7 @@ const UserModify = () => {
     // 이메일 중복 확인
     const emailCheck = async (e) => {
         setValues({...values, [e.target.name]: e.target.value });
-        const response = await axios.post('http://localhost:8080/api/auth/emailCheck', {email : e.target.value});
+        const response = await axios.post( process.env.REACT_APP_URL + '/api/auth/emailCheck', {email : e.target.value});
         console.log(e.target.value);
         const validId = response.data.valid;
         console.log("validId", validId);
@@ -83,7 +83,7 @@ const UserModify = () => {
     // 닉네임 중복 확인
     const nicknameCheck = async (e) => {
         setValues({...values, [e.target.name]: e.target.value });
-        const response = await axios.post('http://localhost:8080/api/auth/nicknameCheck', {nickname : e.target.value});
+        const response = await axios.post( process.env.REACT_APP_URL + '/api/auth/nicknameCheck', {nickname : e.target.value});
         console.log(e.target.value);
         const validId = response.data.valid;
         console.log("validId", validId);

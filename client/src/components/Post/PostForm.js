@@ -13,7 +13,7 @@ import JoinBtn from "../Read/_propeties/JoinBtn";
 
 
 // import Heart from '/heart_red.png';
-const BACK_SERVER = "http://localhost:8080/api";
+const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 function PostForm () {
     const {user} = useContext(AuthContext);

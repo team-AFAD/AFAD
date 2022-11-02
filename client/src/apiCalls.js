@@ -5,7 +5,8 @@ export const loginCall = async (userCredential,dispatch) => {
     try{
         console.log( "token" );
         const res =  await axios({
-            url: "http://localhost:8080/api/users",
+            // url: "http://localhost:8080/api/users",
+            url: process.env.REACT_APP_URL + "/api/users",
             params: userCredential,
             headers: {
                 'Authorization': localStorage.getItem('access_token'),
@@ -25,7 +26,7 @@ export const updateCall = async (userCredential,dispatch) => {
         console.log( "token1111" );
         console.log( "params : ", userCredential );
         const res =  await axios({
-            url: "http://localhost:8080/api/users",
+            url: process.env.REACT_APP_URL + "/api/users",
             params: userCredential,
             headers: {
                 'Authorization': localStorage.getItem('access_token'),
