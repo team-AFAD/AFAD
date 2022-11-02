@@ -35,7 +35,7 @@ function PostView ( ){
         <div>
             { data != null ? (
                 <div className='PostView'>
-                    <div className='CompoWrap_flex'>
+                    <div className='CompoWrap_flex flexWrap'>
                         <PostImg photo={data.photo}/>
                         <MainInfo data={data}/>
                     </div>
