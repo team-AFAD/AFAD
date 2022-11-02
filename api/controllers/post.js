@@ -3,7 +3,7 @@ import router from "../routes/posts.js";
 
 //CREATE
 export const createPost = async (req, res, next) => {
-  req.body["photo"] = req.file.filename;
+  req.body["photo"] = (req.file == undefined) ? 'defaultImage.jpg' : req.file.filename;
   const newPost = new Post(req.body);
   try{
     const savedPost = await newPost.save();
@@ -16,21 +16,18 @@ export const createPost = async (req, res, next) => {
 
 //UPDATE
 export const updatePost = async (req, res, next) =>{
-    try {
-      console.log("req.params.id", req.params.id);
-      console.log(req.body);
-      console.log(req.file);
-      
+    try {      
+      const post = await Post.findById(req.params.id);
       const data = {
         title : req.body.title,
         merchandise: req.body.merchandise,
         end_date: req.body.end_date,
         place: req.body.place,
         desc: req.body.desc, 
-        photo: req.file.filename,
+        photo: req.file != undefined ? req.file.filename : post.photo,
         // price:req.body.price, 
       }
-        // const post = await Post.findById(req.params.id);
+        // 
         // if (post.userId === req.body.userId) {
           try {
             console.log("************");
@@ -41,7 +38,6 @@ export const updatePost = async (req, res, next) =>{
               },
               { new: true }
             );
-            console.log("update", updatedPost);
             res.status(200).json(updatedPost);
           } catch (err) {
             res.status(500).json(err);
