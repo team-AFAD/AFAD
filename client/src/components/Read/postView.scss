@@ -1,6 +1,10 @@
 @import '../../styles/properties';
 
 .PostView {
+    padding-top: 50px;
+    // display: flex;
+    // justify-content: center;
+    align-items: center;    
     .MainInfo {
         min-width: 500px;
     }
@@ -19,5 +23,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 0 auto;
     }
 }

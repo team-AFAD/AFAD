@@ -26,8 +26,13 @@
     .Title {
         font-size: 1.3em;
         font-weight: 600;
+        text-align: center;
         margin: 5px 0;
-
+        //제목이 아랫줄로 넘갈때 hidden처리
+        display : -webkit-box;
+        -webkit-line-clamp : 1;
+        -webkit-box-orient: vertical; 
+        overflow : hidden;
     }
 
     .Date {

@@ -18,8 +18,8 @@ const Mypage = () => {
             alert("그동안 이용해주셔서 감사합니다.");
             logout(dispatch);
             if (response.status === 200) {navigate("/");}
-          } else {
-          }
+        } else {
+        }
     }
 
     const [data, setData] = useState([]);
@@ -40,7 +40,7 @@ const Mypage = () => {
         console.log("work");
         navigate("/post/" + url);
     }
-   
+
     return(
         <div className="Mypage">
             <p className="title">마이페이지</p>
