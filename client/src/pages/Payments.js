@@ -5,7 +5,7 @@ const Payments = (props) => {
     console.log( props );
     const { user, data } = props;
     const {IMP} = window;
-    const BACK_SERVER = "http://localhost:8080/api";
+    const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
     IMP.init('imp42661587');
     

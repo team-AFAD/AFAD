@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './findid.scss'
 
-const BACK_SERVER = "http://localhost:8080/api";
+const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 function FindId_Code (props) {
     const [ text, setText ] = useState("");

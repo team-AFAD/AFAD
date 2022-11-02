@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import io from 'socket.io-client';
 
-const socket = io.connect("http://localhost:8000");
+const socket = io.connect("http://54.180.123.252/8000");
 
 const Chat = () => {
 

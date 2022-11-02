@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 // import { useNavigate } from "react-router-dom";
 // import '../postView.scss';
 
-const BACK_SERVER = "http://localhost:8080/api";
+const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 function PostView ( ){
     const [data, setData] = useState(null);

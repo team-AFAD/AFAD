@@ -12,7 +12,7 @@ const LoginEmail = () => {
 
     const onClick= async () => {
         console.log(input.current.value);
-        const result = await axios.post("http://localhost:8080/api/emails", {email : input.current.value})
+        const result = await axios.post(process.env.REACT_APP_URL + "/api/emails", {email : input.current.value})
         console.log(result);
         // setNickname(value);
     }

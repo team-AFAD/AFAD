@@ -17,7 +17,7 @@ import LikeBtn from './_propeties/LikeBtn';
 import JoinBtn from './_propeties/JoinBtn';
 import Payments from '../../pages/Payments';
 
-const BACK_SERVER = "http://localhost:8080/api";
+const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 function MainInfo (props) {
     const {user} = useContext(AuthContext);

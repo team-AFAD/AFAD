@@ -7,7 +7,7 @@ app.use(cors());
 
 const io = require("socket.io")(8000, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: "http://54.180.123.252:3000",
     },
   });
 

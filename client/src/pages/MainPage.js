@@ -53,6 +53,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 export default class SimpleSlider extends Component {
   render() {
+    console.log( "simpleSlider" );
     const settings = {
       dots: true,
       arrows: true,
