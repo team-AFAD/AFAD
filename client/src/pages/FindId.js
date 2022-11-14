@@ -40,7 +40,7 @@ const FindId = () => {
     return(
         <div className='FindId'>
             <form>
-                <div className='findidTitle'>아이디 찾기 / 비밀번호 변경</div>
+                <div className='findidTitle'>아이디 찾기</div>
                 <label className='labels'>
                     <input className='inputs' type="text" name="email" placeholder="이메일 주소를 입력해 주세요." ref={input} />
                 </label>

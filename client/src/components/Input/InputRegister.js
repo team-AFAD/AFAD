@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './inputRegister.css';
+import './inputRegister.scss';
 
 const InputRegister = (props) => {
     const [focused, setFocused] = useState(false);
