@@ -13,13 +13,13 @@ export default function Messenger() {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [arrivalMessage, setArrivalMessage] = useState(null);
-    const socket = useRef(io("ws://54.180.123.252:8000"));
+    const socket = useRef(io("ws://43.200.171.56:8000"));
     const {user} = useContext(AuthContext);
     const scrollRef = useRef();
     const box = useRef();
 
     useEffect(()=> {
-        socket.current = io("ws://54.180.123.252:8000");
+        socket.current = io("ws://43.200.171.56:8000");
         socket.current.on("getMessage", (data) => {
             setArrivalMessage({
                 sender: data.senderId,
