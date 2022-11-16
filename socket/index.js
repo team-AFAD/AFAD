@@ -23,6 +23,7 @@ const io = require("socket.io")(8000, {
  };
 
   const getUser = (userId) =>{
+    console.log( "users : ", users );
     return users.find(user=>user.userId === userId)
  };
 
@@ -31,13 +32,18 @@ io.on("connection", (socket) => {
     console.log("user connected.")
     //take userId and socketId from user
     socket.on("addUser", userId => {
+      console.log( "userId : ", userId );
+      console.log( socket.id );
       addUser(userId, socket.id);
       io.emit("getUsers", users);
   });
 
   //send and get message
   socket.on("sendMessage", ({senderId, receiverId, text})=>{
+    console.log( "senderID :",senderId );
+    console.log( "receiverId : ", receiverId );
     const user = getUser(receiverId);
+    console.log( "user : ", user );
     io.to(user.socketId).emit("getMessage", {
       senderId, text
     });
