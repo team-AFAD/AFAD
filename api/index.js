@@ -28,7 +28,10 @@ import joinRouter from "./routes/joins.js";
 
 
 const app = express();
-dotenv.config({path: './api/.env' } ); 
+//서버올릴때 경로
+// dotenv.config({path: './api/.env' } ); 
+// 로컬에서 실행할때 경로 
+dotenv.config({path: './.env' } ); 
 // 서버용
 // 어떤 경로에서도 통신 가능하게
 app.use(cors());
