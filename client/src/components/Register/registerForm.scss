@@ -5,11 +5,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    height: calc(100vh - 100px);
 
+    
     form{
         border: 1px solid #ccc;
         padding: 40px 50px;
-        margin: 3% 0;
+        // margin: 3% 0;
         box-shadow: 3px 3px 3px #888;
       
       .registerTitle{
