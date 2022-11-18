@@ -44,9 +44,9 @@ const Payments = (props) => {
                         }
                     }).then((result) => {
                         console.log( "result : ", result );
-
                         console.log('*******************');
                         props.payComplete('success');
+                        alert ("결제성공");
                     });
                 }
                 else {

@@ -5,6 +5,7 @@
 body {
     position:relative;
     margin : 0;
+    // height : 100vh;
   }
 
   .mainWrap {
@@ -15,7 +16,7 @@ body {
   
   .section-common {
     width : 100vw;
-    height : 100vh;
+    height : calc(100vh - 100px);
     display:flex;
     justify-content : center;
     align-items:center;

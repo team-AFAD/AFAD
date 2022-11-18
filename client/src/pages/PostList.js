@@ -64,10 +64,10 @@ const PostList = ()=> {
                 {data.map( data =>{
                     console.log(data.id);
                     return (
-                        <div className='cardWrap'>
-                            <div onClick={() => {link(data._id)}}> 
-                                <Card key={data._id} data={data} />
-                            </div>
+                        <div className='cardWrap'  key={data._id} onClick={() => {link(data._id)}}>
+                            {/* <div>  */}
+                                <Card data={data} />
+                            {/* </div> */}
                         </div>
                     );
                 })}

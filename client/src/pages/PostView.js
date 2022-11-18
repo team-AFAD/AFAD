@@ -33,6 +33,7 @@ function PostView ( ){
     
     return(
         <div>
+            
             { data != null ? (
                 <div className='PostView'>
                     <div className='CompoWrap_flex flexWrap'>
