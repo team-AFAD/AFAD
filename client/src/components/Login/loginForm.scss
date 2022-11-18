@@ -4,12 +4,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    height: calc(100vh - 100px);
 
     form{
         border: 1px solid #ccc;
         padding: 50px 60px;
         box-shadow: 3px 3px 3px #888;
-        margin: 10% 0;
+        // margin: 10% 0;
 
       .loginTitle{
         font-size: 1.5rem;

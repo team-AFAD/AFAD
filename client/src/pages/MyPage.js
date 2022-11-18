@@ -23,10 +23,10 @@ const Mypage = () => {
     }
 
     const [data, setData] = useState([]);
-    console.log("user", user["_id"])
+
     const getData = async () => {
         const response = await getNoToken(`/posts`);
-        console.log( response.data );
+        // console.log( response.data);
         setData(response.data);
     }
 
@@ -35,12 +35,11 @@ const Mypage = () => {
         // getLikeStatus();
     }, []);
 
-
     const link = (url) => {
         console.log("work");
         navigate("/post/" + url);
     }
-
+    
     return(
         <div className="Mypage">
             <p className="title">마이페이지</p>
@@ -55,34 +54,19 @@ const Mypage = () => {
             </div>
             <hr />
             <p className="title">내가 작성한 글 목록</p>
-            {data.map( data =>{
-                    console.log(data.id);
-                    return (
-                        <div className='cardWrap'>
-                            {
-                            user["_id"] === data.userId && 
-                            <div onClick={() => {link(data._id)}}> 
-                                <Card key={data._id} data={data} />
+            {/* {data.map( (data, index) =>{
+                    if (user["_id"] === data.userId){
+                        return ( 
+                            <div className='cardWrap' key={index}>
+                                <div onClick={() => {link(data._id)}} style={{width:"350px", height:"450px"}}> 
+                                    <Card key={data._id} data={data} />
+                                </div>
                             </div>
-                            }
-                        </div>
-                    );
-                })}
-            {/* <hr />
-            <p className="title">좋아요한 목록</p>
-            {data.map( data =>{
-                    console.log(data.id);
-                    return (
-                        <div className='cardWrap'>
-                            {
-                            user["_id"] === data.userId && 
-                            <div onClick={() => {link(data._id)}}> 
-                                <Card key={data._id} data={data} />
-                            </div>
-                            }
-                        </div>
-                    );
+                        );
+                    }
+                    
                 })} */}
+
         </div>
     );
 }
