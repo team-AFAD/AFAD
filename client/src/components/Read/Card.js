@@ -22,8 +22,8 @@ function Card (props) {
     //     console.log(result.data);
     //     setNumPeople(result.data);
     // }
-    console.log(props.data.createdAt);
-    console.log(props.data.photo);
+    // console.log(props.data.createdAt);
+    // console.log(props.data.photo);
     return(
         <div className="Card">
             
@@ -38,7 +38,7 @@ function Card (props) {
             <Merchandise merchandise={props.data.merchandise}/>
 
             <div className='CompoWrap_flex bottomInfo'>
-                <NumPeople num_people={props.data.num_people}/>
+                <NumPeople num_people={props.data.num_people} current_people={props.data.current_people}/>
                 <PerPayment perPayment={props.data.perPayment}/>
             </div>
 
