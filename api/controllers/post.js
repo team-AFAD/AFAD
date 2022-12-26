@@ -27,6 +27,7 @@ export const updatePost = async (req, res, next) =>{
         photo: req.file != undefined ? req.file.filename : post.photo,
         // price:req.body.price, 
       }
+      console.log( data );
         // 
         // if (post.userId === req.body.userId) {
           try {
