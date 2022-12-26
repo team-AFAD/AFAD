@@ -1,13 +1,14 @@
 import { useNavigate, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import '../components/Read/postList.scss';
 import Card from '../components/Read/Card';
 import JoinBtn from '../components/Read/_propeties/JoinBtn';
 // import LikeBtn from '../components/Read/_propeties/LikeBtn';
 import { getNoToken, deleteData, post } from "../utils/Axios";
+import { AuthContext } from '../context/AuthContext';
 
 const PostList = ()=> {
-
+    const {user} = useContext(AuthContext);
     const [data, setData] = useState([]);
     const [likeStatus, setLikeStatus] = useState(false);
 
@@ -16,6 +17,16 @@ const PostList = ()=> {
         console.log( response );
         setData(response.data);
     }
+        const [numPeople, setNumPeople] = useState(1);
+      // 현제 참여 인원 가져오기
+    const getNumPeople = async () => {
+        // console.log("getNumber");
+        console.log(data._id);
+        const result = await getNoToken(`/joins/groupPeople`, {params : {postId : data._id}});
+        console.log("이거 확인하기",result.data);
+        setNumPeople(result.data);
+    }
+    console.log("------",data);
 
     // 좋아요 버튼
     // const likePost = async () => {
@@ -46,6 +57,7 @@ const PostList = ()=> {
 
     useEffect(() => {
         getData();
+        getNumPeople();
         // getLikeStatus();
     }, []);
 
@@ -64,7 +76,17 @@ const PostList = ()=> {
                 {data.map( data =>{
                     console.log(data.id);
                     return (
-                        <div className='cardWrap'  key={data._id} onClick={() => {link(data._id)}}>
+                        <div className='cardWrap'  key={data._id} onClick={() => {
+                            user ? 
+                            link(data._id) : 
+                            (
+                                (window.confirm('로그인 후 이용 가능합니다.'))
+                                ?
+                                    navigate("/login")
+                                :
+                                    navigate("/post")
+                            )
+                            }}>
                             {/* <div>  */}
                                 <Card data={data} />
                             {/* </div> */}
