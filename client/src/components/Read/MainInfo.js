@@ -158,7 +158,7 @@ function MainInfo (props) {
         <div className="MainInfo">
             <Title title={props.data.title}/> <br />
             <div className='CompoWrap_flex topInfo'>
-                <RecruitingBtn />
+                <RecruitingBtn end_date={props.data.end_date}/>
                 <Amount price={props.data.price}/>
             </div>
 
