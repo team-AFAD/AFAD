@@ -54,10 +54,11 @@ const Mypage = () => {
             </div>
             <hr />
             <p className="title">내가 작성한 글 목록</p>
+            <div className='cardWrap'>
             {data.map( (data, index) =>{
                     if (user["_id"] === data.userId){
                         return ( 
-                            <div className='cardWrap' key={index}>
+                            <div className='card' key={index}>
                                 <div onClick={() => {link(data._id)}} style={{width:"350px", height:"450px"}}> 
                                     <Card key={data._id} data={data} />
                                 </div>
@@ -66,7 +67,7 @@ const Mypage = () => {
                     }
                     
                 })}
-
+            </div>
         </div>
     );
 }

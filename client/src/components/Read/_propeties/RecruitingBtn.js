@@ -8,8 +8,8 @@ export const RecruitingBtn = (end_date, current_people, num_people ) => {
     let day = ('0' + today.getDate()).slice(-2);
 
     let todayDate = year + '-' + month  + '-' + day;
-    console.log("종료일",end_date.end_date);
-    console.log("오늘날짜",todayDate);
+    // console.log("종료일",end_date.end_date);
+    // console.log("오늘날짜",todayDate);
 
     const endDate = end_date.end_date;
     return (

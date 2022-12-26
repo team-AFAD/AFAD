@@ -36,7 +36,7 @@ const PicModal = () => {
         })
         .catch((error) => {
             console.log(error.toJSON());
-          });
+        });
     }
     
 
