@@ -23,7 +23,7 @@ const PostList = ()=> {
         // console.log("getNumber");
         console.log(data._id);
         const result = await getNoToken(`/joins/groupPeople`, {params : {postId : data._id}});
-        console.log("이거 확인하기",result.data);
+        // console.log("이거 확인하기",result.data);
         setNumPeople(result.data);
     }
     console.log("------",data);

@@ -164,7 +164,7 @@ function MainInfo (props) {
 
             <div className='CompoWrap_flex middleInfo'>
                 <div>
-                { props.data.num_people != "" &&  <NumPeople current_people={numPeople} num_people={props.data.num_people} /> }
+                { props.data.num_people != "" &&  <NumPeople current_people={numPeople ? numPeople : 1} num_people={props.data.num_people} /> }
                 <Marchandise title="상품명 : " merchandise={props.data.merchandise}/>
                 </div>
                 <PerPayment perPayment={props.data.perPayment}/>
