@@ -33,14 +33,14 @@ const PwModal = (props) => {
     }
 
     return(
-       <>
+      <>
             <form>
                 <input type='password' placeholder='비밀번호' name="password" ref={resetPW} required></input><br />
                 <input type='password' placeholder='비밀번호 확인' name="password" onChange={ResetOnChange} ref={resetPWCheck} required></input><br />
                 <button type='button' className='reset_btn' onClick={changePW}>비밀번호 변경</button>     
                 <p className={resetWarning}>{resetText}</p>
             </form>  
-       </>
+      </>
 
     );
 }
