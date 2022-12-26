@@ -9,7 +9,7 @@ import Card from "../components/Read/Card";
 
 const Mypage = () => {
     const {user, dispatch} = useContext(AuthContext);
-    console.log(user);
+    // console.log(user);
     const navigate = useNavigate();
 
     const deleteUser = async (e) => {
@@ -54,7 +54,7 @@ const Mypage = () => {
             </div>
             <hr />
             <p className="title">내가 작성한 글 목록</p>
-            {/* {data.map( (data, index) =>{
+            {data.map( (data, index) =>{
                     if (user["_id"] === data.userId){
                         return ( 
                             <div className='cardWrap' key={index}>
@@ -65,7 +65,7 @@ const Mypage = () => {
                         );
                     }
                     
-                })} */}
+                })}
 
         </div>
     );

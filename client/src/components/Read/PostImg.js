@@ -8,7 +8,7 @@ function PostImg( props ){
     return(
         <div className="PostImg">
             <div className='postImgWrap'>
-                {(props.photo == "defaultImage.jpg") ? <img src={'/images/defaultImage.jpg'}/> : <img src={src}/>}
+                {(props.photo === "defaultImage.jpg") ? <img src={'/images/defaultImage.jpg'}/> : <img src={src}/>}
                 
             </div>
         </div>

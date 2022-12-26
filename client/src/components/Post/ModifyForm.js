@@ -16,10 +16,10 @@ import { updateCall } from "../../apiCalls";
 const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 function ModifyForm (props) {
-    // const {user ,dispatch} = useContext(AuthContext);
+    const {user ,dispatch} = useContext(AuthContext);
     const navigate = useNavigate();
     const { id } = useParams();
-    console.log(id)
+    // console.log(id)
 
     // const [data, setData] = useState(null);
 
@@ -64,7 +64,7 @@ function ModifyForm (props) {
         console.log(fileUpload.files[0]);
         // setFormValue("photo", fileUpload.files[0].name)
     }
-    console.log("photo", formValue["photo"])
+    // console.log("photo", formValue["photo"]);
     
     // 등록
     const modifyPost = async () => {
@@ -90,7 +90,8 @@ function ModifyForm (props) {
                 "Content-Type": "multipart/form-data",
             }});
         alert("수정 완료");
-        console.log(response.data);
+        navigate(-1);
+
     }
 
     const cancel = () => {
