@@ -52,7 +52,7 @@ function Card (props) {
             <Merchandise merchandise={props.data.merchandise}/>
 
             <div className='CompoWrap_flex bottomInfo'>
-                <NumPeople num_people={props.data.num_people} current_people={numPeople? numPeople : 1}/>
+                <NumPeople num_people={props.data.num_people} current_people={numPeople}/>
                 <PerPayment perPayment={props.data.perPayment}/>
             </div>
 

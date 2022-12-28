@@ -71,9 +71,12 @@ function PostForm () {
             headers: {
                 "Authorization": localStorage.getItem('access_token'),
                 "Content-Type": "multipart/form-data",
-            }});
-            alert("작성 완료");
-            navigate("/post");
+            }}
+        );
+        console.log(result.data);
+        await axios.post(BACK_SERVER+"/joins", {postId : result.data._id, userId : result.data.userId});
+        alert("작성 완료");
+        navigate("/post");
     }
 
     const cancel = () => {
