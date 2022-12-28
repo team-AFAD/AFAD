@@ -1,7 +1,7 @@
 import { useRef, useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../components/User/resetpw.scss'
+import "../components/User/usermodify.scss";
 import { AuthContext } from "../context/AuthContext";
 import { logout } from "../apiCalls"
 
@@ -65,9 +65,9 @@ const ResetPw = () => {
     navigate(-1);
 }
     return(
-        <div className='ResetPw'>
+        <div className='wrapper'>
             <form>
-                <div className='resetpwTitle'>비밀번호 변경</div>
+                <div className='Title'>비밀번호 변경</div>
                 <label className='labels'>이메일</label>
                 <input className='inputs' value={email} style={{backgroundColor: "lightgray"}} readOnly></input>
 

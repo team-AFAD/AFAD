@@ -128,9 +128,9 @@ const UserModify = () => {
     }
 
     return(
-        <div className="UserModify">
+        <div className="wrapper">
         <form>
-            <div className='title'>회원정보 수정</div>
+            <div className='Title'>회원정보 수정</div>
             <label className="labels">아이디</label>
             <input className="inputs" value={user.identity} readOnly style={{backgroundColor: "lightgray"}}></input>
 
