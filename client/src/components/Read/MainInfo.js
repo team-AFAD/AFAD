@@ -21,8 +21,8 @@ const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
 function MainInfo (props) {
     const {user} = useContext(AuthContext);
-    console.log(user);
-    console.log(user._id);
+    // console.log(user);
+    // console.log(user._id);
     const navigate = useNavigate();
     const [friends, setFriends] = useState([]);
 
@@ -40,7 +40,7 @@ function MainInfo (props) {
         const result = await axios.get(BACK_SERVER + "/joins/joinCheck", {params : {postId : props.data._id, userId : user._id}});
         // console.log(result.data.valid);
         const btn = button.current.querySelector(".ReadBtn");
-        // console.log(button.current.querySelector(".ReadBtn"));
+        console.log(button.current.querySelector(".ReadBtn"));
         if (result.data.valid) {
             btn.disabled = false;
             // setLetJoin(true);
@@ -56,9 +56,9 @@ function MainInfo (props) {
         setMessage(() => "");
 
         if ( message == 'success' ) {
-            console.log("joinPost");
+            // console.log("joinPost");
             const result = await axios.post(BACK_SERVER+"/joins", {postId : props.data._id, userId : user._id});
-            console.log(result);
+            // console.log(result);
             getNumPeople();
         } else {
             alert(message);
@@ -103,9 +103,9 @@ function MainInfo (props) {
     }
     // 게시글 삭제
     const deletePost = async () => {
-        console.log(props.data._id);
+        // console.log(props.data._id);
         const result = await deleteData(`/posts/${props.data._id}`);
-        console.log(props.data);
+        // console.log(props.data);
         alert("삭제 완료");
         navigate("/post");
     }
@@ -153,7 +153,7 @@ function MainInfo (props) {
         getFriends();
     }, []);
 
-    console.log( props );
+    // console.log( props );
     return (
         <div className="MainInfo">
             <Title title={props.data.title}/> <br />
@@ -164,7 +164,7 @@ function MainInfo (props) {
 
             <div className='CompoWrap_flex middleInfo'>
                 <div>
-                { props.data.num_people != "" &&  <NumPeople current_people={numPeople ? numPeople : 1} num_people={props.data.num_people} /> }
+                { props.data.num_people != "" &&  <NumPeople current_people={numPeople} num_people={props.data.num_people} /> }
                 <Marchandise title="상품명 : " merchandise={props.data.merchandise}/>
                 </div>
                 <PerPayment perPayment={props.data.perPayment}/>
