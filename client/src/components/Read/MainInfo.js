@@ -158,13 +158,13 @@ function MainInfo (props) {
         <div className="MainInfo">
             <Title title={props.data.title}/> <br />
             <div className='CompoWrap_flex topInfo'>
-                <RecruitingBtn end_date={props.data.end_date} current_people={numPeople ? numPeople : 1} num_people={props.data.num_people}/>
+                <RecruitingBtn end_date={props.data.end_date} current_people={numPeople} num_people={props.data.num_people}/>
                 <Amount price={props.data.price}/>
             </div>
 
             <div className='CompoWrap_flex middleInfo'>
                 <div>
-                { props.data.num_people != "" &&  <NumPeople current_people={numPeople ? numPeople : 1} num_people={props.data.num_people} /> }
+                { props.data.num_people != "" &&  <NumPeople current_people={numPeople} num_people={props.data.num_people} /> }
                 <Marchandise title="상품명 : " merchandise={props.data.merchandise}/>
                 </div>
                 <PerPayment perPayment={props.data.perPayment}/>
