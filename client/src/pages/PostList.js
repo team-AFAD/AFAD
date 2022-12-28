@@ -14,19 +14,19 @@ const PostList = ()=> {
 
     const getData = async () => {
         const response = await getNoToken(`/posts`);
-        console.log( response );
+        // console.log( response );
         setData(response.data);
     }
         const [numPeople, setNumPeople] = useState(1);
       // 현제 참여 인원 가져오기
     const getNumPeople = async () => {
         // console.log("getNumber");
-        console.log(data._id);
+        // console.log(data._id);
         const result = await getNoToken(`/joins/groupPeople`, {params : {postId : data._id}});
         // console.log("이거 확인하기",result.data);
         setNumPeople(result.data);
     }
-    console.log("------",data);
+    // console.log("------",data);
 
     // 좋아요 버튼
     // const likePost = async () => {
@@ -63,7 +63,7 @@ const PostList = ()=> {
 
     const navigate = useNavigate();
     const link = (url) => {
-        console.log("work");
+        // console.log("work");
         navigate("/post/" + url);
     }
     return (
@@ -74,7 +74,7 @@ const PostList = ()=> {
         <div className="PostList">
             <div className='CompoWrap_flex'>
                 {data.map( data =>{
-                    console.log(data.id);
+                    // console.log(data._id);
                     return (
                         <div className='cardWrap'  key={data._id} onClick={() => {
                             user ? 

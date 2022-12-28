@@ -11,7 +11,7 @@ const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 function Comment({postIdNum}){
 
     const {user} = useContext(AuthContext);
-    console.log(user);
+    // console.log(user);
     // console.log("userID", user._id);
     // console.log("user닉값", user.nickname);
     // console.log("post", postIdNum);
@@ -26,10 +26,10 @@ function Comment({postIdNum}){
 
     // 댓글 등록
     const onClick = async () => {
-        console.log("clicked");
-        console.log(desc);
+        // console.log("clicked");
+        // console.log(desc);
         const result = await post("/comments", {userId : user._id, postId : postIdNum, desc : desc, nickname : user.nickname});
-        console.log( "result : ", result );
+        // console.log( "result : ", result );
         alert("댓글 작성 완료");
         document.querySelector('textarea').value = "";
         // console.log(result);
