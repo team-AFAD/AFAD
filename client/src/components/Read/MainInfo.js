@@ -153,7 +153,16 @@ function MainInfo (props) {
         getFriends();
     }, []);
 
-    // console.log( props );
+    // 참여버튼 비활성화
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = ('0' + (today.getMonth() + 1)).slice(-2);
+    let day = ('0' + today.getDate()).slice(-2);
+    let todayDate = year + '-' + month  + '-' + day;
+
+    let end_date = props.data.end_date;
+
+    console.log("-----", props.data );
     return (
         <div className="MainInfo">
             <Title title={props.data.title}/> <br />
@@ -181,7 +190,8 @@ function MainInfo (props) {
                     <JoinBtn title="채팅하기" onClick={goChat}/>
                     {/* 삼항연산자로 버튼 생성하기 작성자와 현재사용자 비교 */}
                     {
-                        user._id == props.data.userId ? 
+                        user._id == props.data.userId 
+                        ? 
                         <>
                             <JoinBtn title="게시글 수정" onClick={modifyPost}/>
                             <JoinBtn title="게시글 삭제" onClick={deletePost}/>
@@ -190,6 +200,7 @@ function MainInfo (props) {
                             <div ref={button}>
                                 <JoinBtn title="공동구매 참여" onClick={()=>setDoJoin(true)}/>
                             </div>
+                            
                     }
                     
                 </div>

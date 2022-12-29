@@ -9,7 +9,7 @@ export const RecruitingBtn = (props) => {
     let todayDate = year + '-' + month  + '-' + day;
     // console.log("종료일",end_date.end_date);
     // console.log("오늘날짜",todayDate);
-    const endDate = props.end_date.end_date;
+    const endDate = props.end_date;
     
     console.log("props", props);
     console.log("참여인원",props.current_people);
