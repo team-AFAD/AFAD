@@ -60,3 +60,14 @@ export const isLike = async (req, res, next) => {
         next(err);
     }
 }
+
+export const getLike = async (req, res, next) => {
+  console.log("req.query.userId", req.query.userId);
+  try{
+      const result = await Like.find({ "userId": req.query.userId});
+      console.log("likelike", result);
+      res.status(200).json(result);
+  }catch(err){
+      next(err);
+  }
+}

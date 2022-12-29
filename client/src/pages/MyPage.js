@@ -24,14 +24,30 @@ const Mypage = () => {
     const [data, setData] = useState([]);
 
     const getData = async () => {
-        const response = await getNoToken(`/posts`);
+        const posts = await getNoToken(`/posts`);
         // console.log( response.data);
-        setData(response.data);
+        // setData(response.data);
+        const dataList = posts.data.filter(data => {
+            return user["_id"] === data.userId;
+        });
+        setData(dataList);
+    }
+
+
+    const [like, setLike] = useState([]);
+    
+    const getLike = async () => {
+        const posts = await getNoToken(`/posts`);
+        const likes = await getNoToken("/likes/getLike", {userId: user._id});
+        // some() 메서드는 배열의 각 요소에 대해서 단 하나라도 조건을 만족하는 경우 true를 return 합니다.
+        const dataList = posts.data.filter((post) => likes.data.some((like) => like.postId === post["_id"]))
+        setLike(dataList);
+        console.log(dataList);
     }
 
     useEffect(() => {
         getData();
-        // getLikeStatus();
+        getLike();
     }, []);
 
     const link = (url) => {
@@ -55,17 +71,27 @@ const Mypage = () => {
             <p className="title">내가 작성한 글 목록</p>
             <div className='cardWrap'>
             {data.map( (data, index) =>{
-                    if (user["_id"] === data.userId){
-                        return ( 
-                            <div className='card' key={index}>
-                                <div onClick={() => {link(data._id)}}> 
-                                    <Card key={data._id} data={data} />
-                                </div>
-                            </div>
-                        );
-                    }
-                    
-                })}
+                return ( 
+                    <div className='card' key={index}>
+                        <div onClick={() => {link(data._id)}}> 
+                            <Card key={data._id} data={data} />
+                        </div>
+                    </div>
+                );     
+            })}
+            </div>
+            <hr />
+            <p className="title">내가 좋아요한 글 목록</p>
+            <div className='cardWrap'>
+            {like.map( (like, index) =>{
+                return ( 
+                    <div className='card' key={index}>
+                        <div onClick={() => {link(like._id)}}> 
+                            <Card key={like._id} data={like} />
+                        </div>
+                    </div>
+                );     
+            })}
             </div>
         </div>
     );
