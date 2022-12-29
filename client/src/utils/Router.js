@@ -12,7 +12,6 @@ import Payments from '../pages/Payments';
 import Messenger from "../pages/messenger/messenger";
 import MyPage from '../pages/MyPage';
 import UserModify from '../pages/UserModify';
-import LoginEmail from '../components/Login/LoginEmail';
 import Header from '../components/Layout/Header/Header';
 import Footer from '../components/Layout/Footer/Footer';
 import SimpleSlider from '../pages/MainPage';

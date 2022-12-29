@@ -1,12 +1,11 @@
 .InputRegister{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    justify-content: center;
 
     .inputs{
-        width: 400px;
-        height: 50px;
-        line-height: 45px;
+        height: 45px;
+        line-height: 40px;
         padding: 2px 2px 2px 7px;
         letter-spacing: 1px;
         /* padding: 15px; */
@@ -20,7 +19,6 @@
         font-size: 0.8rem;
     }
     .errmsg{
-        width: 400px;
         font-size: 0.8rem;
         padding-bottom: 10px;
     
