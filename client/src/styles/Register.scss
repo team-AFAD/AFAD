@@ -1,4 +1,4 @@
-@import '../../styles/properties';
+@import './properties';
 
 .RegisterForm{
     display: flex;
@@ -20,6 +20,7 @@
       }
 
       .sign_checking{
+        font-size: 1.1rem;
         width: 100%;
         text-align: center;
         font-weight: bold;
@@ -27,11 +28,16 @@
       }
 
       .sign_warning{
+        font-size: 1.1rem;
         width: 100%;
         text-align: center;
         font-weight: bold;
         color: orangered;
       }
+
+      input:invalid[focused="true"]{
+        border: 1px solid red;
+    }
       
       .btn{
         width: 100%;

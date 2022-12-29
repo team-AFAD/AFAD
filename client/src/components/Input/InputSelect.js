@@ -10,7 +10,7 @@ const InputSelect = (props) => {
     
 	return (
         <div className="InputSelect">
-            <label className='labels'>{props.label}</label>
+            <label>{props.label}</label>
             <select name={props.name} onChange={props.onChange} className="selects">
                 
                 {props.options.map((option) => (

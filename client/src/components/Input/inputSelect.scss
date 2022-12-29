@@ -1,16 +1,14 @@
 .InputSelect{
-   
+    font-size: 0.9rem;
+
     .selects{
         margin: 5px 0px;
-        min-width: 0;
-        display: block;
-        width: 50%;
-        padding: 8px 8px;
-        font-size: inherit;
-        line-height: inherit;
+        width: 100%;
+        padding: 15px;
         border: 1px solid #888;
         border-radius: 2px;
-        color: inherit;
         background-color: transparent;
     }
+
 }
+

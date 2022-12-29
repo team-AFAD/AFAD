@@ -1,7 +1,7 @@
 import React, { useState, useRef }  from "react";
 import axios from 'axios';
-import FindId_Code from "../components/User/FindId_Code";
-import '../components/User/findid.scss'
+import FindId_Code from "./FindId_Code";
+import '../styles/LoginFindID.scss';
 
 const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
@@ -38,14 +38,14 @@ const FindId = () => {
         }
     }
     return(
-        <div className='FindId'>
+        <div className='warpper'>
             <form>
-                <div className='findidTitle'>아이디 찾기</div>
-                <label className='labels'>
-                    <input className='inputs' type="text" name="email" placeholder="이메일 주소를 입력해 주세요." ref={input} />
+                <div className='Title'>아이디 찾기</div>
+                <label>
+                    <input type="text" name="email" placeholder="이메일 주소를 입력해 주세요." ref={input} />
                 </label>
                 <p className={warning}>{text}</p>
-                <button type="button" className="btn" onClick={sendEmail}>인증코드 발송</button> <br />
+                <button type="button" onClick={sendEmail}>인증코드 발송</button> <br />
                 
 
                 {
