@@ -44,7 +44,7 @@ function Card (props) {
             <PostImg photo={props.data.photo}/>
             
             <div className='CompoWrap_flex topInfo'>
-                <RecruitingBtn end_date={props.data} num_people={props.data.num_people} current_people={numPeople}/>
+                <RecruitingBtn end_date={props.data.end_date} num_people={props.data.num_people} current_people={numPeople}/>
                 <Place place={props.data.place}/>
             </div>
 
