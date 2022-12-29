@@ -2,10 +2,9 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { logout } from "../apiCalls"
 import { useNavigate } from "react-router-dom";
-import "../components/User/mypage.scss"
 import { getNoToken, deleteData } from "../utils/Axios";
-
 import Card from "../components/Read/Card";
+import '../styles/Mypage.scss';
 
 const Mypage = () => {
     const {user, dispatch} = useContext(AuthContext);
@@ -59,7 +58,7 @@ const Mypage = () => {
                     if (user["_id"] === data.userId){
                         return ( 
                             <div className='card' key={index}>
-                                <div onClick={() => {link(data._id)}} style={{width:"350px", height:"450px"}}> 
+                                <div onClick={() => {link(data._id)}}> 
                                     <Card key={data._id} data={data} />
                                 </div>
                             </div>

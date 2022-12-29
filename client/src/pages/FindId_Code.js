@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './findid.scss'
+import '../styles/LoginFindID.scss';
 
 const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
@@ -17,15 +17,14 @@ function FindId_Code (props) {
     const findId = async () => {
         if (codeInput.current.value == props.code) {
             const idResult = await axios.post(BACK_SERVER + "/users/findId", {email: props.input.current.value});
-            console.log(idResult);
+            // console.log(idResult);
             const id = idResult.data.id;
-            console.log(id);
+            // console.log(id);
             if (id == null) {
                 setWarning('error')
                 setText('존재하지 않는 아이디');
-
             } else {
-                console.log(id.identity);
+                // console.log(id.identity);
                 setFind(true)
                 setUserEmail(props.input.current.value);
                 setUserId(id.identity);
@@ -38,7 +37,6 @@ function FindId_Code (props) {
             setText('인증 실패!');
         }
     }
-
 
     return (
         <div >
