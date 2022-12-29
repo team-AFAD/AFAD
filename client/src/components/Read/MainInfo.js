@@ -153,15 +153,6 @@ function MainInfo (props) {
         getFriends();
     }, []);
 
-    // 참여버튼 비활성화
-    let today = new Date();
-    let year = today.getFullYear();
-    let month = ('0' + (today.getMonth() + 1)).slice(-2);
-    let day = ('0' + today.getDate()).slice(-2);
-    let todayDate = year + '-' + month  + '-' + day;
-
-    let end_date = props.data.end_date;
-
     console.log("-----", props.data );
     return (
         <div className="MainInfo">
@@ -200,7 +191,6 @@ function MainInfo (props) {
                             <div ref={button}>
                                 <JoinBtn title="공동구매 참여" onClick={()=>setDoJoin(true)}/>
                             </div>
-                            
                     }
                     
                 </div>
