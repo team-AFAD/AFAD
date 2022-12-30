@@ -50,7 +50,7 @@ const deleteNoToken = (url, data) => {
 }
 const deleteData = (url, data) => {
     return new Promise((resolve, reject) => {
-        axios.delete(BACK_SERVER + url, {headers})
+        axios.delete(BACK_SERVER + url, {headers, data})
         .then((res) => {
             resolve(res);
         });
