@@ -39,7 +39,7 @@ function MainInfo (props) {
     const [likeStatus, setLikeStatus] = useState(false);
     const [doJoin, setDoJoin] = useState(false);
     const [message, setMessage] = useState("");
-    // const [letJoin, setLetJoin] = useState(false);
+    const [letJoin, setLetJoin] = useState("");
 
     // 참여 여부 확인하기
     const isJoined = async () => {
@@ -48,11 +48,12 @@ function MainInfo (props) {
         const btn = button.current.querySelector(".ReadBtn");
         console.log(button.current.querySelector(".ReadBtn"));
         if (result.data.valid) {
-            btn.disabled = false;
-            // setLetJoin(true);
+            // btn.disabled = false;
+            setLetJoin(true);
         } else {
-            btn.disabled = true;
-            // setLoinJoin(false);
+            // btn.disabled = true;
+            // alert ("이미 구입한 상품입니다.")
+            setLetJoin(false);
         }
     }
 
@@ -162,12 +163,14 @@ function MainInfo (props) {
     // 참여버튼 비활성화
     const end_date = props.data.end_date;
     const num_people = props.data.num_people;
-    console.log("이거1", end_date);
-    console.log("이거2", num_people);
-    console.log("이거3", todayDate);
+console.log("이거 확인해보기",letJoin);
     function noJoin () {
-        alert ("모집이 종료된 상품입니다.");
+        {
+            letJoin ?  alert ("모집이 종료된 상품입니다.") : alert("이미 구매한 상품입니다.") 
+        }
+        
     }
+    
     // console.log("-----", props.data );
     return (
         <div className="MainInfo">
@@ -203,10 +206,10 @@ function MainInfo (props) {
                             <JoinBtn title="게시글 삭제" onClick={deletePost}/>
                         </>
                             :
-                            todayDate >= end_date|| {numPeople}==num_people
+                            todayDate >= end_date || {numPeople}==num_people || letJoin == false
                             ?
                             (
-                                <div ref={button}>
+                            <div ref={button}>
                                 <JoinBtn title="공동구매 종료" onClick={()=>noJoin()}/>
                             </div>
                             )

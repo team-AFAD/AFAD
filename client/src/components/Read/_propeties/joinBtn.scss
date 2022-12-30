@@ -18,6 +18,9 @@
             color: darkslategray;
             cursor: pointer;
             transition: 0.3s;
+            &.stop {
+                color: #888
+            }
         }
         &:hover {
             letter-spacing: 2px;
