@@ -10,11 +10,12 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      // cb(null, "/react/build/images");
-      cb(null, "../client/public/images");
+      cb(null, "../build/images");
+      // cb(null, "../client/public/images");
   },
   filename: (req, file, cb) =>{
       const ext = path.extname(file.originalname);
+      console.log("dkdkdkdkdkdk");
       cb(null, `${Date.now()}.${ext}`);
   }
 });
@@ -26,7 +27,7 @@ const upload = multer({storage:storage})
 // })
 
 //CREATE
-router.post("/write", upload.single('photo'), verifyToken,createPost);
+router.post("/write", upload.single('photo'), verifyToken, createPost);
 //UPDATE
 // router.put("/:id", verifyUser, updatePost);
 router.put("/modify/:id", upload.single('photo'), verifyToken, updatePost);

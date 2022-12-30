@@ -54,21 +54,22 @@ mongoose.connection.on("disconnected", ()=> {
     console.log("mongoDB disconnected")
 })
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "../client/public/images");
-    },
-    filename: (req, file, cb) =>{
-        // cb(null, req.body.name);
-        const ext = path.extname(file.originalname);
-        cb(null, `${Date.now()}.${ext}`);
-    }
-});
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, "../../build/images");
+//         // cb(null, "../client/public/images");
+//     },
+//     filename: (req, file, cb) =>{
+//         // cb(null, req.body.name);
+//         const ext = path.extname(file.originalname);
+//         cb(null, `${Date.now()}.${ext}`);
+//     }
+// });
 
-const upload = multer({storage:storage})
-app.post("/api/upload", upload.single("file"), (req,res) =>{
-    res.status(200).json("File has been uploaded");
-})
+// const upload = multer({storage:storage})
+// app.post("/api/upload", upload.single("file"), (req,res) =>{
+//     res.status(200).json("File has been uploaded");
+// })
 
 //middlewares
 app.use(cookieParser());
@@ -98,8 +99,8 @@ app.use((err, req, res, next) => {
     });
 });
 
-//8080연결완료
-app.listen(8080, ()=>{
+//8000연결완료
+app.listen(8000, ()=>{
     connect();
     console.log("Connected to backend!");
 })
