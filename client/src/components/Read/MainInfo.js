@@ -12,10 +12,16 @@ import NumPeople from './_propeties/NumPeople';
 import PerPayment from './_propeties/PerPayment';
 import Marchandise from './_propeties/Merchandise';
 import Place from './_propeties/Place';
-import Date from './_propeties/Date';
+import Date1 from './_propeties/Date';
 import LikeBtn from './_propeties/LikeBtn';
 import JoinBtn from './_propeties/JoinBtn';
 import Payments from '../../pages/Payments';
+
+let today = new Date();
+let year = today.getFullYear();
+let month = ('0' + (today.getMonth() + 1)).slice(-2);
+let day = ('0' + today.getDate()).slice(-2);
+let todayDate = year + '-' + month  + '-' + day;
 
 const BACK_SERVER = process.env.REACT_APP_URL + "/api";
 
@@ -25,7 +31,7 @@ function MainInfo (props) {
     // console.log(user._id);
     const navigate = useNavigate();
     const [friends, setFriends] = useState([]);
-
+    
 
     const button = useRef();
 
@@ -153,7 +159,16 @@ function MainInfo (props) {
         getFriends();
     }, []);
 
-    console.log("-----", props.data );
+    // 참여버튼 비활성화
+    const end_date = props.data.end_date;
+    const num_people = props.data.num_people;
+    console.log("이거1", end_date);
+    console.log("이거2", num_people);
+    console.log("이거3", todayDate);
+    function noJoin () {
+        alert ("모집이 종료된 상품입니다.");
+    }
+    // console.log("-----", props.data );
     return (
         <div className="MainInfo">
             <Title title={props.data.title}/> <br />
@@ -172,7 +187,7 @@ function MainInfo (props) {
 
             <div className='bottomInfo'>
                 <Place title="모집 장소 : " place={props.data.place}/>
-                <Date title="모집 기한 :" createdAt={props.data.createdAt} end_date={props.data.end_date}/>
+                <Date1 title="모집 기한 :" createdAt={props.data.createdAt} end_date={props.data.end_date}/>
             </div>
 
             <div className='CompoWrap_flex ReadBtn'>
@@ -181,16 +196,27 @@ function MainInfo (props) {
                     <JoinBtn title="채팅하기" onClick={goChat}/>
                     {/* 삼항연산자로 버튼 생성하기 작성자와 현재사용자 비교 */}
                     {
-                        user._id == props.data.userId 
+                        (user._id == props.data.userId)
                         ? 
                         <>
                             <JoinBtn title="게시글 수정" onClick={modifyPost}/>
                             <JoinBtn title="게시글 삭제" onClick={deletePost}/>
                         </>
                             :
+                            todayDate >= end_date|| {numPeople}==num_people
+                            ?
+                            (
+                                <div ref={button}>
+                                <JoinBtn title="공동구매 종료" onClick={()=>noJoin()}/>
+                            </div>
+                            )
+                            :
+                            (
                             <div ref={button}>
                                 <JoinBtn title="공동구매 참여" onClick={()=>setDoJoin(true)}/>
                             </div>
+                            )
+                            
                     }
                     
                 </div>
